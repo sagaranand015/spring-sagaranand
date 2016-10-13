@@ -1,5 +1,5 @@
 <!-- Section 2 -->
-<section class="height-400" id="slider" style="background:url('libraries/images/12-min.jpg')" ng-controller="headerController">
+<section class="height-300" id="slider" style="background:url('libraries/images/12-min.jpg')" ng-controller="headerController">
 	<div class="overlay dark-6"><!-- dark overlay [0 to 9 opacity] --></div>
 
 	<div class="display-table">

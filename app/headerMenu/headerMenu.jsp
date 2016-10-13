@@ -11,7 +11,7 @@
 			</button>
 
 			<!-- Logo -->
-			<a class="logo pull-left" href="index.html">
+			<a class="logo pull-left" href="index.jsp">
 				<img src="libraries/images/logo-black.png" alt="Sagar Anand Name Logo" />
 			</a>
 
@@ -21,22 +21,22 @@
 					<ul id="topMain" class="nav nav-pills nav-main">
 
 						<li>    
-							<a href="#">
+							<a ui-sref="home">
 								HOME
 							</a>
 						</li>
 						<li>    
-							<a href="#">
+							<a ui-sref="contact">
 								CONTACT ME
 							</a>
 						</li>
 						<li>    
-							<a href="#">
+							<a ui-sref="projects">
 								PROJECTS
 							</a>
 						</li>
 						<li>    
-							<a href="#">
+							<a ui-sref="profile">
 								PROFILE LINKS
 							</a>
 						</li>

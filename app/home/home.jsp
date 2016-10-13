@@ -1,5 +1,5 @@
 <!-- Section 3 -->
-<section id="about" class="alternate" ng-controller="sectionOneController">
+<section id="home" class="alternate">
 	<div class="container">
 
 		<!-- Section Header -->

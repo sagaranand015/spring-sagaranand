@@ -21,7 +21,6 @@
 		<link rel="stylesheet" href="libraries/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="libraries/ngToast/dist/ngToast.min.css">
 		<link rel="stylesheet" href="libraries/ngToast/dist/ngToast-animations.min.css">
-		<link rel="stylesheet" href="libraries/angular-loading-bar/loading-bar.min.css">
 		<link rel="stylesheet" href="libraries/loadingbar/loading-bar.css">
 
 		<!-- mobile settings -->
@@ -52,15 +51,17 @@
 	<body ng-controller="mainController as mainCtrl">
 	
 		<toast></toast>
-		<div ng-show="mainCtrl.showDisabledScreen" id="cover"></div>
 		
 		<div class="wrapper">
+
+			<div ng-show="mainCtrl.showDisabledScreen" class="overlay"></div>
+
 			<!-- the consistent header for all the pages -->
 			<div ng-include="'app/headerMenu/headerMenu.jsp'"></div> 
 
 			<div ng-include="'app/header/header.jsp'"></div> 
 
-			<div ng-include="'app/sections/section-one.jsp'"></div> 
+			<div ui-view></div>
 
 			<div ng-include="'app/footer/footer.jsp'"></div> 
 
@@ -68,6 +69,7 @@
 
 		<!-- SCROLL TO TOP -->
 		<a href="#" id="toTop"></a>
+
 		
 	</body>
 
@@ -83,7 +85,6 @@
 	<script src="libraries/angular/angular-sanitize.js"></script>
 	<script src="libraries/ngToast/dist/ngToast.min.js"></script>
 	<script src="libraries/angular-validator/angular-validator.min.js"></script>
-	<script src="libraries/angular-loading-bar/loading-bar.min.js"></script>
 	<script src="libraries/angular/angular-animate.js"></script>
 	<script src="libraries/loadingbar/loading-bar.js"></script>
 	<script src="libraries/angular-ui/ui-bootstrap-2.1.3.min.js"></script>
@@ -103,12 +104,14 @@
 	<script src="app/headerMenu/headerMenuController.js"></script>
 	<script src="app/header/headerController.js"></script>
 	<script src="app/footer/footerController.js"></script>
-	<script src="app/sections/sectionOneController.js"></script>
+	<script src="app/home/homeController.js"></script>
+	<script src="app/contact/contactController.js"></script>
+	<script src="app/projects/projectsController.js"></script>
+	<script src="app/profile/profileController.js"></script>
 
 	<!-- JAVASCRIPT FILES -->
 	<script type="text/javascript">var plugin_path = 'libraries/js/';</script>
 	<script type="text/javascript" src="libraries/js/jquery-2.1.4.min.js"></script>
-
 	<script type="text/javascript" src="libraries/js/scripts.js"></script>
 		
 </html>
