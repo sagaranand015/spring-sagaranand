@@ -56,12 +56,17 @@
 
 			<div ng-show="mainCtrl.showDisabledScreen" class="overlay"></div>
 
-			<!-- the consistent header for all the pages -->
 			<div ng-include="'app/headerMenu/headerMenu.jsp'"></div> 
 
 			<div ng-include="'app/header/header.jsp'"></div> 
 
-			<div ui-view></div>
+			<div id="home" ng-include="'app/home/home.jsp'"></div> 			
+
+			<div id="contact" ng-include="'app/contact/contact.jsp'"></div> 			
+
+			<div id="projects" ng-include="'app/projects/projects.jsp'"></div> 			
+
+			<div id="profile" ng-include="'app/profile/profile.jsp'"></div> 			
 
 			<div ng-include="'app/footer/footer.jsp'"></div> 
 
@@ -70,7 +75,6 @@
 		<!-- SCROLL TO TOP -->
 		<a href="#" id="toTop"></a>
 
-		
 	</body>
 
 	<!-- Angular dependency from CDN -->
@@ -89,6 +93,7 @@
 	<script src="libraries/loadingbar/loading-bar.js"></script>
 	<script src="libraries/angular-ui/ui-bootstrap-2.1.3.min.js"></script>
 	<script src="libraries/angular-ui/ui-bootstrap-tpls-2.1.3.min.js"></script>
+	<script src="libraries/angular-scroll/angular-scroll.min.js"></script>
 
 	<!-- custom angular modules -->
 	<script src="app/appModule.js"></script>
@@ -113,5 +118,6 @@
 	<script type="text/javascript">var plugin_path = 'libraries/js/';</script>
 	<script type="text/javascript" src="libraries/js/jquery-2.1.4.min.js"></script>
 	<script type="text/javascript" src="libraries/js/scripts.js"></script>
+	<script type="text/javascript" src="libraries/js/smoothscroll.js"></script>
 		
 </html>

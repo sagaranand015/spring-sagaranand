@@ -21,22 +21,22 @@
 					<ul id="topMain" class="nav nav-pills nav-main">
 
 						<li>    
-							<a ui-sref="home">
+							<a ng-click="scroll('home')">
 								HOME
 							</a>
 						</li>
 						<li>    
-							<a ui-sref="contact">
+							<a ng-click="scroll('contact')">
 								CONTACT ME
 							</a>
 						</li>
 						<li>    
-							<a ui-sref="projects">
+							<a ng-click="scroll('projects')">
 								PROJECTS
 							</a>
 						</li>
 						<li>    
-							<a ui-sref="profile">
+							<a ng-click="scroll('profile')">
 								PROFILE LINKS
 							</a>
 						</li>

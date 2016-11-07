@@ -15,7 +15,7 @@
 				<address>
 					<ul class="list-unstyled">
 						<li class="footer-sprite address">
-							B-208, Ambience Diva<br>
+							D-09, Jain Heights Altura,<br>
 							Sarjapur Main Road, Bengaluru<br>
 							Karnataka, India<br>
 						</li>
@@ -31,11 +31,10 @@
 				<!-- Links -->
 				<h4 class="letter-spacing-1">EXPLORE SAGARANAND.COM</h4>
 				<ul class="footer-links list-unstyled">
-					<li><a href="#">Home</a></li>
-					<li><a href="http://sagaranand.com/#about">About Me</a></li>
-					<li><a href="http://sagaranand.com/profile-links">Profile Links</a></li>
-					<li><a href="http://sagaranand.com/projects">Projects</a></li>
-					<li><a href="http://sagaranand.com/contact-me">Contact Me</a></li>
+					<li><a ng-click="scroll('home')">Home</a></li>
+					<li><a ng-click="scroll('profile')">Profile Links</a></li>
+					<li><a ng-click="scroll('projects')">Projects</a></li>
+					<li><a ng-click="scroll('contact')">Contact Me</a></li>
 				</ul>
 				<!-- /Links -->
 			</div>

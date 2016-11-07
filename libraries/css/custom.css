@@ -70,3 +70,8 @@ footer {
     position: fixed;
     z-index: 9999;
 }
+
+.content-section {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
