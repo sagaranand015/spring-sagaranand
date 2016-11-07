@@ -1,0 +1,77 @@
+@font-face {
+    font-family: regularText;
+    src: url('fonts/AlegreyaSansSC-Regular.ttf');
+}
+
+@font-face {
+    font-family: boldText;
+    src: url('fonts/AlegreyaSansSC-Bold.ttf');
+}
+
+@font-face {
+    font-family: lightText;
+    src: url('fonts/AlegreyaSansSC-Light.ttf');
+}
+
+@font-face {
+    font-family: mediumText;
+    src: url('fonts/AlegreyaSansSC-Medium.ttf');
+}
+
+@font-face {
+    font-family: writingText;
+    src: url('fonts/SEGOEUIL.ttf');
+}
+
+/*for the smallest phones*/
+@media (max-width:767px){
+	
+}
+
+/*for the tablets and all*/
+@media (min-width:768px){
+	
+}
+
+/*for medium screens and desktops*/
+@media (min-width:992px){
+    
+}
+
+/*for large screens*/
+@media (min-width:1200px){
+	
+}
+
+.display-pic {
+	display: block;
+	border-radius: 50%;
+
+}
+
+footer {
+    text-align: left;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 30;
+    background-color: rgba(0,0,0,0.3);
+    overflow-y: hidden;
+}
+
+#loading-bar-spinner,#loading-bar .bar { 
+    position: fixed;
+    z-index: 9999;
+}
+
+.content-section {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
