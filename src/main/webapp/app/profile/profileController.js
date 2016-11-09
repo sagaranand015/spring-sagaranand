@@ -8,8 +8,8 @@ profileController.$inject = ['rendered', '$anchorScroll'];
 		console.log("Logging profileController");
 		var vm = this;
 
-		if(rendered === "profile") {
-			$anchorScroll(rendered);
-		}
+//		if(rendered === "profile") {
+//			$anchorScroll(rendered);
+//		}
 
 	}

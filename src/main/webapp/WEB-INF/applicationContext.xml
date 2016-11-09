@@ -13,7 +13,24 @@
 		location="WEB-INF/properties/monitor-app.properties" /> -->
 
 	<context:component-scan base-package="com.sagaranand.website.controllers" />
+	<context:component-scan base-package="com.sagaranand.website.client" />
+	<context:component-scan base-package="com.sagaranand.website.core" />
 
 	<mvc:annotation-driven />
+
+	<bean id="client" class="com.sagaranand.website.client.GenericClient"></bean>
+	
+	<bean id="clientController" class="com.sagaranand.website.controllers.ClientController"></bean>
+
+	<bean id="mail" class="com.sagaranand.website.core.MailImpl">
+		<property name="apiKey" value="41ePKTnx5DEoaYJmC3EEjw"></property>
+		<property name="fromEmail" value="query@sagaranand.com"></property>
+		<property name="fromName" value="Sagar Anand"></property>
+	</bean>
+	
+	<bean id="mailUtilities" class="com.sagaranand.website.utilities.MailUtilities">
+		<property name="contactReplySubject" value="I have received your Query!"></property>
+		<property name="contactReplyMessage" value="This is the reply message from query@sagaranand.com"></property>
+	</bean>
 
 </beans>

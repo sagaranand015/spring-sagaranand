@@ -8,8 +8,7 @@ angular.module('monitorApp').config(function($stateProvider, $urlRouterProvider,
 	
 	// for the ngToast configuration
 	ngToastProvider.configure({
-		animation: 'slide',
-		timeout: 8000
+		animation: 'slide'
 	});
 	
 	$stateProvider.state('home', {
@@ -22,36 +21,6 @@ angular.module('monitorApp').config(function($stateProvider, $urlRouterProvider,
  		},
  		controller: 'homeController'
  	});
-
-
- 	// .state('contact', {
- 	// 	url: '/contact',
- 	// 	templateUrl: 'app/contact/contact.jsp',
- 	// 	resolve: {
- 	// 		rendered: function() {
- 	// 			return "contact";
- 	// 		}
- 	// 	},
- 	// 	controller : 'contactController'
- 	// }).state('projects', {
- 	// 	url: '/projects',
- 	// 	templateUrl: 'app/projects/projects.jsp',
- 	// 	resolve: {
- 	// 		rendered: function() {
- 	// 			return "projects";
- 	// 		}
- 	// 	},
- 	// 	controller : 'projectsController'
- 	// }).state('profile', {
- 	// 	url: '/profile',
- 	// 	templateUrl: 'app/profile/profile.jsp',
- 	// 	resolve: {
- 	// 		rendered: function() {
- 	// 			return "profile";
- 	// 		}
- 	// 	},
- 	// 	controller : 'profileController'
- 	// });
 
  	$urlRouterProvider.otherwise('home');
 
