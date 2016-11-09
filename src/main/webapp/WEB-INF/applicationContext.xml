@@ -31,6 +31,9 @@
 	<bean id="mailUtilities" class="com.sagaranand.website.utilities.MailUtilities">
 		<property name="contactReplySubject" value="I have received your Query!"></property>
 		<property name="contactReplyMessage" value="This is the reply message from query@sagaranand.com"></property>
+		<property name="contactAdminEmail" value="query@sagaranand.com"></property>
+		<property name="contactAdminName" value="Sagar Anand"></property>
+		<property name="contactAdminSubject" value="Query Received from SagarAnand.com Contact Page"></property>
 	</bean>
 
 </beans>

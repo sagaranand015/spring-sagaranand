@@ -3,11 +3,9 @@
  */
 package com.sagaranand.website.utilities;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import com.microtripit.mandrillapp.lutung.MandrillApi;
-import com.microtripit.mandrillapp.lutung.model.MandrillApiError;
 import com.microtripit.mandrillapp.lutung.view.MandrillMessage;
 import com.microtripit.mandrillapp.lutung.view.MandrillMessage.Recipient;
 
@@ -20,6 +18,36 @@ public class MailUtilities {
 	private String contactReplySubject;
 
 	private String contactReplyMessage;
+	
+	private String contactAdminEmail;
+	
+	private String contactAdminName;
+	
+	private String contactAdminSubject;
+	
+	public String getContactAdminEmail() {
+		return contactAdminEmail;
+	}
+
+	public void setContactAdminEmail(String contactAdminEmail) {
+		this.contactAdminEmail = contactAdminEmail;
+	}
+
+	public String getContactAdminName() {
+		return contactAdminName;
+	}
+
+	public void setContactAdminName(String contactAdminName) {
+		this.contactAdminName = contactAdminName;
+	}
+
+	public String getContactAdminSubject() {
+		return contactAdminSubject;
+	}
+
+	public void setContactAdminSubject(String contactAdminSubject) {
+		this.contactAdminSubject = contactAdminSubject;
+	}
 
 	public String getContactReplySubject() {
 		return contactReplySubject;

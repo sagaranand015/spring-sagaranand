@@ -17,7 +17,7 @@ contactController.$inject = ['$scope', 'dataFactory', 'utilityService', 'ngToast
 				});
 				return;
 			}
-
+			
 			var contactRequest = {
 					"name": $scope.txtName,
 					"email": $scope.txtEmail,
@@ -26,7 +26,7 @@ contactController.$inject = ['$scope', 'dataFactory', 'utilityService', 'ngToast
 			};
 			
 			vm.contactResp = dataFactory.sendContactMail(contactRequest).then(function(response){ 
-				console.log(response);
+				
 			}, function(response) { 
 				console.log(response);
 			});
