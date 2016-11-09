@@ -62,12 +62,10 @@ public class ClientController {
 			// send the mail to the admin
 			MandrillMessageStatus adminResp = mail.SendMail(mailUtilities.getContactAdminEmail(),
 					mailUtilities.getContactAdminName(), mailUtilities.getContactAdminSubject(), adminMail);
-			System.out.println("Admin mail status: " + adminResp.getStatus());
 
 			// send the acknowledge mail to the end user
 			MandrillMessageStatus userResp = mail.SendMail(contactRequest.getEmail(), contactRequest.getName(),
 					mailUtilities.getContactReplySubject(), mailUtilities.getContactReplyMessage());
-			System.out.println("User mail status: " + userResp.getStatus());
 
 			if (adminResp.getStatus().equals("sent") && userResp.getStatus().equals("sent")) {
 				return ResponseEntity.status(HttpStatus.OK)

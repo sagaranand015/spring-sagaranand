@@ -6,7 +6,6 @@ angular.module('monitorApp').factory('dataFactory', [ '$http', '$q', function($h
 	var dataFactory = {};
 
 	dataFactory.sendContactMail = function(contactRequest) {
-		console.log(contactRequest);
 		return $http.post("sendContactMail", contactRequest);
 	}
 	
