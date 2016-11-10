@@ -9,8 +9,7 @@ function contactController($scope, dataFactory, utilityService, ngToast) {
 
 	$scope.sendContactMail = function sendContactMail() {
 
-		if (utilityService.checkNullOrEmpty($scope.txtTel)
-				|| utilityService.checkNullOrEmpty($scope.txtName)
+		if (utilityService.checkNullOrEmpty($scope.txtName)
 				|| utilityService.checkNullOrEmpty($scope.txtEmail)
 				|| utilityService.checkNullOrEmpty($scope.txtMessage)) {
 			ngToast
@@ -19,6 +18,8 @@ function contactController($scope, dataFactory, utilityService, ngToast) {
 						content : 'The Information Entered seems Incorrect. Please try again'
 					});
 			return;
+		} else if(utilityService.checkNullOrEmpty($scope.txtTel)) {
+			$scope.txtTel = "";
 		}
 
 		var contactRequest = {
