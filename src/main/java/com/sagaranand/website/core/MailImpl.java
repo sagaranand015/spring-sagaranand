@@ -66,7 +66,7 @@ public class MailImpl implements Mail {
 	 * @see com.sagaranand.website.core.Mail#SendMail(java.lang.String,
 	 * java.lang.String, java.lang.String, java.lang.String)
 	 */
-	public MandrillMessageStatus SendMail(String toEmail, String toName, String subject, String message)
+	public MandrillMessageStatus sendMail(String toEmail, String toName, String subject, String message)
 			throws MandrillApiError, IOException, Exception {
 		try {
 			if (mandrillApi == null) {
@@ -108,7 +108,7 @@ public class MailImpl implements Mail {
 	 * java.lang.String, java.lang.String, java.lang.String, java.lang.String,
 	 * java.lang.String)
 	 */
-	public MandrillMessageStatus SendMail(String toEmail, String toName, String fromEmail, String fromName,
+	public MandrillMessageStatus sendMail(String toEmail, String toName, String fromEmail, String fromName,
 			String subject, String message) throws MandrillApiError, IOException {
 		// TODO Auto-generated method stub
 		return null;
@@ -120,7 +120,7 @@ public class MailImpl implements Mail {
 	 * @see com.sagaranand.website.core.Mail#SendMail(java.lang.String[],
 	 * java.lang.String[], java.lang.String, java.lang.String)
 	 */
-	public MandrillMessageStatus[] SendMail(String[] toEmail, String[] toName, String subject, String message)
+	public MandrillMessageStatus[] sendMail(String[] toEmail, String[] toName, String subject, String message)
 			throws MandrillApiError, IOException {
 		// TODO Auto-generated method stub
 		return null;
@@ -133,7 +133,7 @@ public class MailImpl implements Mail {
 	 * java.lang.String[], java.lang.String, java.lang.String, java.lang.String,
 	 * java.lang.String)
 	 */
-	public MandrillMessageStatus[] SendMail(String[] toEmail, String[] toName, String fromEmail, String fromName,
+	public MandrillMessageStatus[] sendMail(String[] toEmail, String[] toName, String fromEmail, String fromName,
 			String subject, String message) throws MandrillApiError, IOException {
 		// TODO Auto-generated method stub
 		return null;

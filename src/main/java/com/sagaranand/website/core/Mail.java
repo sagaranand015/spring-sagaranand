@@ -23,7 +23,7 @@ public interface Mail {
 	 * @throws MandrillApiError
 	 * @throws IOException
 	 */
-	public MandrillMessageStatus SendMail(String toEmail, String toName, String subject, String message)
+	public MandrillMessageStatus sendMail(String toEmail, String toName, String subject, String message)
 			throws MandrillApiError, IOException, Exception;
 
 	/**
@@ -37,7 +37,7 @@ public interface Mail {
 	 * @throws MandrillApiError
 	 * @throws IOException
 	 */
-	public MandrillMessageStatus SendMail(String toEmail, String toName, String fromEmail, String fromName,
+	public MandrillMessageStatus sendMail(String toEmail, String toName, String fromEmail, String fromName,
 			String subject, String message) throws MandrillApiError, IOException, Exception;
 
 	/**
@@ -49,7 +49,7 @@ public interface Mail {
 	 * @throws MandrillApiError
 	 * @throws IOException
 	 */
-	public MandrillMessageStatus[] SendMail(String toEmail[], String toName[], String subject, String message)
+	public MandrillMessageStatus[] sendMail(String toEmail[], String toName[], String subject, String message)
 			throws MandrillApiError, IOException, Exception;
 
 	/**
@@ -63,7 +63,7 @@ public interface Mail {
 	 * @throws MandrillApiError
 	 * @throws IOException
 	 */
-	public MandrillMessageStatus[] SendMail(String toEmail[], String toName[], String fromEmail, String fromName,
+	public MandrillMessageStatus[] sendMail(String toEmail[], String toName[], String fromEmail, String fromName,
 			String subject, String message) throws MandrillApiError, IOException, Exception;
 
 }

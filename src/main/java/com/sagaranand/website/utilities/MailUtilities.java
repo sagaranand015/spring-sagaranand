@@ -15,6 +15,8 @@ import com.microtripit.mandrillapp.lutung.view.MandrillMessage.Recipient;
  */
 public class MailUtilities {
 
+	private String contactAdminSalute;
+	
 	private String contactReplySubject;
 
 	private String contactReplyMessage;
@@ -64,7 +66,26 @@ public class MailUtilities {
 	public void setContactReplyMessage(String contactReplyMessage) {
 		this.contactReplyMessage = contactReplyMessage;
 	}
+	
+	public String getContactAdminSalute() {
+		return contactAdminSalute;
+	}
 
+	public void setContactAdminSalute(String contactAdminSalute) {
+		this.contactAdminSalute = contactAdminSalute;
+	}
+
+	/**
+	 * @param name
+	 * @return the mailMessage as String for the end user mail
+	 */
+	public String prepareContactReplyMessage(String name) {
+		StringBuffer mailMessage = new StringBuffer(
+				"hi " + name + "<br /><br />");
+		mailMessage.append(this.getContactReplyMessage());
+		return mailMessage.toString();
+	}
+	
 	/**
 	 * 
 	 * @param name
@@ -75,13 +96,11 @@ public class MailUtilities {
 	 */
 	public String prepareContactMessageForAdmin(String name, String email, String phone, String message) {
 		StringBuffer mailMessage = new StringBuffer(
-				"<h1>Contact Query Received</h1> hi Admin, Please find the details of the query below(<b>received from query@sagaranand.com</b>): <br /><br />");
+				this.getContactAdminSalute() + " " + this.getContactAdminEmail() + " <b> <br /><br />");
 		mailMessage.append("Name: <b>" + name + "</b><br/>");
 		mailMessage.append("Email: <b>" + email + "</b><br/>");
 		mailMessage.append("Phone: <b>" + phone + "</b><br/>");
 		mailMessage.append("Message: <b>" + message + "</b><br/>");
-		mailMessage.append(
-				"<br /> ------------------------------------------------------------------ <br />Please do not reply to this automated mail");
 		return mailMessage.toString();
 	}
 

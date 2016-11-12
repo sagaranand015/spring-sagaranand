@@ -8,32 +8,39 @@
  	http://www.springframework.org/schema/context
  	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<!-- The .properties file for parameters from outside -->
-	<!-- <context:property-placeholder
-		location="WEB-INF/properties/monitor-app.properties" /> -->
-
 	<context:component-scan base-package="com.sagaranand.website.controllers" />
 	<context:component-scan base-package="com.sagaranand.website.client" />
 	<context:component-scan base-package="com.sagaranand.website.core" />
 
 	<mvc:annotation-driven />
 
+	<!-- The .properties file for parameters from outside -->
+	<context:property-placeholder
+		location="WEB-INF/properties/app.properties" />
+
 	<bean id="client" class="com.sagaranand.website.client.GenericClient"></bean>
-	
+
 	<bean id="clientController" class="com.sagaranand.website.controllers.ClientController"></bean>
 
 	<bean id="mail" class="com.sagaranand.website.core.MailImpl">
-		<property name="apiKey" value="41ePKTnx5DEoaYJmC3EEjw"></property>
-		<property name="fromEmail" value="query@sagaranand.com"></property>
-		<property name="fromName" value="Sagar Anand"></property>
+		<property name="apiKey" value="${app.mail.apiKey}"></property>
+		<property name="fromEmail" value="${app.mail.fromEmail}"></property>
+		<property name="fromName" value="${app.mail.fromName}"></property>
 	</bean>
-	
+
 	<bean id="mailUtilities" class="com.sagaranand.website.utilities.MailUtilities">
-		<property name="contactReplySubject" value="I have received your Query!"></property>
-		<property name="contactReplyMessage" value="This is the reply message from query@sagaranand.com"></property>
-		<property name="contactAdminEmail" value="query@sagaranand.com"></property>
-		<property name="contactAdminName" value="Sagar Anand"></property>
-		<property name="contactAdminSubject" value="Query Received from SagarAnand.com Contact Page"></property>
+		<property name="contactReplySubject" value="${app.contact.contactReplySubject}"></property>
+		<property name="contactReplyMessage"
+			value="${app.contact.contactReplyMessage}"></property>
+		<property name="contactAdminEmail" value="${app.contact.contactAdminEmail}"></property>
+		<property name="contactAdminName" value="${app.contact.contactAdminName}"></property>
+		<property name="contactAdminSubject"
+			value="${app.contact.contactAdminSubject}"></property>
+			<property name="contactAdminSalute" value="${app.contact.contactAdminSalute}"></property>
 	</bean>
+
+	<bean id="validator" class="com.sagaranand.website.validations.ValidatorImpl"></bean>
+
+	<bean id="sanitizer" class="com.sagaranand.website.validations.SanitizerImpl"></bean>
 
 </beans>

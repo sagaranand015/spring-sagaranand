@@ -22,6 +22,8 @@ import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;
 import com.sagaranand.website.utilities.MailUtilities;
+import com.sagaranand.website.validations.SanitizerImpl;
+import com.sagaranand.website.validations.ValidatorImpl;
 
 /**
  * @author sanand5
@@ -41,6 +43,12 @@ public class ClientController {
 	@Autowired
 	private MailUtilities mailUtilities;
 
+	@Autowired
+	private ValidatorImpl validator;
+
+	@Autowired
+	private SanitizerImpl sanitizer;
+
 	@RequestMapping(value = ApiEndpoints.ROOT)
 	public String index() {
 		return "index";
@@ -55,17 +63,35 @@ public class ClientController {
 	@RequestMapping(value = ApiEndpoints.CONTACTENDPOINT, method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ContactResponse> sendContactMail(@RequestBody ContactRequest contactRequest) {
 		try {
+
+			// validation of the input parameters
+			if (!validator.validateString(contactRequest.getEmail())
+					|| !validator.validateString(contactRequest.getName())
+					|| !validator.validateString(contactRequest.getMessage())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+						.body(new ContactResponse(new ServiceResponse(HttpStatus.BAD_REQUEST.value(), ""),
+								new ServiceResponse(HttpStatus.BAD_REQUEST.value(), "")));
+			} else if (!validator.validateStringIsNull(contactRequest.getPhone())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+						.body(new ContactResponse(new ServiceResponse(HttpStatus.BAD_REQUEST.value(), ""),
+								new ServiceResponse(HttpStatus.BAD_REQUEST.value(), "")));
+			}
+
 			// prepare the message for the admin
-			String adminMail = mailUtilities.prepareContactMessageForAdmin(contactRequest.getName(),
-					contactRequest.getEmail(), contactRequest.getPhone(), contactRequest.getMessage());
+			String adminMail = mailUtilities.prepareContactMessageForAdmin(
+					sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getName()),
+					sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getEmail()),
+					sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getPhone()),
+					sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getMessage()));
 
 			// send the mail to the admin
-			MandrillMessageStatus adminResp = mail.SendMail(mailUtilities.getContactAdminEmail(),
+			MandrillMessageStatus adminResp = mail.sendMail(mailUtilities.getContactAdminEmail(),
 					mailUtilities.getContactAdminName(), mailUtilities.getContactAdminSubject(), adminMail);
 
 			// send the acknowledge mail to the end user
-			MandrillMessageStatus userResp = mail.SendMail(contactRequest.getEmail(), contactRequest.getName(),
-					mailUtilities.getContactReplySubject(), mailUtilities.getContactReplyMessage());
+			MandrillMessageStatus userResp = mail.sendMail(contactRequest.getEmail(), contactRequest.getName(),
+					mailUtilities.getContactReplySubject(), mailUtilities.prepareContactReplyMessage(
+							sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getName())));
 
 			if (adminResp.getStatus().equals("sent") && userResp.getStatus().equals("sent")) {
 				return ResponseEntity.status(HttpStatus.OK)

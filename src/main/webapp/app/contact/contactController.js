@@ -42,8 +42,7 @@ function contactController($scope, dataFactory, utilityService, ngToast) {
 												className : 'success',
 												content : 'Thank you for your Query. Will get back to you ASAP!',
 												dismissOnTimeout : false,
-												dismissButton : true,
-												dismissOnClick: false
+												dismissButton : true
 											});
 								} else {
 									ngToast
@@ -51,8 +50,7 @@ function contactController($scope, dataFactory, utilityService, ngToast) {
 												className : 'danger',
 												content : 'Oops! Looks like the Mail Server is misbehaving. Please shoot a mail to <code>query@sagaranand.com</code> and I will get back ASAP!',
 												dismissOnTimeout : false,
-												dismissButton : true,
-												dismissOnClick: false
+												dismissButton : true
 											});
 								}
 							}

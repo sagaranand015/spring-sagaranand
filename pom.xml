@@ -90,6 +90,12 @@
 			<version>20160628.1</version>
 		</dependency>
 		
+		<!-- This dependency is for Input Validations on the Server Side, given by Apache Commons -->
+		<dependency>
+		    <groupId>commons-validator</groupId>
+		    <artifactId>commons-validator</artifactId>
+		    <version>1.5.1</version>
+		</dependency>
 	</dependencies>
 
 	<build>
