@@ -14,11 +14,6 @@ angular.module('monitorApp').config(function($stateProvider, $urlRouterProvider,
 	$stateProvider.state('home', {
  		url: '/home',
  		templateUrl: 'app/home/home.jsp',
- 		resolve: {
- 			rendered: function() {
- 				return "home";
- 			}
- 		},
  		controller: 'homeController'
  	});
 

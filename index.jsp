@@ -7,6 +7,10 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="libraries/images/favicon.ico" type="image/x-icon" />
+		<link rel="icon" href="libraries/images/favicon.ico" type="image/x-icon" />
+
 		<!-- Including bootstrap CSS -->
 		<link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css" />
 		
@@ -57,7 +61,7 @@
 		
 		<div class="wrapper">
 
-			<div ng-show="mainCtrl.showDisabledScreen" class="overlay"></div>
+			<!-- <div ng-show="mainCtrl.showDisabledScreen" class="overlay"></div> -->
 
 			<div ng-include="'app/headerMenu/headerMenu.jsp'"></div> 
 
@@ -84,6 +88,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
 	<!-- jQuery dependecy from CDN -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.8/angular-sanitize.min.js"></script>
+
 	<!-- Including Bootstrap -->
 	<script src="libraries/bootstrap/js/bootstrap.min.js"></script>
 
