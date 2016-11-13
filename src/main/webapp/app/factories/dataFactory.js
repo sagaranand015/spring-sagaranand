@@ -9,14 +9,8 @@ angular.module('monitorApp').factory('dataFactory', [ '$http', '$q', function($h
 		return $http.post("sendContactMail", contactRequest);
 	}
 	
-	// to get the Prod data from the remote JSON file
-	dataFactory.getRequestData = function(targetLink) {
-		return $http.get(targetLink);
-	}
-	
-	// to check the individual FES nodes as received from request
-	dataFactory.checkFesNode = function(targetLink) {
-		return $http.get(targetLink);
+	dataFactory.getPageContents = function(fileName) {
+		return $http.get("app/content/" + fileName + ".json");
 	}
 	
 	return dataFactory;

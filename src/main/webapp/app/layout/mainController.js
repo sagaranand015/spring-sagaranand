@@ -10,14 +10,14 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $http, $docume
 	console.log("Logging mainController");
 	var vm = this;
 	
-	vm.showDisabledScreen = false;
+	// vm.showDisabledScreen = false;
 	
 	$rootScope.$on('cfpLoadingBar:started', function(event, data) {
-		vm.showDisabledScreen = true;
+		// vm.showDisabledScreen = true;
 	});
 
 	$rootScope.$on('cfpLoadingBar:completed', function(event, data) {
-		vm.showDisabledScreen = false;
+		// vm.showDisabledScreen = false;
 	});
 
 }

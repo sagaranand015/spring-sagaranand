@@ -2,14 +2,35 @@ angular
 	.module('monitorApp')
 	.controller('profileController', profileController);
 
-profileController.$inject = ['rendered', '$anchorScroll'];
+profileController.$inject = ['$scope', 'dataFactory'];
 
-	function profileController(rendered, $anchorScroll) {
-		console.log("Logging profileController");
-		var vm = this;
+function profileController($scope, dataFactory) {
+	console.log("Logging profileController");
+	var vm = this;
 
-//		if(rendered === "profile") {
-//			$anchorScroll(rendered);
-//		}
+	vm.pageContent = {};
+	$scope.profiles = [];
 
+	vm.initProfiles = function() {
+		vm.profilesContentResp = dataFactory.getPageContents("profile").then(function(response) {
+			if(response.status == 200) {
+				$scope.headline  = response.data.headline;
+				$scope.profiles = response.data.profiles;
+			} else {
+				ngToast.create({
+					className: 'danger',
+					content: 'Could not Load the Page Contents. Please try again.'
+				});
+			}
+		}, function(response) {
+			ngToast.create({
+				className: 'danger',
+				content: 'Could not Load the Page Contents. Please try again.'
+			});
+		});
 	}
+
+	// load the contents of the page with this call to the initHome()
+	vm.initProfiles();
+
+}
