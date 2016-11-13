@@ -1,17 +1,13 @@
 angular.module('monitorApp').factory('dataFactory', [ '$http', '$q', function($http, $q) {
-
-	// the base URL for all the endpoints
-	var baseUrl = "monitor";
-	var prodEnv = "/prod";
-	var qaEnv = "/qa";
-	var devEnv = "/dev";
 	
-	var promiseArray = [];
-	var fesRequest = {};
-	var pieRequest = {};
+	console.log("DataFactory initialised!");
 	
 	// all the HTTP Request functions for reading from Remote hosts
 	var dataFactory = {};
+
+	dataFactory.sendContactMail = function(contactRequest) {
+		return $http.post("sendContactMail", contactRequest);
+	}
 	
 	// to get the Prod data from the remote JSON file
 	dataFactory.getRequestData = function(targetLink) {

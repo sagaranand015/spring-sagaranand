@@ -2,13 +2,16 @@
 <html ng-app="monitorApp">
 	<head>
 		<meta charset="UTF-8">
-		<title>Monitor App | Secaas</title>
+		<title>SagarAnand.com | InfoSec Developer</title>
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 		
 		<!-- Including bootstrap CSS -->
-		<link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css" />		
+		<link rel="stylesheet" href="libraries/bootstrap/css/bootstrap.min.css" />
+		
+		<!-- For Social button using BootStrap social -->
+		<link rel="stylesheet" href="libraries/css/bootstrap-social.css" />		
 
 		<!-- CSS Libraries -->
 		<link rel="stylesheet" type="text/css" href="libraries/ngToast/dist/ngToast-animations.min.css">
@@ -48,7 +51,7 @@
 
 	</head>
 
-	<body ng-controller="mainController as mainCtrl">
+	<body id="page-top" ng-controller="mainController as mainCtrl">
 	
 		<toast></toast>
 		

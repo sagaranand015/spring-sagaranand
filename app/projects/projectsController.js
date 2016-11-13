@@ -8,8 +8,8 @@ projectsController.$inject = ['rendered', '$anchorScroll'];
 		console.log("Logging projectsController");
 		var vm = this;
 
-		if(rendered === "projects") {
-			$anchorScroll(rendered);
-		}
+//		if(rendered === "projects") {
+//			$anchorScroll(rendered);
+//		}
 
 	}

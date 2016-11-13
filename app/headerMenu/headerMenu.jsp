@@ -11,7 +11,7 @@
 			</button>
 
 			<!-- Logo -->
-			<a class="logo pull-left" href="index.jsp">
+			<a class="logo pull-left" ng-click="scroll('page-top')">
 				<img src="libraries/images/logo-black.png" alt="Sagar Anand Name Logo" />
 			</a>
 
