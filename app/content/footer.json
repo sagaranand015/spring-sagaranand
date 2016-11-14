@@ -1,3 +1,59 @@
 {
-	
+	"left": {
+		"logo": {
+			"image": "libraries/images/logo-white.png",
+			"alt": "Sagar Anand Footer Logo"
+		},
+		"desc": "If you're in the city, drop in for a quick chat",
+		"address": "D-09, Jain Heights Altura,<br>Sarjapur Main Road, Bengaluru<br>Karnataka, India<br>",
+		"phone": "",
+		"mailId": "query@sagaranand.com"
+	},
+	"center": {
+		"header": "EXPLORE SAGARANAND.COM",
+		"links": [{
+			"text": "Home",
+			"scrollName": "home"	
+		},
+		{
+			"text": "Profile Links",
+			"scrollName": "profile"	
+		},
+		{
+			"text": "Projects",
+			"scrollName": "projects"	
+		},
+		{
+			"text": "Contact Me",
+			"scrollName": "contact"	
+		}]
+	},
+	"right": {
+		"title": "KEEP IN TOUCH",
+		"headline": "Follow me on the Social Media for all the newest happenings!",
+		"social": [{
+			"title": "Facebook",
+			"class": "social-icon social-icon-border social-facebook pull-left",
+			"iconClass": "icon-facebook",
+			"link": "http://facebook.com/rockstar.sagar"			
+		},
+		{
+			"title": "Twitter",
+			"class": "social-icon social-icon-border social-twitter pull-left",
+			"iconClass": "icon-twitter",
+			"link": "https://twitter.com/sagaranand015"			
+		},
+		{
+			"title": "Linkedin",
+			"class": "social-icon social-icon-border social-linkedin pull-left",
+			"iconClass": "icon-linkedin",
+			"link": "https://in.linkedin.com/in/sagar-anand-33b37a89"
+		},
+		{
+			"title": "Google Plus",
+			"class": "social-icon social-icon-border social-gplus pull-left",
+			"iconClass": "icon-gplus",
+			"link": "https://plus.google.com/+sagaranand015"	
+		}]
+	}
 }

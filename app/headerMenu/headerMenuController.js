@@ -24,7 +24,6 @@ function headerMenuController($scope, $rootScope, $document, dataFactory) {
 
 	vm.initHeaderMenu = function() {
 		vm.headerMenuContentResp = dataFactory.getPageContents("headerMenu").then(function(response) {
-			console.log(response);
 			if(response.status == 200) {
 				$scope.logo = response.data.logo;
 				$scope.links = response.data.links;
