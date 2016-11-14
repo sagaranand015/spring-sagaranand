@@ -6,21 +6,22 @@
 			
 			<div class="col-md-4">
 				<!-- Footer Logo -->
-				<img class="footer-logo" src="libraries/images/logo-white.png" alt="Sagar Anand Footer Logo" />
+				<img class="footer-logo" ng-src="{{left.logo.image}}" alt="{{left.logo.alt}}" />
 
 				<!-- Small Description -->
-				<p>If you're in the city, drop in for a quick chat</p>
+				<p>{{left.desc}}</p>
 
 				<!-- Contact Address -->
 				<address>
 					<ul class="list-unstyled">
-						<li class="footer-sprite address">
-							D-09, Jain Heights Altura,<br>
-							Sarjapur Main Road, Bengaluru<br>
-							Karnataka, India<br>
+						<li class="footer-sprite address" ng-bind-html="left.address">
+							{{left.address}}
+						</li>
+						<li class="footer-sprite phone" ng-bind-html="left.phone">
+							{{left.phone}}
 						</li>
 						<li class="footer-sprite email">
-							<a href="mailto:query@sagaranand.com">query@sagaranand.com</a>
+							<a ng-bind-html="left.mailId" ng-href="mailto:{{left.mailId}}">{{left.mailId}}</a>
 						</li>
 					</ul>
 				</address>
@@ -29,44 +30,25 @@
 
 			<div class="col-md-4">
 				<!-- Links -->
-				<h4 class="letter-spacing-1">EXPLORE SAGARANAND.COM</h4>
+				<h4 class="letter-spacing-1" ng-bind-html="center.header">{{center.header}}</h4>
 				<ul class="footer-links list-unstyled">
-					<li><a ng-click="scroll('home')">Home</a></li>
-					<li><a ng-click="scroll('profile')">Profile Links</a></li>
-					<li><a ng-click="scroll('projects')">Projects</a></li>
-					<li><a ng-click="scroll('contact')">Contact Me</a></li>
+					<li ng-repeat="link in center.links"><a ng-bind-html="link.text" ng-click="scroll(link.scrollName)">{{link.text}}</a></li>
 				</ul>
 				<!-- /Links -->
 			</div>
 
 			<div class="col-md-4">
 				<!-- Newsletter Form -->
-				<h4 class="letter-spacing-1">KEEP IN TOUCH</h4>
-				<p>Follow me on the Social Media for all the newest happenings!</p>
+				<h4 class="letter-spacing-1" ng-bind-html="right.title">{{right.title}}</h4>
+				<p ng-bind-html="right.headline">{{right.headline}}</p>
 
 				<!-- Social Icons -->
 				<div class="margin-top-20">
-					<a href="http://facebook.com/rockstar.sagar" class="social-icon social-icon-border social-facebook pull-left" data-toggle="tooltip" data-placement="top" title="Facebook">
+					<a ng-repeat="social in right.social" target="_blank" ng-href="{{social.link}}" class="{{social.class}}" data-toggle="tooltip" data-placement="top" title="{{social.title}}">
 
-						<i class="icon-facebook"></i>
-						<i class="icon-facebook"></i>
+						<i class="{{social.iconClass}}"></i>
+						<i class="{{social.iconClass}}"></i>
 					</a>
-
-					<a href="https://twitter.com/sagaranand015" class="social-icon social-icon-border social-twitter pull-left" data-toggle="tooltip" data-placement="top" title="Twitter">
-						<i class="icon-twitter"></i>
-						<i class="icon-twitter"></i>
-					</a>
-
-					<a href="https://plus.google.com/+sagaranand015" class="social-icon social-icon-border social-gplus pull-left" data-toggle="tooltip" data-placement="top" title="Google plus">
-						<i class="icon-gplus"></i>
-						<i class="icon-gplus"></i>
-					</a>
-
-					<a href="https://in.linkedin.com/in/sagar-anand-33b37a89" class="social-icon social-icon-border social-linkedin pull-left" data-toggle="tooltip" data-placement="top" title="Linkedin">
-						<i class="icon-linkedin"></i>
-						<i class="icon-linkedin"></i>
-					</a>
-		
 				</div>
 				<!-- /Social Icons -->
 			</div>

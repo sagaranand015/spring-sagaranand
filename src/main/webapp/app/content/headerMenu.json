@@ -1,0 +1,23 @@
+{
+	"logo": {
+		"image": "libraries/images/logo-black.png",
+		"alt": "Sagar Anand Name Logo",
+		"scrollName": "page-top"
+	},
+	"links": [{
+		"text": "HOME",
+		"scrollName": "home"
+	},
+	{
+		"text": "CONTACT US",
+		"scrollName": "contact"
+	},
+	{
+		"text": "PROJECTS",
+		"scrollName": "projects"
+	},
+	{
+		"text": "PROFILE LINKS",
+		"scrollName": "profile"
+	}]
+}

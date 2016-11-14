@@ -13,9 +13,6 @@ function projectsController($scope, dataFactory) {
 
 	vm.initProjects = function() {
 		vm.projectsContentResp = dataFactory.getPageContents("projects").then(function(response) {
-
-			console.log(response);
-
 			if(response.status == 200) {
 				$scope.headline  = response.data.headline;
 				$scope.projects = response.data.projects;

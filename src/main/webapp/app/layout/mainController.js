@@ -4,20 +4,45 @@
 
 angular.module('monitorApp').controller('mainController', mainController);
 
-mainController.$inject = [ 'dataFactory', 'ngToast', '$rootScope', '$scope', '$http', '$document', '$anchorScroll'];
+mainController.$inject = [ 'dataFactory', 'ngToast', '$rootScope', '$scope'];
 
-function mainController(dataFactory, ngToast, $rootScope, $scope, $http, $document, $anchorScroll) {
+function mainController(dataFactory, ngToast, $rootScope, $scope) {
 	console.log("Logging mainController");
 	var vm = this;
 	
-	// vm.showDisabledScreen = false;
-	
+	// On starting of the loading bar during any AJAX request
 	$rootScope.$on('cfpLoadingBar:started', function(event, data) {
-		// vm.showDisabledScreen = true;
+
 	});
 
+	// on ending of the loading bar during any AJAX request
 	$rootScope.$on('cfpLoadingBar:completed', function(event, data) {
-		// vm.showDisabledScreen = false;
+
 	});
+
+	vm.pageContent = {};
+	$scope.siteTitle = "";
+
+	vm.initSite = function() {
+		vm.headerContentResp = dataFactory.getPageContents("main").then(function(response) {
+			console.log(response);
+			if(response.status == 200) {
+				$scope.siteTitle = response.data.siteTitle;
+			} else {
+				ngToast.create({
+					className: 'danger',
+					content: 'Could not Load the Page Contents. Please try again.'
+				});
+			}
+		}, function(response) {
+			ngToast.create({
+				className: 'danger',
+				content: 'Could not Load the Page Contents. Please try again.'
+			});
+		});
+	}
+
+	// load the contents of the page with this call to the initHome()
+	vm.initSite();
 
 }

@@ -12,9 +12,8 @@
 				</p>
 
 				<h1 class="nomargin wow fadeInUp" data-wow-delay="0.4s">
-					
-					<span class="rotate " data-animation="flip" data-speed="4000">
-						SAGARANAND.COM
+					<span class="rotate" data-animation="flip" data-speed="4000" ng-bind-html="siteName">
+						{{siteName}}
 					</span>
 				</h1>
 

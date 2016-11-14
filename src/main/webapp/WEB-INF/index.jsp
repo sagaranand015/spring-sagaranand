@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html ng-app="monitorApp">
+<html ng-app="monitorApp" ng-controller="mainController as mainCtrl">
 	<head>
 		<meta charset="UTF-8">
-		<title>SagarAnand.com | InfoSec Developer</title>
+		<title>{{siteTitle}}</title>
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -55,7 +55,7 @@
 
 	</head>
 
-	<body id="page-top" ng-controller="mainController as mainCtrl">
+	<body id="page-top">
 	
 		<toast></toast>
 		
