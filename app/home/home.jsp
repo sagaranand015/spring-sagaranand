@@ -1,4 +1,3 @@
-Section 3 -->
 <!-- <section id="home" class="alternate"> -->
 <div class="content-section container" ng-controller="homeController">
 
@@ -27,4 +26,3 @@ Section 3 -->
 
 </div>
 <!-- </section> -->
-<!-- /Section 3

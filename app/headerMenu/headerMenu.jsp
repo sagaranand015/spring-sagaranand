@@ -11,33 +11,17 @@
 			</button>
 
 			<!-- Logo -->
-			<a class="logo pull-left" ng-click="scroll('page-top')">
-				<img src="libraries/images/logo-black.png" alt="Sagar Anand Name Logo" />
+			<a class="logo pull-left" ng-click="scroll(logo.scrollName)">
+				<img src="{{logo.image}}" alt="{{logo.alt}}" />
 			</a>
 
 			<div class="navbar-collapse pull-right nav-main-collapse collapse submenu-dark">
 				<nav class="nav-main">
 
 					<ul id="topMain" class="nav nav-pills nav-main">
-
-						<li>    
-							<a ng-click="scroll('home')">
-								HOME
-							</a>
-						</li>
-						<li>    
-							<a ng-click="scroll('contact')">
-								CONTACT ME
-							</a>
-						</li>
-						<li>    
-							<a ng-click="scroll('projects')">
-								PROJECTS
-							</a>
-						</li>
-						<li>    
-							<a ng-click="scroll('profile')">
-								PROFILE LINKS
+						<li ng-repeat="link in links">
+							<a ng-click="scroll(link.scrollName)">
+								{{link.text}}
 							</a>
 						</li>
 					</ul>
