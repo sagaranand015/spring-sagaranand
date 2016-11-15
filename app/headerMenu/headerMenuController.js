@@ -2,26 +2,23 @@ angular
 	.module('monitorApp')
 	.controller('headerMenuController', headerMenuController);
 
-headerMenuController.$inject = ['$scope', '$rootScope', '$document', 'dataFactory'];
+headerMenuController.$inject = ['$scope', '$rootScope', '$document', 'dataFactory', '$timeout'];
 
-function headerMenuController($scope, $rootScope, $document, dataFactory) {
+function headerMenuController($scope, $rootScope, $document, dataFactory, $timeout) {
 	console.log("Logging headerMenuController");
 	var vm = this;
 
 	$scope.currentSection = "";
 	$scope.scroll = function scroll(section) {
-		$scope.currentSection = section;
-		if($scope.currentSection != null || $scope.currentSection != undefined || $scope.currentSectioncurrentSection != "") {
-			$scope.currentSection = angular.element(document.getElementById(section));	
-		}
-		var selectedsection = $scope.currentSection;
-		$document.scrollToElement(selectedsection, 100, 500);
+		$rootScope.currentSection = section;
+		$rootScope.scroll(section);
 	};
 
 	vm.pageContent = {};
 	$scope.logo = {};
 	$scope.links = [];
 
+	// init function for the header Menu
 	vm.initHeaderMenu = function() {
 		vm.headerMenuContentResp = dataFactory.getPageContents("headerMenu").then(function(response) {
 			if(response.status == 200) {

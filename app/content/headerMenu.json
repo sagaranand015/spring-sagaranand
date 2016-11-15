@@ -6,18 +6,37 @@
 	},
 	"links": [{
 		"text": "HOME",
-		"scrollName": "home"
+		"routeLink": "home",
+		"scrollName": "home",
+		"isSub": false,
+		"isLink": true
 	},
 	{
 		"text": "CONTACT US",
-		"scrollName": "contact"
+		"routeLink": "home",
+		"scrollName": "contact",
+		"isSub": true,
+		"isLink": false
 	},
 	{
 		"text": "PROJECTS",
-		"scrollName": "projects"
+		"routeLink": "home",
+		"scrollName": "projects",
+		"isSub": true,
+		"isLink": false
 	},
 	{
 		"text": "PROFILE LINKS",
-		"scrollName": "profile"
+		"routeLink": "home",
+		"scrollName": "profile",
+		"isSub": true,
+		"isLink": false
+	},
+	{
+		"text": "LOGIN",
+		"routeLink": "login",
+		"scrollName": "page-top",
+		"isSub": false,
+		"isLink": true
 	}]
 }

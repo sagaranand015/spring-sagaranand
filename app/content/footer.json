@@ -12,20 +12,39 @@
 	"center": {
 		"header": "EXPLORE SAGARANAND.COM",
 		"links": [{
-			"text": "Home",
-			"scrollName": "home"	
+			"text": "HOME",
+			"routeLink": "home",
+			"scrollName": "home",
+			"isSub": false,
+			"isLink": true
 		},
 		{
-			"text": "Profile Links",
-			"scrollName": "profile"	
+			"text": "CONTACT US",
+			"routeLink": "home",
+			"scrollName": "contact",
+			"isSub": true,
+			"isLink": false
 		},
 		{
-			"text": "Projects",
-			"scrollName": "projects"	
+			"text": "PROJECTS",
+			"routeLink": "home",
+			"scrollName": "projects",
+			"isSub": true,
+			"isLink": false
 		},
 		{
-			"text": "Contact Me",
-			"scrollName": "contact"	
+			"text": "PROFILE LINKS",
+			"routeLink": "home",
+			"scrollName": "profile",
+			"isSub": true,
+			"isLink": false
+		},
+		{
+			"text": "LOGIN",
+			"routeLink": "login",
+			"scrollName": "page-top",
+			"isSub": false,
+			"isLink": true
 		}]
 	},
 	"right": {

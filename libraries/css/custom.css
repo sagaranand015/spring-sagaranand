@@ -83,3 +83,11 @@ footer {
 .profile-link {
     margin-bottom: 1%;
 }
+
+.show-class {
+    display: inline-block;
+}
+
+.hide-class {
+    display: none;
+}

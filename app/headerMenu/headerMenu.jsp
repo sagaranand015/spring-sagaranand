@@ -20,7 +20,7 @@
 
 					<ul id="topMain" class="nav nav-pills nav-main">
 						<li ng-repeat="link in links">
-							<a ng-click="scroll(link.scrollName)">
+							<a ui-sref="{{link.routeLink}}" ng-click="scroll(link.scrollName)" >
 								{{link.text}}
 							</a>
 						</li>

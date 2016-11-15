@@ -32,7 +32,7 @@
 				<!-- Links -->
 				<h4 class="letter-spacing-1" ng-bind-html="center.header">{{center.header}}</h4>
 				<ul class="footer-links list-unstyled">
-					<li ng-repeat="link in center.links"><a ng-bind-html="link.text" ng-click="scroll(link.scrollName)">{{link.text}}</a></li>
+					<li ng-repeat="link in center.links"><a ui-sref="{{link.routeLink}}" ng-bind-html="link.text" ng-click="scroll(link.scrollName)">{{link.text}}</a></li>
 				</ul>
 				<!-- /Links -->
 			</div>

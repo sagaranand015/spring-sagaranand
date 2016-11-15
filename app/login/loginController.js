@@ -1,21 +1,20 @@
 angular
 	.module('monitorApp')
-	.controller('profileController', profileController);
+	.controller('loginController', loginController);
 
-profileController.$inject = ['$scope', 'dataFactory', '$rootScope'];
+loginController.$inject = ['$scope', 'dataFactory', 'ngToast', '$rootScope'];
 
-function profileController($scope, dataFactory, $rootScope) {
-	console.log("Logging profileController");
+function loginController($scope, dataFactory, ngToast, $rootScope) {
+	console.log("Logging loginController");
 	var vm = this;
 
 	vm.pageContent = {};
-	$scope.profiles = [];
+	$scope.headline = "";
 
-	vm.initProfiles = function() {
-		vm.profilesContentResp = dataFactory.getPageContents("profile").then(function(response) {
+	vm.initLogin = function() {
+		vm.loginContentResp = dataFactory.getPageContents("login").then(function(response) {
 			if(response.status == 200) {
 				$scope.headline  = response.data.headline;
-				$scope.profiles = response.data.profiles;
 			} else {
 				ngToast.create({
 					className: 'danger',
@@ -31,6 +30,6 @@ function profileController($scope, dataFactory, $rootScope) {
 	}
 
 	// load the contents of the page with this call to the initHome()
-	vm.initProfiles();
+	vm.initLogin();
 
 }
