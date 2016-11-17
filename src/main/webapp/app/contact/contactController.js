@@ -1,9 +1,9 @@
 angular.module('monitorApp').controller('contactController', contactController);
 
 contactController.$inject = [ '$scope', 'dataFactory', 'utilityService',
-		'ngToast' ]
+		'ngToast', '$rootScope', '$document' ]
 
-function contactController($scope, dataFactory, utilityService, ngToast) {
+function contactController($scope, dataFactory, utilityService, ngToast, $rootScope, $document) {
 	console.log("Logging contactController");
 	var vm = this;
 

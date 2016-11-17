@@ -1,5 +1,6 @@
 {
 	"left": {
+		"enabled": "true",
 		"logo": {
 			"image": "libraries/images/logo-white.png",
 			"alt": "Sagar Anand Footer Logo"
@@ -10,25 +11,39 @@
 		"mailId": "query@sagaranand.com"
 	},
 	"center": {
+		"enabled": "true",
 		"header": "EXPLORE SAGARANAND.COM",
 		"links": [{
-			"text": "Home",
-			"scrollName": "home"	
+			"text": "HOME",
+			"routeLink": "home",
+			"scrollName": "home",
+			"isSub": false,
+			"isLink": true
 		},
 		{
-			"text": "Profile Links",
-			"scrollName": "profile"	
+			"text": "CONTACT US",
+			"routeLink": "home",
+			"scrollName": "contact",
+			"isSub": true,
+			"isLink": false
 		},
 		{
-			"text": "Projects",
-			"scrollName": "projects"	
+			"text": "PROJECTS",
+			"routeLink": "home",
+			"scrollName": "projects",
+			"isSub": true,
+			"isLink": false
 		},
 		{
-			"text": "Contact Me",
-			"scrollName": "contact"	
+			"text": "PROFILE LINKS",
+			"routeLink": "home",
+			"scrollName": "profile",
+			"isSub": true,
+			"isLink": false
 		}]
 	},
 	"right": {
+		"enabled": "true",
 		"title": "KEEP IN TOUCH",
 		"headline": "Follow me on the Social Media for all the newest happenings!",
 		"social": [{

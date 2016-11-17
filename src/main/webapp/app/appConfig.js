@@ -1,7 +1,7 @@
 /**
  * Routing for the complete web app
  */
-angular.module('monitorApp').config(function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, ngToastProvider) {
+angular.module('monitorApp').config(['$stateProvider', '$urlRouterProvider', 'cfpLoadingBarProvider', 'ngToastProvider', function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, ngToastProvider) {
 
 	// for the loading spinner
 	cfpLoadingBarProvider.includeSpinner = true;
@@ -11,12 +11,21 @@ angular.module('monitorApp').config(function($stateProvider, $urlRouterProvider,
 		animation: 'slide'
 	});
 	
+	// for all the routes of the application
 	$stateProvider.state('home', {
  		url: '/home',
- 		templateUrl: 'app/home/home.jsp',
- 		controller: 'homeController'
+ 		templateUrl: 'app/layout/main.jsp',
+ 	}).state('contact', {
+ 		url: '/home',
+ 		templateUrl: 'app/layout/main.jsp'
+ 	}).state('profile', {
+ 		url: '/home',
+ 		templateUrl: 'app/layout/main.jsp'
+ 	}).state('projects', {
+ 		url: '/home',
+ 		templateUrl: 'app/layout/main.jsp'
  	});
 
  	$urlRouterProvider.otherwise('home');
 
-});
+}]);

@@ -51,7 +51,7 @@ public class ClientController {
 
 	@RequestMapping(value = ApiEndpoints.ROOT)
 	public String index() {
-		return "index";
+		return ApiEndpoints.ROOTPAGE;
 	}
 
 	@RequestMapping(value = ApiEndpoints.STATUSENDPOINT, method = RequestMethod.GET)
@@ -124,6 +124,11 @@ public class ClientController {
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
 				.body(new ContactResponse(new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ""),
 						new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "")));
+	}
+
+	@RequestMapping(value = ApiEndpoints.LOGINENDPOINT, method = RequestMethod.GET)
+	public String login() {
+		return ApiEndpoints.LOGINENDPOINT;
 	}
 
 }

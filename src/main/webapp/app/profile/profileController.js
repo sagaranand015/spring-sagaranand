@@ -2,9 +2,9 @@ angular
 	.module('monitorApp')
 	.controller('profileController', profileController);
 
-profileController.$inject = ['$scope', 'dataFactory'];
+profileController.$inject = ['$scope', 'dataFactory', '$rootScope'];
 
-function profileController($scope, dataFactory) {
+function profileController($scope, dataFactory, $rootScope) {
 	console.log("Logging profileController");
 	var vm = this;
 

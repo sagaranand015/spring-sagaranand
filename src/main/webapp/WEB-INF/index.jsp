@@ -59,21 +59,13 @@
 	
 		<toast></toast>
 		
+		<div ng-show="showDisabledScreen" class="overlay"></div>
+		
 		<div class="wrapper">
-
-			<!-- <div ng-show="mainCtrl.showDisabledScreen" class="overlay"></div> -->
 
 			<div ng-include="'app/headerMenu/headerMenu.jsp'"></div> 
 
-			<div ng-include="'app/header/header.jsp'"></div> 
-
-			<div id="home" ng-include="'app/home/home.jsp'"></div> 			
-
-			<div id="contact" ng-include="'app/contact/contact.jsp'"></div> 			
-
-			<div id="projects" ng-include="'app/projects/projects.jsp'"></div> 			
-
-			<div id="profile" ng-include="'app/profile/profile.jsp'"></div> 			
+			<div ui-view></div>
 
 			<div ng-include="'app/footer/footer.jsp'"></div> 
 
@@ -122,6 +114,7 @@
 	<script src="app/contact/contactController.js"></script>
 	<script src="app/projects/projectsController.js"></script>
 	<script src="app/profile/profileController.js"></script>
+	<script src="app/layout/loginController.js"></script>
 
 	<!-- JAVASCRIPT FILES -->
 	<script type="text/javascript">var plugin_path = 'libraries/js/';</script>

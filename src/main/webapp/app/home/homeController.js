@@ -2,9 +2,9 @@ angular
 	.module('monitorApp')
 	.controller('homeController', homeController);
 
-homeController.$inject = ['$scope', 'dataFactory', 'ngToast'];
+homeController.$inject = ['$scope', 'dataFactory', 'ngToast', '$rootScope'];
 
-function homeController($scope, dataFactory, ngToast) {
+function homeController($scope, dataFactory, ngToast, $rootScope) {
 	console.log("Logging homeController");
 	var vm = this;
 

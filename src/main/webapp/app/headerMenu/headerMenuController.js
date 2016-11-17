@@ -2,31 +2,30 @@ angular
 	.module('monitorApp')
 	.controller('headerMenuController', headerMenuController);
 
-headerMenuController.$inject = ['$scope', '$rootScope', '$document', 'dataFactory'];
+headerMenuController.$inject = ['$scope', '$rootScope', '$document', 'dataFactory', '$timeout'];
 
-function headerMenuController($scope, $rootScope, $document, dataFactory) {
+function headerMenuController($scope, $rootScope, $document, dataFactory, $timeout) {
 	console.log("Logging headerMenuController");
 	var vm = this;
 
 	$scope.currentSection = "";
 	$scope.scroll = function scroll(section) {
-		$scope.currentSection = section;
-		if($scope.currentSection != null || $scope.currentSection != undefined || $scope.currentSectioncurrentSection != "") {
-			$scope.currentSection = angular.element(document.getElementById(section));	
-		}
-		var selectedsection = $scope.currentSection;
-		$document.scrollToElement(selectedsection, 100, 500);
+		$rootScope.currentSection = section;
+		$rootScope.scroll(section);
 	};
 
 	vm.pageContent = {};
 	$scope.logo = {};
-	$scope.links = [];
+	$scope.routeLinks = [];
+	$scope.mainLinks = [];
 
-	vm.initHeaderMenu = function() {
+	// init function for the header Menu
+	vm.initHeaderMenu = function initHeaderMenu() {
 		vm.headerMenuContentResp = dataFactory.getPageContents("headerMenu").then(function(response) {
 			if(response.status == 200) {
 				$scope.logo = response.data.logo;
-				$scope.links = response.data.links;
+				$scope.routeLinks = response.data.routeLinks;
+				$scope.mainLinks = response.data.mainLinks;
 			} else {
 				ngToast.create({
 					className: 'danger',
@@ -42,6 +41,11 @@ function headerMenuController($scope, $rootScope, $document, dataFactory) {
 	}
 
 	// load the contents of the page with this call to the initHome()
+	$scope.$on('$viewContentLoaded', function($evt, data) {
+		
+	});
+
+	console.log("I'm here!");
 	vm.initHeaderMenu();
 
 };
