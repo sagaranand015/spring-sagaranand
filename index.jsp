@@ -59,7 +59,7 @@
 	
 		<toast></toast>
 		
-		<div ng-show="showDisabledScreen" class="overlay"></div>
+		<!-- <div ng-show="showDisabledScreen" class="overlay"></div> -->
 		
 		<div class="wrapper">
 
@@ -67,7 +67,7 @@
 
 			<div ui-view></div>
 
-			<div ng-include="'app/footer/footer.jsp'"></div> 
+			<div ng-include="'app/footer/footer.jsp'" ng-controller="footerController"></div> 
 
 		</div>
 

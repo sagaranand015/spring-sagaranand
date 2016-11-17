@@ -15,32 +15,9 @@ function footerController($rootScope, $scope, $document, dataFactory) {
 		$rootScope.scroll(section);
 	};
 
-	vm.pageContent = {};
-	$scope.left = {};
-	$scope.center = {};
-	$scope.right = {};
-
-	vm.initFooter = function() {
-		vm.footerContentResp = dataFactory.getPageContents("footer").then(function(response) {
-			if(response.status == 200) {
-				$scope.left = response.data.left;
-				$scope.center = response.data.center;
-				$scope.right = response.data.right;
-			} else {
-				ngToast.create({
-					className: 'danger',
-					content: 'Could not Load the Page Contents. Please try again.'
-				});
-			}
-		}, function(response) {
-			ngToast.create({
-				className: 'danger',
-				content: 'Could not Load the Page Contents. Please try again.'
-			});
-		});
-	}
-
-	// load the contents of the page with this call to the initHome()
-	vm.initFooter();
-
+	// // this is required for loading the init function
+	$scope.$on('$includeContentLoaded', function($evt, data) {
+		$rootScope.manageFooterContents();
+	});
+	
 }

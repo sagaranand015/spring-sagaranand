@@ -1,10 +1,10 @@
 <!-- FOOTER -->
-<footer id="footer" ng-controller="footerController">
+<footer id="footer">
 	<div class="container">
 
 		<div class="row">
 			
-			<div class="col-md-4">
+			<div class="col-md-4" ng-show="{{left.enabled}}"> 
 				<!-- Footer Logo -->
 				<img class="footer-logo" ng-src="{{left.logo.image}}" alt="{{left.logo.alt}}" />
 
@@ -28,7 +28,7 @@
 				<!-- /Contact Address -->
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-4" ng-show="{{center.enabled}}">
 				<!-- Links -->
 				<h4 class="letter-spacing-1" ng-bind-html="center.header">{{center.header}}</h4>
 				<ul class="footer-links list-unstyled">
@@ -37,7 +37,7 @@
 				<!-- /Links -->
 			</div>
 
-			<div class="col-md-4">
+			<div class="col-md-4" ng-show="{{right.enabled}}">
 				<!-- Newsletter Form -->
 				<h4 class="letter-spacing-1" ng-bind-html="right.title">{{right.title}}</h4>
 				<p ng-bind-html="right.headline">{{right.headline}}</p>
