@@ -59,7 +59,7 @@
 	
 		<toast></toast>
 		
-		<!-- <div ng-show="showDisabledScreen" class="overlay"></div> -->
+		<div ng-show="showDisabledScreen" class="load-overlay"></div>
 		
 		<div class="wrapper">
 

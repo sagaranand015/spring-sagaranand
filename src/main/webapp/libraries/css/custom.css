@@ -53,7 +53,7 @@ footer {
     text-align: left;
 }
 
-.overlay {
+.load-overlay {
     position: fixed;
     top: 0;
     left: 0;

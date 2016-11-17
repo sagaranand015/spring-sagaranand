@@ -9,16 +9,16 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $document) {
 	console.log("Logging mainController");
 	var vm = this;
 	
-	// $scope.showDisabledScreen = false;
+	$scope.showDisabledScreen = false;
 
 	// On starting of the loading bar during any AJAX request
 	$rootScope.$on('cfpLoadingBar:started', function(event, data) {
-		// $scope.showDisabledScreen = true;		
+		$scope.showDisabledScreen = true;		
 	});
 
 	// on ending of the loading bar during any AJAX request
 	$rootScope.$on('cfpLoadingBar:completed', function(event, data) {
-		// $scope.showDisabledScreen = false;
+		$scope.showDisabledScreen = false;
 	});
 
 	$scope.siteTitle = "";
