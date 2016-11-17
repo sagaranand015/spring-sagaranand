@@ -15,23 +15,15 @@ angular.module('monitorApp').config(['$stateProvider', '$urlRouterProvider', 'cf
 	$stateProvider.state('home', {
  		url: '/home',
  		templateUrl: 'app/layout/main.jsp',
- 		controller: 'mainController'
  	}).state('contact', {
  		url: '/home',
- 		templateUrl: 'app/layout/main.jsp',
- 		controller: 'mainController'
+ 		templateUrl: 'app/layout/main.jsp'
  	}).state('profile', {
  		url: '/home',
- 		templateUrl: 'app/layout/main.jsp',
- 		controller: 'mainController'
+ 		templateUrl: 'app/layout/main.jsp'
  	}).state('projects', {
  		url: '/home',
- 		templateUrl: 'app/layout/main.jsp',
- 		controller: 'mainController'
- 	}).state('login', {
- 		url: '/login',
- 		templateUrl: 'app/login/login.jsp',
- 		controller: 'loginController'
+ 		templateUrl: 'app/layout/main.jsp'
  	});
 
  	$urlRouterProvider.otherwise('home');

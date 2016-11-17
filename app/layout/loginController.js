@@ -29,7 +29,10 @@ function loginController($scope, dataFactory, ngToast, $rootScope) {
 		});
 	}
 
-	// load the contents of the page with this call to the initHome()
-	vm.initLogin();
+	$scope.$on('$viewContentLoaded', function($evt, data) {
+
+	});
+
+	vm.initLogin();	
 
 }

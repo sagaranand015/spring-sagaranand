@@ -16,14 +16,16 @@ function headerMenuController($scope, $rootScope, $document, dataFactory, $timeo
 
 	vm.pageContent = {};
 	$scope.logo = {};
-	$scope.links = [];
+	$scope.routeLinks = [];
+	$scope.mainLinks = [];
 
 	// init function for the header Menu
-	vm.initHeaderMenu = function() {
+	vm.initHeaderMenu = function initHeaderMenu() {
 		vm.headerMenuContentResp = dataFactory.getPageContents("headerMenu").then(function(response) {
 			if(response.status == 200) {
 				$scope.logo = response.data.logo;
-				$scope.links = response.data.links;
+				$scope.routeLinks = response.data.routeLinks;
+				$scope.mainLinks = response.data.mainLinks;
 			} else {
 				ngToast.create({
 					className: 'danger',
@@ -39,6 +41,11 @@ function headerMenuController($scope, $rootScope, $document, dataFactory, $timeo
 	}
 
 	// load the contents of the page with this call to the initHome()
+	$scope.$on('$viewContentLoaded', function($evt, data) {
+		
+	});
+
+	console.log("I'm here!");
 	vm.initHeaderMenu();
 
 };

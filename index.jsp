@@ -58,11 +58,10 @@
 	<body id="page-top">
 	
 		<toast></toast>
-		<!-- <base href="/sagaranand/index.jsp"> -->
+		
+		<div ng-show="showDisabledScreen" class="overlay"></div>
 		
 		<div class="wrapper">
-
-			<div ng-show="showDisabledScreen" class="overlay"></div>
 
 			<div ng-include="'app/headerMenu/headerMenu.jsp'"></div> 
 
@@ -115,7 +114,7 @@
 	<script src="app/contact/contactController.js"></script>
 	<script src="app/projects/projectsController.js"></script>
 	<script src="app/profile/profileController.js"></script>
-	<script src="app/login/loginController.js"></script>
+	<script src="app/layout/loginController.js"></script>
 
 	<!-- JAVASCRIPT FILES -->
 	<script type="text/javascript">var plugin_path = 'libraries/js/';</script>

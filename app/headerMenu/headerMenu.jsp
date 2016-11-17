@@ -19,9 +19,14 @@
 				<nav class="nav-main">
 
 					<ul id="topMain" class="nav nav-pills nav-main">
-						<li ng-repeat="link in links">
-							<a ui-sref="{{link.routeLink}}" ng-click="scroll(link.scrollName)" >
-								{{link.text}}
+						<li ng-repeat="routeLink in routeLinks">
+							<a ui-sref="{{routeLink.routeLink}}" ng-click="scroll(routeLink.scrollName)" >
+								{{routeLink.text}}
+							</a>
+						</li>
+						<li ng-repeat="mainLink in mainLinks">
+							<a ng-href="{{mainLink.routeLink}}">
+								{{mainLink.text}}
 							</a>
 						</li>
 					</ul>

@@ -4,39 +4,35 @@
 		"alt": "Sagar Anand Name Logo",
 		"scrollName": "page-top"
 	},
-	"links": [{
+	"routeLinks": [{
 		"text": "HOME",
 		"routeLink": "home",
 		"scrollName": "home",
-		"isSub": false,
 		"isLink": true
 	},
 	{
 		"text": "CONTACT US",
 		"routeLink": "home",
 		"scrollName": "contact",
-		"isSub": true,
 		"isLink": false
 	},
 	{
 		"text": "PROJECTS",
 		"routeLink": "home",
 		"scrollName": "projects",
-		"isSub": true,
 		"isLink": false
 	},
 	{
 		"text": "PROFILE LINKS",
 		"routeLink": "home",
 		"scrollName": "profile",
-		"isSub": true,
 		"isLink": false
-	},
+	}],
+	"mainLinks": [
 	{
 		"text": "LOGIN",
 		"routeLink": "login",
 		"scrollName": "page-top",
-		"isSub": false,
 		"isLink": true
 	}]
 }

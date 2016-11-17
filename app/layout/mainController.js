@@ -21,33 +21,12 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $document) {
 		$scope.showDisabledScreen = false;
 	});
 
-	$rootScope.subMenuItems = [];
+	// $rootScope.subMenuItems = [];
 	$scope.siteTitle = "";
-
-	// // to get the headerMenu Content from the json files
-	// $rootScope.getMenuSubItems = function getMenuSubItems(menuSection) {
-	// 	var subItems = [];
-	// 	vm.menuSubItems = dataFactory.getPageContents(menuSection).then(function(response) {
-	// 		var links = response.data.links;
-	// 		for(var i = 0;i<links.length;i++) {
-	// 			subItems[i] = links[i];
-	// 		}
-	// 	}, function(response) {
-	// 		ngToast.create({
-	// 			className: 'danger',
-	// 			content: 'Could not Load the Page Contents. Please try again.'
-	// 		});
-	// 	});
-	// 	return subItems;
-	// }
-	// // to manipulate headerMenu items in the main Menu
-	// $rootScope.showSubMenus = function manipulateSubMenus(subItems, isShow) {
-	// };
 
 	// initialize the main Site here
 	vm.initSite = function() {
 		vm.mainContentResp = dataFactory.getPageContents("main").then(function(response) {
-			console.log(response);
 			if(response.status == 200) {
 				$scope.siteTitle = response.data.siteTitle;
 			} else {
@@ -70,15 +49,19 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $document) {
 			$rootScope.currentSection = angular.element(document.getElementById(section));	
 		}
 		var selectedsection = $rootScope.currentSection;
-		console.log(selectedsection);
 		if(selectedsection == undefined || selectedsection == null || selectedsection.length == 0 || selectedsection == "") {
-			console.log("I'm here");
 		} else {
 			$document.scrollToElement(selectedsection, 100, 500);
 		}
 	};
 
-	// load the contents of the page with this call to the initHome()
+	// this is required for loading the init function
+	$scope.$on('$viewContentLoaded', function($evt, data) {
+
+	});
+
 	vm.initSite();
+
+	
 
 }
