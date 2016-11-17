@@ -42,10 +42,9 @@ function headerMenuController($scope, $rootScope, $document, dataFactory, $timeo
 
 	// load the contents of the page with this call to the initHome()
 	$scope.$on('$viewContentLoaded', function($evt, data) {
-		
 	});
 
-	console.log("I'm here!");
+	// for loading the initHeaderMenu function
 	vm.initHeaderMenu();
 
 };
