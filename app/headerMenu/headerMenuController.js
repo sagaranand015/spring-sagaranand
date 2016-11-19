@@ -5,6 +5,7 @@ angular
 headerMenuController.$inject = ['$scope', '$rootScope', '$document', 'dataFactory', '$timeout'];
 
 function headerMenuController($scope, $rootScope, $document, dataFactory, $timeout) {
+	console.log("Logging headerMenuController");
 	var vm = this;
 
 	$scope.currentSection = "";
@@ -15,7 +16,7 @@ function headerMenuController($scope, $rootScope, $document, dataFactory, $timeo
 
 	// init function for the header Menu
 	vm.initHeaderMenu = function initHeaderMenu() {
-		console.log("Logging headerMenuController");
+		console.log($rootScope.headerMenu);
 	}
 
 	// load the contents of the page with this call to the initHome()
