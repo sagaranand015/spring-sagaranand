@@ -1,0 +1,240 @@
+{
+	"main": {
+		"controller": "mainController",
+		"siteName": "SAGARANAND.COM",
+		"siteTitle": "SagarAnand.com | InfoSec Developer"
+	},
+	"headerMenu": {
+		"controller": "headerMenuController",
+		"enabled": "true",
+		"logo": {
+			"image": "libraries/images/logo-black.png",
+			"alt": "Sagar Anand Name Logo",
+			"name": "page-top"
+		},
+		"mainPageComponents": [{
+			"text": "HEADER MENU",
+			"name": "headerMenu",
+			"isEnabled": "true",
+			"isShow": "false", 
+			"link": "app/headerMenu/headerMenu.jsp"
+		},
+		{
+			"text": "FOOTER",
+			"name": "footer",
+			"isEnabled": "true",
+			"isShow": "false", 
+			"link": "app/footer/footer.jsp"
+		}],
+		"components": [
+		{
+			"text": "HEADER",
+			"name": "header",
+			"isEnabled": "true",
+			"isShow": "false", 
+			"link": "app/header/header.jsp"
+		},
+		{
+			"text": "HOME",
+			"name": "home",
+			"isEnabled": "true",
+			"isShow": "true", 
+			"link": "app/home/home.jsp"
+		},
+		{
+			"text": "CONTACT US",
+			"name": "contact",
+			"isEnabled": "true",
+			"isShow": "true", 
+			"link": "app/contact/contact.jsp"
+		},
+		{
+			"text": "PROJECTS",
+			"name": "projects",
+			"isEnabled": "true",
+			"isShow": "true", 
+			"link": "app/projects/projects.jsp"
+		},
+		{
+			"text": "PROFILE LINKS",
+			"name": "profile",
+			"isEnabled": "true",
+			"isShow": "true", 
+			"link": "app/profile/profile.jsp"
+		}],
+		"routes": [
+		{
+			"text": "LOGIN",
+			"name": "login",
+			"isEnabled": "true",
+			"isShow": "true",
+			"link": ""
+		}]
+	},
+	"header": {
+		"controller": "headerController",
+		"enabled": "true",
+		"headerTitle": "SAGARANAND.COM"
+	},
+	"home": {
+		"controller": "homeController",
+		"headline": "Welcome",
+		"images": [{
+			"link": "libraries/images/display.png",
+			"alt": "Sagar Anand Display Pic",
+			"width": "200",
+			"height": "200"
+		}],
+		"paragraphs": [{
+			"content": "I am <b>Sagar Anand, Computer Science</b> Graduate from <b>Birla Institute of Technology &amp; Science, Pilani (overall CGPA of 7.49 and core CGPA of 7.98)</b>. I am currently working at <b>Walmart Global Technologies, Bangalore as an Information Security Developer under the Information Security branch of the E-Commerce division</b>. I am a keen developer and have extensive experience in development on web technologies in particular. I frequently take up side projects to convert them to fully functional units for clients."
+		}, 
+		{
+			"content": "I have a passion for <b>Software Engineering and Development</b>. I like to develop things that simply work, exposing interfaces that work without all the complexity behind the scenes.I am particularly working in the field of Information Security and am currently working on a <b>hardware based security solution for storing the sensitive information of an enterprise</b>.I have also been working on the tech interface for Mentored-Research, an online assignment-based course provider in the field of finance. This project started back in college and now the site is up and running with over 1000 students enrolled across all the courses of Mentored-Research. Other than that, I have been working on developing APIs, both in <b>Java-Spring-Hibernate platform and NodeJs-MongoDb-AngularJs platform</b>.  "
+		},
+		{
+			"content": "In my free time, I really like to teach students about the new and cool stuff that exists in the market. I have taken a few sessions in universities like LPU, Jalandhar to give those students a better idea of industry best practices and placement preparations."
+		}]
+	},
+	"contact": {
+		"controller": "contactController",
+		"headline": "Contact Me!"
+	},
+	"projects":{
+		"controller": "projectsController",
+		"headline": "My projects",
+		"projects": [{
+			"title": "Thesis at BITS-Pilani, Hyderabad Campus",
+			"start": "Dec'14",
+			"end": "May'15",
+			"header": "COOPERATIVE SPECTRUM SENSING IN COGNITIVE RADIOS USING MACHINE LEARNING TECHNIQUES",
+			"abstract": "This thesis aims at programming and configuring a Cognitive Radio to enable its transceiver to use the best wireless channels in its vicinity. Such a radio automatically detects available channels in wireless channels, and then accordingly changes its transmission and reception parameters to allow more concurrent wireless communications in a given spectrum, thus gaining dynamic spectrum management."
+		}, 
+		{
+			"title": "Mentored-Research",
+			"start": "Aug'14",
+			"end": "Dec'15",
+			"header": "CREATION OF WEB BASED FRONTEND AND BACKEND PORTAL FOR MENTORED-RESEARCH",
+			"abstract": "This solution implements the web based core functional needs of Mentored-Research for managing the course content and user interactions in an automated way. It is a fully functional portal for enrolling in the courses offered by Mentored-Research. [<a href='http://mentored-research.com' target='_blank'>www.mentored-research.com</a>]"
+		}]
+	},
+	"profile": {
+		"headline": "Profile Links",
+		"profiles": [{
+			"linkClass": "btn btn-block btn-social btn-linkedin profile-link",
+			"spanClass": "fa fa-linkedin",
+			"text": "Connect on LinkedIn",
+			"link":	"https://in.linkedin.com/in/sagar-anand-33b37a89"
+		}, 
+		{
+			"linkClass": "btn btn-block btn-social btn-twitter profile-link",
+			"spanClass": "fa fa-twitter",
+			"text": "Follow me on Twitter",
+			"link":	"https://twitter.com/sagaranand015"
+		}, 
+		{
+			"linkClass": "btn btn-block btn-social btn-google profile-link",
+			"spanClass": "fa fa-google",
+			"text": "Get in Touch on Google+",
+			"link":	"https://plus.google.com/+sagaranand015"
+		},
+		{
+			"linkClass": "btn btn-block btn-social btn-facebook profile-link",
+			"spanClass": "fa fa-facebook",
+			"text": "Let's be friends on Facebook",
+			"link":	"http://facebook.com/rockstar.sagar"
+		},
+		{
+			"linkClass": "btn btn-block btn-social btn-github profile-link",
+			"spanClass": "fa fa-github",
+			"text": "Follow me on Github",
+			"link":	"https://github.com/sagaranand015"
+		},
+		{
+			"linkClass": "btn btn-block btn-social btn-instagram profile-link",
+			"spanClass": "fa fa-instagram",
+			"text": "Follow me on Instagram",
+			"link":	"https://www.instagram.com/sagaranand015/"
+		},
+		{
+			"linkClass": "btn btn-block btn-social btn-pinterest profile-link",
+			"spanClass": "fa fa-pinterest",
+			"text": "Follow me on Pinterest",
+			"link":	"https://www.pinterest.com/anand1346/"
+		}]
+	},
+	"footer": {
+		"controller": "footerController",
+		"left": {
+			"enabled": "true",
+			"logo": {
+				"image": "libraries/images/logo-white.png",
+				"alt": "Sagar Anand Footer Logo"
+			},
+			"desc": "If you're in the city, drop in for a quick chat",
+			"address": "D-09, Jain Heights Altura,<br>Sarjapur Main Road, Bengaluru<br>Karnataka, India<br>",
+			"phone": "",
+			"mailId": "query@sagaranand.com"
+		},
+		"center": {
+			"enabled": "true",
+			"header": "EXPLORE SAGARANAND.COM",
+			"links": [{
+				"text": "HOME",
+				"routeLink": "home",
+				"scrollName": "home",
+				"isSub": false,
+				"isLink": true
+			},
+			{
+				"text": "CONTACT US",
+				"routeLink": "home",
+				"scrollName": "contact",
+				"isSub": true,
+				"isLink": false
+			},
+			{
+				"text": "PROJECTS",
+				"routeLink": "home",
+				"scrollName": "projects",
+				"isSub": true,
+				"isLink": false
+			},
+			{
+				"text": "PROFILE LINKS",
+				"routeLink": "home",
+				"scrollName": "profile",
+				"isSub": true,
+				"isLink": false
+			}]
+		},
+		"right": {
+			"enabled": "true",
+			"title": "KEEP IN TOUCH",
+			"headline": "Follow me on the Social Media for all the newest happenings!",
+			"social": [{
+				"title": "Facebook",
+				"class": "social-icon social-icon-border social-facebook pull-left",
+				"iconClass": "icon-facebook",
+				"link": "http://facebook.com/rockstar.sagar"			
+			},
+			{
+				"title": "Twitter",
+				"class": "social-icon social-icon-border social-twitter pull-left",
+				"iconClass": "icon-twitter",
+				"link": "https://twitter.com/sagaranand015"			
+			},
+			{
+				"title": "Linkedin",
+				"class": "social-icon social-icon-border social-linkedin pull-left",
+				"iconClass": "icon-linkedin",
+				"link": "https://in.linkedin.com/in/sagar-anand-33b37a89"
+			},
+			{
+				"title": "Google Plus",
+				"class": "social-icon social-icon-border social-gplus pull-left",
+				"iconClass": "icon-gplus",
+				"link": "https://plus.google.com/+sagaranand015"	
+			}]
+		}
+	}
+}

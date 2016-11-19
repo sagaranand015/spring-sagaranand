@@ -4,7 +4,7 @@
 	<!-- Section Header -->
 	<header class="section-header text-center">
 		<div class="heading-title heading-line-double text-center">
-			<h2>{{headline}}</h2>
+			<h2>{{home.headline}}</h2>
 		</div>
 	</header>
 	<!-- /Section Header -->
@@ -12,12 +12,12 @@
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1" id="content-div">
 
-			<img class="center-block display-pic" ng-src="{{images.link}}" alt="{{images.alt}}" width="{{images.width}}" height="{{images.height}}" />
+			<img ng-repeat="image in home.images" class="center-block display-pic" ng-src="{{image.link}}" alt="{{image.alt}}" width="{{image.width}}" height="{{image.height}}" />
 
 			<br />
 			<br />
 
-			<p ng-repeat="para in paragraphs" ng-bind-html="para.content">
+			<p ng-repeat="para in home.paragraphs" ng-bind-html="para.content">
 				{{para.content}}
 			</p>
 

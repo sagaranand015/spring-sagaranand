@@ -2,7 +2,7 @@
 <html ng-app="monitorApp" ng-controller="mainController as mainCtrl">
 	<head>
 		<meta charset="UTF-8">
-		<title>{{siteTitle}}</title>
+		<title>{{main.siteTitle}}</title>
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -55,7 +55,7 @@
 
 	</head>
 
-	<body id="page-top">
+	<body id="{{headerMenu.logo.name}}">
 	
 		<toast></toast>
 		
@@ -63,11 +63,11 @@
 		
 		<div class="wrapper">
 
-			<div ng-include="'app/headerMenu/headerMenu.jsp'"></div> 
+			<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" id="{{headerMenu.mainPageComponents[0]}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
 
 			<div ui-view></div>
 
-			<div ng-include="'app/footer/footer.jsp'" ng-controller="footerController"></div> 
+			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" id="{{headerMenu.mainPageComponents[1]}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
 
 		</div>
 

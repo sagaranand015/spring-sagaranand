@@ -15,15 +15,6 @@ angular.module('monitorApp').config(['$stateProvider', '$urlRouterProvider', 'cf
 	$stateProvider.state('home', {
  		url: '/home',
  		templateUrl: 'app/layout/main.jsp',
- 	}).state('contact', {
- 		url: '/home',
- 		templateUrl: 'app/layout/main.jsp'
- 	}).state('profile', {
- 		url: '/home',
- 		templateUrl: 'app/layout/main.jsp'
- 	}).state('projects', {
- 		url: '/home',
- 		templateUrl: 'app/layout/main.jsp'
  	});
 
  	$urlRouterProvider.otherwise('home');

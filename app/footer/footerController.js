@@ -17,7 +17,7 @@ function footerController($rootScope, $scope, $document, dataFactory) {
 
 	// // this is required for loading the init function
 	$scope.$on('$includeContentLoaded', function($evt, data) {
-		$rootScope.manageFooterContents();
+		
 	});
 	
 }
