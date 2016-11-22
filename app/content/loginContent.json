@@ -10,7 +10,8 @@
 		"logo": {
 			"image": "libraries/images/logo-black.png",
 			"alt": "Sagar Anand Name Logo",
-			"name": "page-top"
+			"isLink": true,
+			"name": "home.jsp"
 		},
 		"mainPageComponents": [{
 			"text": "HEADER MENU",

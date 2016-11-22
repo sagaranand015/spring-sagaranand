@@ -10,9 +10,18 @@ function headerMenuController($scope, $rootScope, $document, dataFactory, $timeo
 
 	$scope.currentSection = "";
 	$scope.scroll = function scroll(section) {
-		$rootScope.currentSection = section;
-		$rootScope.scroll(section);
+		if(!$rootScope.headerMenu.logo.isLink) {
+			$rootScope.currentSection = section;
+			$rootScope.scroll(section);
+		} 
 	};
+
+	$scope.navigate = function navigate(pageName) {
+		if($rootScope.headerMenu.logo.isLink) {
+			return pageName;
+		} 
+		return "";
+	}
 
 	// init function for the header Menu
 	vm.initHeaderMenu = function initHeaderMenu() {

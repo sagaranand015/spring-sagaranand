@@ -11,7 +11,7 @@
 			</button>
 
 			<!-- Logo -->
-			<a class="logo pull-left" ng-click="scroll(headerMenu.logo.name)">
+			<a class="logo pull-left" ng-click="scroll(headerMenu.logo.name)" ng-href="{{navigate(headerMenu.logo.name)}}">
 				<img src="{{headerMenu.logo.image}}" alt="{{headerMenu.logo.alt}}" />
 			</a>
 
