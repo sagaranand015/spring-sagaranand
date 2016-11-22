@@ -2,9 +2,9 @@ angular
 	.module('monitorApp')
 	.controller('headerMenuController', headerMenuController);
 
-headerMenuController.$inject = ['$scope', '$rootScope', '$document', 'dataFactory', '$timeout'];
+headerMenuController.$inject = ['$scope', '$rootScope', '$document', 'dataFactory', '$timeout', 'utilityService'];
 
-function headerMenuController($scope, $rootScope, $document, dataFactory, $timeout) {
+function headerMenuController($scope, $rootScope, $document, dataFactory, $timeout, utilityService) {
 	console.log("Logging headerMenuController");
 	var vm = this;
 
@@ -23,6 +23,22 @@ function headerMenuController($scope, $rootScope, $document, dataFactory, $timeo
 	$scope.$on('$viewContentLoaded', function($evt, data) {
 
 	});
+
+
+	// $scope.showHeaderMenuLinks = function showHeaderMenuLinks() {
+	// 	for(var i = 0;i<$rootScope.headerMenu.components;i++) {
+	// 		if($rootScope.headerMenu.components[i].category == "parent") {
+	// 			$rootScope.headerMenu.components[i].isShow = true;
+	// 		}
+	// 	}
+	// };
+
+	$scope.showHeaderMenuLinks = function showHeaderMenuLinks(category) {
+		if(category == "parent") {
+			return true;
+		}
+		return false;
+	};
 
 	// for loading the initHeaderMenu function
 	vm.initHeaderMenu();

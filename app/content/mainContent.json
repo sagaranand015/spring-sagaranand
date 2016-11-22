@@ -29,10 +29,11 @@
 		"components": [
 		{
 			"text": "HEADER",
-			"name": "header",
+			"name": "head",
 			"isEnabled": "true",
 			"isShow": "false", 
-			"link": "app/header/header.jsp"
+			"link": "app/header/header.jsp",
+			"category": "child"
 		},
 		{
 			"text": "HOME",
@@ -65,10 +66,10 @@
 		"routes": [
 		{
 			"text": "LOGIN",
-			"name": "login",
+			"name": "login.jsp",
 			"isEnabled": "true",
 			"isShow": "true",
-			"link": ""
+			"link": "app/layout/loginMain.jsp"
 		}]
 	},
 	"header": {
@@ -165,7 +166,7 @@
 	"footer": {
 		"controller": "footerController",
 		"left": {
-			"enabled": "true",
+			"enabled": true,
 			"logo": {
 				"image": "libraries/images/logo-white.png",
 				"alt": "Sagar Anand Footer Logo"
@@ -176,7 +177,7 @@
 			"mailId": "query@sagaranand.com"
 		},
 		"center": {
-			"enabled": "true",
+			"enabled": true,
 			"header": "EXPLORE SAGARANAND.COM",
 			"links": [{
 				"text": "HOME",
@@ -208,7 +209,7 @@
 			}]
 		},
 		"right": {
-			"enabled": "true",
+			"enabled": true,
 			"title": "KEEP IN TOUCH",
 			"headline": "Follow me on the Social Media for all the newest happenings!",
 			"social": [{

@@ -4,7 +4,7 @@
 
 		<div class="row">
 			
-			<div class="col-md-4" ng-show="{{footer.left.enabled}}"> 
+			<div ng-class="footerClass" ng-show="{{footer.left.enabled}}"> 
 				<!-- Footer Logo -->
 				<img class="footer-logo" ng-src="{{footer.left.logo.image}}" alt="{{footer.left.logo.alt}}" />
 
@@ -28,16 +28,16 @@
 				<!-- /Contact Address -->
 			</div>
 
-			<div class="col-md-4" ng-show="{{footer.center.enabled}}">
+			<div ng-class="footerClass" ng-show="{{footer.center.enabled}}">
 				<!-- Links -->
 				<h4 class="letter-spacing-1" ng-bind-html="footer.center.header">{{footer.center.header}}</h4>
 				<ul class="footer-links list-unstyled">
-					<li ng-repeat="link in footer.center.links"><a ui-sref="{{link.routeLink}}" ng-bind-html="link.text" ng-click="scroll(link.scrollName)">{{link.text}}</a></li>
+					<li ng-repeat="link in footer.center.links"><a ng-bind-html="link.text" ng-click="scroll(link.scrollName)">{{link.text}}</a></li>
 				</ul>
 				<!-- /Links -->
 			</div>
 
-			<div class="col-md-4" ng-show="{{footer.right.enabled}}">
+			<div ng-class="footerClass" ng-show="{{footer.right.enabled}}">
 				<!-- Newsletter Form -->
 				<h4 class="letter-spacing-1" ng-bind-html="footer.right.title">{{footer.right.title}}</h4>
 				<p ng-bind-html="footer.right.headline">{{footer.right.headline}}</p>

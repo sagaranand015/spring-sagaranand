@@ -15,7 +15,17 @@ angular.module('monitorApp').config(['$stateProvider', '$urlRouterProvider', 'cf
 	$stateProvider.state('home', {
  		url: '/home',
  		templateUrl: 'app/layout/main.jsp',
+ 		abstract: true
  	});
+
+ 	// .state('home.main', {
+ 	// 	url: '/home.main',
+ 	// 	parent: 'home',
+ 	// 	templateUrl: 'app/layout/main.jsp'
+ 	// }).state('login', {
+ 	// 	url: '/login',
+ 	// 	templateUrl: 'app/layout/loginMain.jsp'
+ 	// })
 
  	$urlRouterProvider.otherwise('home');
 

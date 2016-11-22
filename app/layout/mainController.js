@@ -9,6 +9,8 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $document) {
 	console.log("Logging mainController");
 	var vm = this;
 	
+	vm.siteData = {};
+
 	$scope.showDisabledScreen = false;
 
 	// On starting of the loading bar during any AJAX request
@@ -42,6 +44,13 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $document) {
 				$rootScope.contact = response.data.contact;
 				$rootScope.projects = response.data.projects;
 				$rootScope.profile = response.data.profile;
+
+				vm.siteData = response.data;
+				console.log(vm.siteData);
+
+				// console.log("The link is: ");
+				// console.log($rootScope.headerMenu.mainPageComponents[0].link);
+
 			} else {
 				ngToast.create({
 					className: 'danger',
@@ -76,7 +85,11 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $document) {
 
 	// this is required for loading the init function
 	$scope.$on('$viewContentLoaded', function($evt, data) {
+		
+	});
 
+	$rootScope.$on('$includeContentLoaded', function($evt, data) {
+		
 	});
 
 	vm.initSite();

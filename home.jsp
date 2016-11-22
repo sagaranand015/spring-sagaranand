@@ -63,10 +63,15 @@
 		
 		<div class="wrapper">
 
-			<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" id="{{headerMenu.mainPageComponents[0]}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
+			<!-- the common component(headerMenu) -->
+			<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" id="{{headerMenu.mainPageComponents[0].name}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
 
-			<div ui-view></div>
+			<!-- for the components on the home page -->
+			<div ng-repeat="component in headerMenu.components">
+				<div id="{{component.name}}" ng-show="{{component.isEnabled}}" ng-include="component.link"></div>
+			</div> 
 
+			<!-- the common component(footer) -->
 			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" id="{{headerMenu.mainPageComponents[1]}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
 
 		</div>
@@ -103,7 +108,6 @@
 
 	<!-- for all the angular controllers -->
 	<script src="app/layout/mainController.js"></script>
-	<script src="app/home/homeController.js"></script>
 	<script src="app/services/utilityService.js"></script>
 
 	<!-- For the custom controllers -->
