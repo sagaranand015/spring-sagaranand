@@ -49,17 +49,42 @@ public class ClientController {
 	@Autowired
 	private SanitizerImpl sanitizer;
 
+	/**
+	 * The / Endpoint
+	 * 
+	 * @return home.jsp - the root page
+	 */
 	@RequestMapping(value = ApiEndpoints.ROOT)
 	public String index() {
 		return ApiEndpoints.ROOTPAGE;
 	}
 
+	/**
+	 * The /home Endpoint
+	 * 
+	 * @return home.jsp - the root page
+	 */
+	@RequestMapping(value = ApiEndpoints.ROOTPAGE)
+	public String home() {
+		return ApiEndpoints.ROOTPAGE;
+	}
+
+	/**
+	 * The /status Endpoint
+	 * 
+	 * @return Response code for service status
+	 */
 	@RequestMapping(value = ApiEndpoints.STATUSENDPOINT, method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<ServiceResponse> getStatus() {
 		ServiceResponse statusResponse = client.getServiceStatus();
 		return ResponseEntity.status(statusResponse.getStatus()).body(statusResponse);
 	}
 
+	/**
+	 * The /sendContactMailEndpoint
+	 * 
+	 * @return Response containing the send status for admin and user mails
+	 */
 	@RequestMapping(value = ApiEndpoints.CONTACTENDPOINT, method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ContactResponse> sendContactMail(@RequestBody ContactRequest contactRequest) {
 		try {
@@ -126,6 +151,11 @@ public class ClientController {
 						new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "")));
 	}
 
+	/**
+	 * the /login endpoint
+	 * 
+	 * @return The login page - login.jsp
+	 */
 	@RequestMapping(value = ApiEndpoints.LOGINENDPOINT, method = RequestMethod.GET)
 	public String login() {
 		return ApiEndpoints.LOGINENDPOINT;

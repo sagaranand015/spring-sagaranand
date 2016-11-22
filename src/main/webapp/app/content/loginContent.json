@@ -1,0 +1,124 @@
+{
+	"login": {
+		"controller": "loginController",
+		"name": "SAGARANAND.COM",
+		"title": "SagarAnand.com | InfoSec Developer"
+	},
+	"headerMenu": {
+		"controller": "headerMenuController",
+		"name": "header",
+		"enabled": "true",
+		"logo": {
+			"image": "libraries/images/logo-black.png",
+			"alt": "Sagar Anand Name Logo",
+			"isLink": true,
+			"name": "home"
+		},
+		"mainPageComponents": [{
+			"text": "HEADER MENU",
+			"name": "headerMenu",
+			"isEnabled": "true",
+			"isShow": "false", 
+			"link": "app/headerMenu/headerMenu.jsp"
+		},
+		{
+			"text": "FOOTER",
+			"name": "footer",
+			"isEnabled": "true",
+			"isShow": "false", 
+			"link": "app/footer/footer.jsp"
+		}],
+		"components": [{
+			"text": "Login",
+			"name": "login",
+			"isEnabled": "true",
+			"isShow": "false", 
+			"link": "app/login/loginMain.jsp"
+		}],
+		"routes": [{
+			"text": "HOME",
+			"name": "home",
+			"isEnabled": "true",
+			"isShow": "true", 
+			"link": "home.jsp"
+		}]
+	},
+	"login": {
+		"headline": "Login to SagarAnand.com"
+	},
+	"footer": {
+		"controller": "footerController",
+		"left": {
+			"enabled": true,
+			"logo": {
+				"image": "libraries/images/logo-white.png",
+				"alt": "Sagar Anand Footer Logo"
+			},
+			"desc": "If you're in the city, drop in for a quick chat",
+			"address": "D-09, Jain Heights Altura,<br>Sarjapur Main Road, Bengaluru<br>Karnataka, India<br>",
+			"phone": "",
+			"mailId": "query@sagaranand.com"
+		},
+		"center": {
+			"enabled": false,
+			"header": "EXPLORE SAGARANAND.COM",
+			"links": [{
+				"text": "HOME",
+				"routeLink": "home",
+				"scrollName": "home",
+				"isSub": false,
+				"isLink": true
+			},
+			{
+				"text": "CONTACT US",
+				"routeLink": "home",
+				"scrollName": "contact",
+				"isSub": true,
+				"isLink": false
+			},
+			{
+				"text": "PROJECTS",
+				"routeLink": "home",
+				"scrollName": "projects",
+				"isSub": true,
+				"isLink": false
+			},
+			{
+				"text": "PROFILE LINKS",
+				"routeLink": "home",
+				"scrollName": "profile",
+				"isSub": true,
+				"isLink": false
+			}]
+		},
+		"right": {
+			"enabled": true,
+			"title": "KEEP IN TOUCH",
+			"headline": "Follow me on the Social Media for all the newest happenings!",
+			"social": [{
+				"title": "Facebook",
+				"class": "social-icon social-icon-border social-facebook pull-left",
+				"iconClass": "icon-facebook",
+				"link": "http://facebook.com/rockstar.sagar"			
+			},
+			{
+				"title": "Twitter",
+				"class": "social-icon social-icon-border social-twitter pull-left",
+				"iconClass": "icon-twitter",
+				"link": "https://twitter.com/sagaranand015"			
+			},
+			{
+				"title": "Linkedin",
+				"class": "social-icon social-icon-border social-linkedin pull-left",
+				"iconClass": "icon-linkedin",
+				"link": "https://in.linkedin.com/in/sagar-anand-33b37a89"
+			},
+			{
+				"title": "Google Plus",
+				"class": "social-icon social-icon-border social-gplus pull-left",
+				"iconClass": "icon-gplus",
+				"link": "https://plus.google.com/+sagaranand015"	
+			}]
+		}
+	}
+}

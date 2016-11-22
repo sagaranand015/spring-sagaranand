@@ -6,7 +6,7 @@
 	<header class="section-header text-center">
 		<div class="heading-title heading-line-double text-center">
 			<h2>
-				CONTACT ME  
+				{{contact.headline}}
 			</h2>
 		</div>
 	</header>

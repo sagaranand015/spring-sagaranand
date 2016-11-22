@@ -11,7 +11,7 @@ public class ApiEndpoints {
 
 	public static final String ROOT = "/";
 	
-	public static final String ROOTPAGE = "index";
+	public static final String ROOTPAGE = "home";
 	
 	public static final String STATUSENDPOINT = "status";
 	

@@ -7,6 +7,10 @@ function contactController($scope, dataFactory, utilityService, ngToast, $rootSc
 	console.log("Logging contactController");
 	var vm = this;
 
+	vm.initContact = function() {
+		console.log($rootScope.contact);
+	}
+
 	$scope.sendContactMail = function sendContactMail() {
 
 		if (utilityService.checkNullOrEmpty($scope.txtName)
@@ -66,5 +70,7 @@ function contactController($scope, dataFactory, utilityService, ngToast, $rootSc
 									});
 						});
 	};
+
+	vm.initContact();
 
 }

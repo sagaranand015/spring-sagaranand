@@ -4,7 +4,7 @@
 	<header class="section-header text-center">
 		<div class="heading-title heading-line-double text-center">
 			<h2>
-				MY PROJECTS
+				{{projects.headline}}
 			</h2>
 		</div>
 	</header>
@@ -13,7 +13,7 @@
 	<div class="row">
 		<div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
 
-			<div class="row" ng-repeat="project in projects">
+			<div class="row" ng-repeat="project in projects.projects">
 				<h2 class="page-header">
 					{{project.title}}
 					<span class="header-span">{{project.start}} - {{project.end}}</span>
