@@ -16,7 +16,7 @@
 		},
 		"mainPageComponents": [{
 			"text": "HEADER MENU",
-			"name": "headerMenu",
+			"name": "menu",
 			"isEnabled": "true",
 			"isShow": "false", 
 			"link": "app/headerMenu/headerMenu.jsp"

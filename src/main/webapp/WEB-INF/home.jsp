@@ -72,7 +72,7 @@
 			</div> 
 
 			<!-- the common component(footer) -->
-			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" id="{{headerMenu.mainPageComponents[1]}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
+			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
 
 		</div>
 

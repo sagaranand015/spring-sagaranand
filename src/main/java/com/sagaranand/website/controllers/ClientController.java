@@ -100,6 +100,14 @@ public class ClientController {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
 						.body(new ContactResponse(new ServiceResponse(HttpStatus.BAD_REQUEST.value(), ""),
 								new ServiceResponse(HttpStatus.BAD_REQUEST.value(), "")));
+			} else if (!validator.validateEmail(contactRequest.getEmail())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+						.body(new ContactResponse(new ServiceResponse(HttpStatus.BAD_REQUEST.value(), ""),
+								new ServiceResponse(HttpStatus.BAD_REQUEST.value(), "")));
+			} else if (!validator.validateStringContent(contactRequest.getName())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+						.body(new ContactResponse(new ServiceResponse(HttpStatus.BAD_REQUEST.value(), ""),
+								new ServiceResponse(HttpStatus.BAD_REQUEST.value(), "")));
 			}
 
 			// prepare the message for the admin
@@ -114,7 +122,9 @@ public class ClientController {
 					mailUtilities.getContactAdminName(), mailUtilities.getContactAdminSubject(), adminMail);
 
 			// send the acknowledge mail to the end user
-			MandrillMessageStatus userResp = mail.sendMail(contactRequest.getEmail(), contactRequest.getName(),
+			MandrillMessageStatus userResp = mail.sendMail(
+					sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getEmail()),
+					sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getName()),
 					mailUtilities.getContactReplySubject(), mailUtilities.prepareContactReplyMessage(
 							sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getName())));
 
