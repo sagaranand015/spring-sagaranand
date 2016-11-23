@@ -63,13 +63,16 @@
 		
 		<div class="wrapper">
 
-			<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" id="{{headerMenu.mainPageComponents[0]}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
+			<!-- The common headerMenu -->
+			<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
 
+			<!-- The components of the login page -->
 			<div ng-repeat="component in headerMenu.components">
 				<div id="{{component.name}}" ng-show="{{component.isEnabled}}" ng-include="component.link"></div>
 			</div>
 
-			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" id="{{headerMenu.mainPageComponents[1]}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
+			<!-- The common Footer -->
+			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
 
 		</div>
 

@@ -64,7 +64,7 @@
 		<div class="wrapper">
 
 			<!-- the common component(headerMenu) -->
-			<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" id="{{headerMenu.mainPageComponents[0].name}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
+			<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
 
 			<!-- for the components on the home page -->
 			<div ng-repeat="component in headerMenu.components">
@@ -72,7 +72,7 @@
 			</div> 
 
 			<!-- the common component(footer) -->
-			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" id="{{headerMenu.mainPageComponents[1]}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
+			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
 
 		</div>
 

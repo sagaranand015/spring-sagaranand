@@ -33,15 +33,6 @@ function headerMenuController($scope, $rootScope, $document, dataFactory, $timeo
 
 	});
 
-
-	// $scope.showHeaderMenuLinks = function showHeaderMenuLinks() {
-	// 	for(var i = 0;i<$rootScope.headerMenu.components;i++) {
-	// 		if($rootScope.headerMenu.components[i].category == "parent") {
-	// 			$rootScope.headerMenu.components[i].isShow = true;
-	// 		}
-	// 	}
-	// };
-
 	$scope.showHeaderMenuLinks = function showHeaderMenuLinks(category) {
 		if(category == "parent") {
 			return true;

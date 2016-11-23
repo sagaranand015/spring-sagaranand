@@ -76,6 +76,10 @@ footer {
     margin-bottom: 5%;
 }
 
+.section-padding {
+	padding-top: 3%;
+}
+
 .header-span {
     font-size: 0.8em;
 }
@@ -91,3 +95,7 @@ footer {
 .hide-class {
     display: none;
 }
+
+.top-menu-padding {
+	padding-bottom: 5%;
+} 

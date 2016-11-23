@@ -1,5 +1,5 @@
 
-<div ng-show="{{headerMenu.enabled}}" id="header" class="sticky shadow-after-3 clearfix" ng-controller="headerMenuController">
+<div ng-show="{{headerMenu.enabled}}" ng-attr-id="{{headerMenu.name}}" class="sticky shadow-after-3 clearfix fixed" ng-controller="headerMenuController">
 
 	<!-- TOP NAV -->
 	<header id="topNav">
