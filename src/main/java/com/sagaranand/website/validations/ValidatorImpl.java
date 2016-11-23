@@ -53,16 +53,16 @@ public class ValidatorImpl {
 	 * @return true if the email is validated
 	 */
 	public boolean validateEmail(String val) {
-		return validator.isValidInput("email", val, "Email", val.length(), false);
+		return validator.isValidInput("email", val, "Email", val.length(), false, true);
 	}
-	
+
 	/**
 	 * 
 	 * @param val
 	 * @return true if the String passed is safe to be used
 	 */
 	public boolean validateStringContent(String val) {
-		return validator.isValidInput("stringContent", val, "SafeString", val.length(), false);
+		return validator.isValidInput("stringContent", val, "SafeString", val.length(), false, true);
 	}
 
 }

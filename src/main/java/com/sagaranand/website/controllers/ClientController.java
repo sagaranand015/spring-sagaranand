@@ -93,21 +93,21 @@ public class ClientController {
 			if (!validator.validateString(contactRequest.getEmail())
 					|| !validator.validateString(contactRequest.getName())
 					|| !validator.validateString(contactRequest.getMessage())) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body(new ContactResponse(new ServiceResponse(HttpStatus.BAD_REQUEST.value(), ""),
-								new ServiceResponse(HttpStatus.BAD_REQUEST.value(), "")));
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ContactResponse(
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase())));
 			} else if (!validator.validateStringIsNull(contactRequest.getPhone())) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body(new ContactResponse(new ServiceResponse(HttpStatus.BAD_REQUEST.value(), ""),
-								new ServiceResponse(HttpStatus.BAD_REQUEST.value(), "")));
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ContactResponse(
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase())));
 			} else if (!validator.validateEmail(contactRequest.getEmail())) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body(new ContactResponse(new ServiceResponse(HttpStatus.BAD_REQUEST.value(), ""),
-								new ServiceResponse(HttpStatus.BAD_REQUEST.value(), "")));
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ContactResponse(
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase())));
 			} else if (!validator.validateStringContent(contactRequest.getName())) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-						.body(new ContactResponse(new ServiceResponse(HttpStatus.BAD_REQUEST.value(), ""),
-								new ServiceResponse(HttpStatus.BAD_REQUEST.value(), "")));
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ContactResponse(
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase())));
 			}
 
 			// prepare the message for the admin
@@ -122,9 +122,7 @@ public class ClientController {
 					mailUtilities.getContactAdminName(), mailUtilities.getContactAdminSubject(), adminMail);
 
 			// send the acknowledge mail to the end user
-			MandrillMessageStatus userResp = mail.sendMail(
-					sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getEmail()),
-					sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getName()),
+			MandrillMessageStatus userResp = mail.sendMail(contactRequest.getEmail(), contactRequest.getName(),
 					mailUtilities.getContactReplySubject(), mailUtilities.prepareContactReplyMessage(
 							sanitizer.sanitizeForBlocksAndFormatting(contactRequest.getName())));
 
@@ -157,8 +155,11 @@ public class ClientController {
 			logger.error(e.getMessage(), e);
 		}
 		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-				.body(new ContactResponse(new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ""),
-						new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "")));
+				.body(new ContactResponse(
+						new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+								HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase()),
+						new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),
+								HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())));
 	}
 
 	/**
