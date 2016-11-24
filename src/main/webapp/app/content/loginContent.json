@@ -7,7 +7,7 @@
 	"headerMenu": {
 		"controller": "headerMenuController",
 		"name": "header",
-		"enabled": "true",
+		"enabled": true,
 		"logo": {
 			"image": "libraries/images/logo-black.png",
 			"alt": "Sagar Anand Name Logo",
@@ -17,29 +17,29 @@
 		"mainPageComponents": [{
 			"text": "HEADER MENU",
 			"name": "menu",
-			"isEnabled": "true",
-			"isShow": "false", 
+			"isEnabled": true,
+			"isShow": false, 
 			"link": "app/headerMenu/headerMenu.jsp"
 		},
 		{
 			"text": "FOOTER",
 			"name": "footer",
-			"isEnabled": "true",
-			"isShow": "false", 
+			"isEnabled": true,
+			"isShow": false, 
 			"link": "app/footer/footer.jsp"
 		}],
 		"components": [{
 			"text": "Login",
 			"name": "login",
-			"isEnabled": "true",
-			"isShow": "false", 
+			"isEnabled": true,
+			"isShow": false, 
 			"link": "app/login/loginMain.jsp"
 		}],
 		"routes": [{
 			"text": "HOME",
 			"name": "home",
-			"isEnabled": "true",
-			"isShow": "true", 
+			"isEnabled": true,
+			"isShow": true, 
 			"link": "home.jsp"
 		}]
 	},

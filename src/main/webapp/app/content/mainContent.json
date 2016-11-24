@@ -7,7 +7,7 @@
 	"headerMenu": {
 		"controller": "headerMenuController",
 		"name": "header",
-		"enabled": "true",
+		"enabled": true,
 		"logo": {
 			"image": "libraries/images/logo-black.png",
 			"alt": "Sagar Anand Name Logo",
@@ -17,66 +17,66 @@
 		"mainPageComponents": [{
 			"text": "HEADER MENU",
 			"name": "menu",
-			"isEnabled": "true",
-			"isShow": "false", 
+			"isEnabled": true,
+			"isShow": false, 
 			"link": "app/headerMenu/headerMenu.jsp"
 		},
 		{
 			"text": "FOOTER",
 			"name": "footer",
-			"isEnabled": "true",
-			"isShow": "false", 
+			"isEnabled": true,
+			"isShow": false, 
 			"link": "app/footer/footer.jsp"
 		}],
 		"components": [
 		{
 			"text": "HEADER",
 			"name": "head",
-			"isEnabled": "true",
-			"isShow": "false", 
+			"isEnabled": true,
+			"isShow": false, 
 			"link": "app/header/header.jsp",
 			"category": "child"
 		},
 		{
 			"text": "HOME",
 			"name": "home",
-			"isEnabled": "true",
-			"isShow": "true", 
+			"isEnabled": true,
+			"isShow": true, 
 			"link": "app/home/home.jsp"
 		},
 		{
 			"text": "CONTACT US",
 			"name": "contact",
-			"isEnabled": "true",
-			"isShow": "true", 
+			"isEnabled": true,
+			"isShow": true,
 			"link": "app/contact/contact.jsp"
 		},
 		{
 			"text": "PROJECTS",
 			"name": "projects",
-			"isEnabled": "true",
-			"isShow": "true", 
+			"isEnabled": true,
+			"isShow": true, 
 			"link": "app/projects/projects.jsp"
 		},
 		{
 			"text": "PROFILE LINKS",
 			"name": "profile",
-			"isEnabled": "true",
-			"isShow": "true", 
+			"isEnabled": true,
+			"isShow": true, 
 			"link": "app/profile/profile.jsp"
 		}],
 		"routes": [
 		{
 			"text": "LOGIN",
 			"name": "login",
-			"isEnabled": "true",
-			"isShow": "true",
+			"isEnabled": true,
+			"isShow": true,
 			"link": "app/layout/loginMain.jsp"
 		}]
 	},
 	"header": {
 		"controller": "headerController",
-		"enabled": "true",
+		"enabled": true,
 		"headerTitle": "SAGARANAND.COM"
 	},
 	"home": {
