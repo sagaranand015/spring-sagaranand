@@ -68,7 +68,7 @@
 		"routes": [
 		{
 			"text": "LOGIN",
-			"name": "login.jsp",
+			"name": "login",
 			"isEnabled": true,
 			"isShow": true,
 			"link": "app/layout/loginMain.jsp"

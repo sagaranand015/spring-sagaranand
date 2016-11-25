@@ -12,7 +12,7 @@
 			"image": "libraries/images/logo-black.png",
 			"alt": "Sagar Anand Name Logo",
 			"isLink": true,
-			"name": "home.jsp"
+			"name": "home"
 		},
 		"mainPageComponents": [{
 			"text": "HEADER MENU",
@@ -37,7 +37,7 @@
 		}],
 		"routes": [{
 			"text": "HOME",
-			"name": "home.jsp",
+			"name": "home",
 			"isEnabled": true,
 			"isShow": true, 
 			"link": "home.jsp"
