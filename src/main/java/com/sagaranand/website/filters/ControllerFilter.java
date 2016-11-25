@@ -53,6 +53,9 @@ public class ControllerFilter implements Filter {
 
 			String servletPath = req.getServletPath();
 			if (!startsWithStaticPath(servletPath.trim())) {
+				
+				System.out.println("this is from ControllerFilter: " + servletPath);
+				
 				res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 				res.setHeader("Pragma", "no-cache");
 				res.setHeader("Expires", "0");

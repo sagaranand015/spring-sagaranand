@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.microtripit.mandrillapp.lutung.view.MandrillMessageStatus;
@@ -167,9 +169,35 @@ public class ClientController {
 	 * 
 	 * @return The login page - login.jsp
 	 */
-	@RequestMapping(value = ApiEndpoints.LOGINENDPOINT, method = RequestMethod.GET)
-	public String login() {
+	@RequestMapping(value = ApiEndpoints.LOGINENDPOINT)
+	public String login(@RequestParam(value = "valid", required = false) String valid,
+			@RequestParam(value = "logout", required = false) String logout, @RequestParam(value = "session", required = false) String session, Model model) {
+		
+		System.out.println("Valid is: " + valid);
+		System.out.println("Logout is: " + logout);
+		
+ 		if (valid != null && valid.equals("false")) {
+			model.addAttribute("valid", false);
+		}
+
+		if (logout != null && logout.equals("true")) {
+			model.addAttribute("logout", true);
+		}
+		
+		if (session != null && logout.equals("false")) {
+			model.addAttribute("session", false);
+		}
+
 		return ApiEndpoints.LOGINENDPOINT;
 	}
 
+	/**
+	 * the /admin endpoint for admin access portal
+	 * @return the admin page
+	 */
+	@RequestMapping(value="admin")
+	public String adminPage() {
+		return "admin";
+	}
+	
 }
