@@ -39,6 +39,9 @@ public class LoginAuthProvider implements AuthenticationProvider {
 				List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
 				grantedAuths.add(new SimpleGrantedAuthority(Constants.ADMIN_ACCESS));
 				Authentication auth = new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
+				
+				// @TODO: Authenticate the user data from db and store that too in the session
+				
 				return auth;
 			}
 		} catch (AuthenticationException e) {

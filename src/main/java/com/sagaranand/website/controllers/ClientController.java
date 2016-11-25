@@ -3,6 +3,12 @@
  */
 package com.sagaranand.website.controllers;
 
+import java.util.Enumeration;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -171,33 +177,28 @@ public class ClientController {
 	 */
 	@RequestMapping(value = ApiEndpoints.LOGINENDPOINT)
 	public String login(@RequestParam(value = "valid", required = false) String valid,
-			@RequestParam(value = "logout", required = false) String logout, @RequestParam(value = "session", required = false) String session, Model model) {
-		
-		System.out.println("Valid is: " + valid);
-		System.out.println("Logout is: " + logout);
-		
- 		if (valid != null && valid.equals("false")) {
+			@RequestParam(value = "logout", required = false) String logout,
+			@RequestParam(value = "session", required = false) String session, Model model) {
+		if (valid != null && valid.equals("false")) {
 			model.addAttribute("valid", false);
 		}
-
 		if (logout != null && logout.equals("true")) {
 			model.addAttribute("logout", true);
 		}
-		
 		if (session != null && logout.equals("false")) {
 			model.addAttribute("session", false);
 		}
-
 		return ApiEndpoints.LOGINENDPOINT;
 	}
 
 	/**
 	 * the /admin endpoint for admin access portal
+	 * 
 	 * @return the admin page
 	 */
-	@RequestMapping(value="admin")
-	public String adminPage() {
+	@RequestMapping(value = "admin")
+	public String adminPage(HttpServletRequest request, HttpServletResponse response) {
 		return "admin";
 	}
-	
+
 }
