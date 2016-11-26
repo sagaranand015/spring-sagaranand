@@ -11,7 +11,7 @@ import com.sagaranand.website.model.Admin;
  * @author sanand5
  *
  */
-public interface Dao {
+public interface AdminDao {
 
 	public List<Admin> getAllAdmins();
 	

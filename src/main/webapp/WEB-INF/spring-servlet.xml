@@ -10,10 +10,12 @@
  	http://www.springframework.org/schema/tx 
  	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
-	<context:component-scan base-package="com.sagaranand.website.controllers" />
+	<context:component-scan base-package="com.sagaranand.website.*" />
 
 	<mvc:annotation-driven />
 
+	<!-- Loading the root applicationContext. The .properties file within applicationContext.xml 
+		file will load all the required external properties -->
 	<import resource="/applicationContext.xml" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
@@ -43,12 +45,12 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/sagaranand_db" />
-		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="driverClassName" value="${app.db.driver}" />
+		<property name="url" value="${app.db.url}" />
+		<property name="username" value="${app.db.username}" />
+		<property name="password" value="${app.db.password}" />
 	</bean>
-	
+
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -59,36 +61,25 @@
 		</property>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
-				</prop>
-				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dialect">${app.hibernate.dialect}</prop>
 			</props>
 		</property>
 	</bean>
 
-	<bean id="dao" class="com.sagaranand.website.dao.DaoImpl">
+	<!-- This is dependency injection using setProp() function in the Respective 
+		classes -->
+	<bean id="dao" class="com.sagaranand.website.dao.AdminDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="adminService" class="com.sagaranand.website.services.AdminServiceImpl">
 		<property name="dao" ref="dao"></property>
 	</bean>
 
-	<context:component-scan base-package="com.sagaranand.website.*" />
-	<context:component-scan base-package="com.sagaranand.website.controllers" />
-	<context:component-scan base-package="com.sagaranand.website.client" />
-	<context:component-scan base-package="com.sagaranand.website.core" />
-	<context:component-scan base-package="com.sagaranand.website.services" />
-	<context:component-scan base-package="com.sagaranand.website.dao" />
-
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
-	<!-- <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager"> 
-		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory" /> 
-		</bean> -->
 
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+
 </beans>

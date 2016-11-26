@@ -16,7 +16,7 @@ import com.sagaranand.website.model.Admin;
  *
  */
 @Repository
-public class DaoImpl implements Dao {
+public class AdminDaoImpl implements AdminDao {
 
 	private SessionFactory sessionFactory;
 
@@ -31,9 +31,9 @@ public class DaoImpl implements Dao {
 	 */
 	public List<Admin> getAllAdmins() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Admin> adminList = session.createQuery("from Admin").list();
+		List<Admin> adminList = session.createQuery("from Admin").getResultList();
 		for (Admin a : adminList) {
-			System.out.println(a.getAdminName());
+			System.out.println(a.getAdminName() + " -> " + a.getAdminEmail());
 		}
 		return adminList;
 	}

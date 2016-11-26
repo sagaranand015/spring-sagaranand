@@ -8,16 +8,13 @@
  	http://www.springframework.org/schema/context
  	http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-	<context:component-scan base-package="com.sagaranand.website.controllers" />
-	<context:component-scan base-package="com.sagaranand.website.client" />
-	<context:component-scan base-package="com.sagaranand.website.core" />
-	<context:component-scan base-package="com.sagaranand.website.services" />
+	<context:component-scan base-package="com.sagaranand.website.*" />
 
 	<mvc:annotation-driven />
 
 	<!-- The .properties file for parameters from outside -->
-	<context:property-placeholder
-		location="WEB-INF/properties/app.properties" />
+	<context:property-placeholder location="WEB-INF/properties/app.properties,WEB-INF/properties/database.properties" />
+	<!-- <context:property-placeholder location="" /> -->
 
 	<bean id="client" class="com.sagaranand.website.client.GenericClient"></bean>
 
@@ -31,22 +28,17 @@
 
 	<bean id="mailUtilities" class="com.sagaranand.website.utilities.MailUtilities">
 		<property name="contactReplySubject" value="${app.contact.contactReplySubject}"></property>
-		<property name="contactReplyMessage"
-			value="${app.contact.contactReplyMessage}"></property>
+		<property name="contactReplyMessage" value="${app.contact.contactReplyMessage}"></property>
 		<property name="contactAdminEmail" value="${app.contact.contactAdminEmail}"></property>
 		<property name="contactAdminName" value="${app.contact.contactAdminName}"></property>
-		<property name="contactAdminSubject"
-			value="${app.contact.contactAdminSubject}"></property>
-			<property name="contactAdminSalute" value="${app.contact.contactAdminSalute}"></property>
+		<property name="contactAdminSubject" value="${app.contact.contactAdminSubject}"></property>
+		<property name="contactAdminSalute" value="${app.contact.contactAdminSalute}"></property>
 	</bean>
 
 	<bean id="validator" class="com.sagaranand.website.validations.ValidatorImpl"></bean>
 
 	<bean id="sanitizer" class="com.sagaranand.website.validations.SanitizerImpl"></bean>
-	
+
 	<bean id="adminService" class="com.sagaranand.website.services.AdminServiceImpl"></bean>
-
-	<!-- Database Configuration -->
-
-
+	
 </beans>
