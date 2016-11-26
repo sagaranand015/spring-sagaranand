@@ -196,7 +196,7 @@ public class ClientController {
 		if (logout != null && logout.equals("true")) {
 			model.addAttribute("logout", true);
 		}
-		if (session != null && logout.equals("false")) {
+		if (session != null && session.equals("false")) {
 			model.addAttribute("session", false);
 		}
 		return ApiEndpoints.LOGINENDPOINT;

@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page session="true"%>
 <!DOCTYPE html>
-<html ng-app="monitorApp" ng-controller="mainController as mainCtrl">
+<html ng-app="monitorApp" ng-controller="adminController">
 	<head>
 		<meta charset="UTF-8">
 		<title>{{main.siteTitle}}</title>
@@ -67,15 +67,15 @@
 		<div class="wrapper">
 
 			<!-- the common component(headerMenu) -->
-			<!-- <div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" ng-include="headerMenu.mainPageComponents[0].link"></div> -->
+			<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
 
 			<!-- for the components on the home page -->
-			<!-- <div ng-repeat="component in headerMenu.components">
+			<div ng-repeat="component in headerMenu.components">
 				<div id="{{component.name}}" ng-show="{{component.isEnabled}}" ng-include="component.link"></div>
-			</div> --> 
+			</div>
 
 			<!-- the common component(footer) -->
-			<!-- <div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" ng-include="headerMenu.mainPageComponents[1].link"></div> -->
+			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
 
 		</div>
 
@@ -117,11 +117,7 @@
 	<script src="app/headerMenu/headerMenuController.js"></script>
 	<script src="app/header/headerController.js"></script>
 	<script src="app/footer/footerController.js"></script>
-	<script src="app/home/homeController.js"></script>
-	<script src="app/contact/contactController.js"></script>
-	<script src="app/projects/projectsController.js"></script>
-	<script src="app/profile/profileController.js"></script>
-	<script src="app/layout/loginController.js"></script>
+	<script src="app/layout/adminController.js"></script>
 
 	<!-- JAVASCRIPT FILES -->
 	<script type="text/javascript">var plugin_path = 'libraries/js/';</script>
