@@ -29,6 +29,7 @@ import com.sagaranand.website.core.MailImpl;
 import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;
+import com.sagaranand.website.services.AdminService;
 import com.sagaranand.website.utilities.MailUtilities;
 import com.sagaranand.website.validations.SanitizerImpl;
 import com.sagaranand.website.validations.ValidatorImpl;
@@ -56,6 +57,13 @@ public class ClientController {
 
 	@Autowired
 	private SanitizerImpl sanitizer;
+
+	@Autowired
+	private AdminService adminService;
+
+//	public void setAdminService(AdminService adminService) {
+//		this.adminService = adminService;
+//	}
 
 	/**
 	 * The / Endpoint
@@ -198,6 +206,9 @@ public class ClientController {
 	 */
 	@RequestMapping(value = "admin")
 	public String adminPage(HttpServletRequest request, HttpServletResponse response) {
+
+		this.adminService.getAllAdmins();
+
 		return "admin";
 	}
 

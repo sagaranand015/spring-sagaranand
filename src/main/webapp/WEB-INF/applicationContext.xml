@@ -11,6 +11,7 @@
 	<context:component-scan base-package="com.sagaranand.website.controllers" />
 	<context:component-scan base-package="com.sagaranand.website.client" />
 	<context:component-scan base-package="com.sagaranand.website.core" />
+	<context:component-scan base-package="com.sagaranand.website.services" />
 
 	<mvc:annotation-driven />
 
@@ -42,5 +43,10 @@
 	<bean id="validator" class="com.sagaranand.website.validations.ValidatorImpl"></bean>
 
 	<bean id="sanitizer" class="com.sagaranand.website.validations.SanitizerImpl"></bean>
+	
+	<bean id="adminService" class="com.sagaranand.website.services.AdminServiceImpl"></bean>
+
+	<!-- Database Configuration -->
+
 
 </beans>
