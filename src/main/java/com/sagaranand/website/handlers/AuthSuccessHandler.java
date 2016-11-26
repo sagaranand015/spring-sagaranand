@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 import com.sagaranand.website.model.Admin;
 import com.sagaranand.website.model.User;
-import com.sagaranand.website.services.AdminService;
+import com.sagaranand.website.services.DaoService;
 
 /**
  * @author sanand5
@@ -30,10 +30,10 @@ import com.sagaranand.website.services.AdminService;
 @Component("authSuccessHandler")
 public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
-	private AdminService adminService;
+	private DaoService daoService;
 
-	public void setAdminService(AdminService adminService) {
-		this.adminService = adminService;
+	public void setDaoService(DaoService daoService) {
+		this.daoService = daoService;
 	}
 
 	private static final Logger logger = Logger.getLogger(AuthSuccessHandler.class);

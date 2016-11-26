@@ -72,20 +72,11 @@
 
 	<!-- This is dependency injection using setProp() function in the Respective 
 		classes for AdminDao -->
-	<bean id="dao" class="com.sagaranand.website.dao.AdminDaoImpl">
+	<bean id="dao" class="com.sagaranand.website.dao.DaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	<bean id="adminService" class="com.sagaranand.website.services.AdminServiceImpl">
+	<bean id="daoService" class="com.sagaranand.website.services.DaoServiceImpl">
 		<property name="dao" ref="dao"></property>
-	</bean>
-
-	<!-- This is dependency injection using setProp() function in the Respective 
-		classes for General Dao -->
-	<bean id="generalDao" class="com.sagaranand.website.dao.GeneralDaoImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-	<bean id="generalService" class="com.sagaranand.website.services.GeneralServiceImpl">
-		<property name="generalDao" ref="generalDao"></property>
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
@@ -131,11 +122,11 @@
 	</security:authentication-manager>
 
 	<bean id="loginAuthProvider" class="com.sagaranand.website.providers.LoginAuthProvider">
-		<property name="adminService" ref="adminService"></property>
+		<property name="daoService" ref="daoService"></property>
 	</bean>
 
 	<bean id="authSuccessHandler" class="com.sagaranand.website.handlers.AuthSuccessHandler">
-		<property name="adminService" ref="adminService"></property>
+		<property name="daoService" ref="daoService"></property>
 	</bean>
 
 

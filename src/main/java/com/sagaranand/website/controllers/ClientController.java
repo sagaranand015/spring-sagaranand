@@ -32,8 +32,7 @@ import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;
 import com.sagaranand.website.model.SessionResponse;
 import com.sagaranand.website.model.User;
-import com.sagaranand.website.services.AdminService;
-import com.sagaranand.website.services.GeneralService;
+import com.sagaranand.website.services.DaoService;
 import com.sagaranand.website.utilities.MailUtilities;
 import com.sagaranand.website.validations.SanitizerImpl;
 import com.sagaranand.website.validations.ValidatorImpl;
@@ -63,10 +62,7 @@ public class ClientController {
 	private SanitizerImpl sanitizer;
 
 	@Autowired
-	private AdminService adminService;
-
-	@Autowired
-	private GeneralService generalService;
+	private DaoService daoService;
 
 	// public void setAdminService(AdminService adminService) {
 	// this.adminService = adminService;
@@ -100,7 +96,7 @@ public class ClientController {
 	@RequestMapping(value = ApiEndpoints.STATUSENDPOINT, method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<ServiceResponse> getStatus(HttpServletRequest request) throws DalException {
 		try {
-			if (!generalService.checkdbStatus()) {
+			if (!daoService.checkdbStatus()) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
 						.body(new ServiceResponse(ErrorCodes.DB_FAILED, ErrorMesaages.DB_FAILED));
 			}

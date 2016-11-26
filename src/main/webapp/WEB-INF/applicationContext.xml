@@ -40,8 +40,8 @@
 
 	<bean id="sanitizer" class="com.sagaranand.website.validations.SanitizerImpl"></bean>
 
-	<bean id="adminService" class="com.sagaranand.website.services.AdminServiceImpl"></bean>
-
-	<bean id="generalService" class="com.sagaranand.website.services.GeneralServiceImpl"></bean>
+	<bean id="dao" class="com.sagaranand.website.dao.DaoImpl"></bean>
+	
+	<bean id="daoService" class="com.sagaranand.website.services.DaoServiceImpl"></bean>
 
 </beans>

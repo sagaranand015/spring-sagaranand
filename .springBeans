@@ -10,7 +10,7 @@
 	</configs>
 	<autoconfigs>
 		<config>src/main/webapp/WEB-INF/applicationContext.xml</config>
-		<config>src/main/resources/log4j.xml</config>
+		<config>src/main/webapp/WEB-INF/spring-servlet.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

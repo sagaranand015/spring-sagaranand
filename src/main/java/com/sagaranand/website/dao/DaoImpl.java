@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sagaranand.website.exceptions.DalException;
 import com.sagaranand.website.model.Admin;
@@ -20,9 +21,9 @@ import com.sagaranand.website.model.Admin;
  *
  */
 @Repository
-public class AdminDaoImpl implements AdminDao {
+public class DaoImpl implements Dao {
 
-	private static final Logger logger = Logger.getLogger(AdminDaoImpl.class);
+	private static final Logger logger = Logger.getLogger(DaoImpl.class);
 
 	private SessionFactory sessionFactory;
 
@@ -65,6 +66,27 @@ public class AdminDaoImpl implements AdminDao {
 			logger.error(e.getMessage(), e);
 		}
 		return null;
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sagaranand.website.dao.GeneralDao#checkDbStatus()
+	 */
+	@Transactional
+	public boolean checkDbStatus() throws DalException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query query = session.createNativeQuery("show tables");
+			int res = query.getMaxResults();
+			if (res >= 0) {
+				return true;
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		}
+		return false;
 	}
 
 }

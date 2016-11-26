@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
 
 import com.sagaranand.website.constants.Constants;
 import com.sagaranand.website.model.Admin;
-import com.sagaranand.website.services.AdminService;
+import com.sagaranand.website.services.DaoService;
 
 /**
  * @author sanand5
@@ -34,10 +34,10 @@ import com.sagaranand.website.services.AdminService;
 public class LoginAuthProvider implements AuthenticationProvider {
 
 	@Autowired
-	private AdminService adminService;
+	private DaoService daoService;
 
-	public void setAdminService(AdminService adminService) {
-		this.adminService = adminService;
+	public void setDaoService(DaoService daoService) {
+		this.daoService = daoService;
 	}
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginAuthProvider.class);
@@ -50,6 +50,13 @@ public class LoginAuthProvider implements AuthenticationProvider {
 	 */
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		try {
+			
+			System.out.println("In authentication: ");
+			List<Admin> adminList = daoService.getAllAdmins();
+			for(Admin a: adminList) {
+				System.out.println("This is the admin: " + a.getAdminName());
+			}
+			
 			String name = authentication.getName();
 			String password = authentication.getCredentials().toString();
 			if (name.equals("admin") && password.equals("admin")) {

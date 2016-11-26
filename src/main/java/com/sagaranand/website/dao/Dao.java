@@ -12,7 +12,7 @@ import com.sagaranand.website.model.Admin;
  * @author sanand5
  *
  */
-public interface AdminDao {
+public interface Dao {
 	
 	/**
 	 * @return all the admins in the db
@@ -27,6 +27,11 @@ public interface AdminDao {
 	 */
 	public Admin getAdminByUsername(String username) throws DalException;
 	
+	/**
+	 * @return the db status as boolean. True:up, false:down
+	 * @throws DalException
+	 */
+	public boolean checkDbStatus() throws DalException;
 	
 
 }
