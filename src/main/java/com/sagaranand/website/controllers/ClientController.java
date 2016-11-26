@@ -26,6 +26,9 @@ import com.microtripit.mandrillapp.lutung.view.MandrillMessageStatus;
 import com.sagaranand.website.client.GenericClient;
 import com.sagaranand.website.constants.ApiEndpoints;
 import com.sagaranand.website.core.MailImpl;
+import com.sagaranand.website.exceptions.DalException;
+import com.sagaranand.website.exceptions.ServiceException;
+import com.sagaranand.website.model.Admin;
 import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;
@@ -61,9 +64,9 @@ public class ClientController {
 	@Autowired
 	private AdminService adminService;
 
-//	public void setAdminService(AdminService adminService) {
-//		this.adminService = adminService;
-//	}
+	// public void setAdminService(AdminService adminService) {
+	// this.adminService = adminService;
+	// }
 
 	/**
 	 * The / Endpoint
@@ -206,9 +209,6 @@ public class ClientController {
 	 */
 	@RequestMapping(value = "admin")
 	public String adminPage(HttpServletRequest request, HttpServletResponse response) {
-
-		this.adminService.getAllAdmins();
-
 		return "admin";
 	}
 
