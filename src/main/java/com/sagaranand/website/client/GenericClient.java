@@ -17,6 +17,10 @@ public class GenericClient {
 		super();
 	}
 	
+	/**
+	 * 
+	 * @return the service response based on check on db 
+	 */
 	public ServiceResponse getServiceStatus() {
 		return new ServiceResponse(ErrorCodes.OK, ErrorMesaages.OK);
 	}

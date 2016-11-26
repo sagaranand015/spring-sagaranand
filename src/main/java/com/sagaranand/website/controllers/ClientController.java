@@ -3,11 +3,8 @@
  */
 package com.sagaranand.website.controllers;
 
-import java.util.Enumeration;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,14 +22,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.microtripit.mandrillapp.lutung.view.MandrillMessageStatus;
 import com.sagaranand.website.client.GenericClient;
 import com.sagaranand.website.constants.ApiEndpoints;
+import com.sagaranand.website.constants.ErrorCodes;
+import com.sagaranand.website.constants.ErrorMesaages;
 import com.sagaranand.website.core.MailImpl;
 import com.sagaranand.website.exceptions.DalException;
-import com.sagaranand.website.exceptions.ServiceException;
-import com.sagaranand.website.model.Admin;
 import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;
 import com.sagaranand.website.services.AdminService;
+import com.sagaranand.website.services.GeneralService;
 import com.sagaranand.website.utilities.MailUtilities;
 import com.sagaranand.website.validations.SanitizerImpl;
 import com.sagaranand.website.validations.ValidatorImpl;
@@ -64,6 +62,9 @@ public class ClientController {
 	@Autowired
 	private AdminService adminService;
 
+	@Autowired
+	private GeneralService generalService;
+
 	// public void setAdminService(AdminService adminService) {
 	// this.adminService = adminService;
 	// }
@@ -94,9 +95,18 @@ public class ClientController {
 	 * @return Response code for service status
 	 */
 	@RequestMapping(value = ApiEndpoints.STATUSENDPOINT, method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<ServiceResponse> getStatus() {
-		ServiceResponse statusResponse = client.getServiceStatus();
-		return ResponseEntity.status(statusResponse.getStatus()).body(statusResponse);
+	public @ResponseBody ResponseEntity<ServiceResponse> getStatus() throws DalException {
+		try {
+			if (!generalService.checkdbStatus()) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+						.body(new ServiceResponse(ErrorCodes.DB_FAILED, ErrorMesaages.DB_FAILED));
+			}
+			return ResponseEntity.status(HttpStatus.OK.value())
+					.body(new ServiceResponse(ErrorCodes.OK, ErrorMesaages.OK));
+		} catch (DalException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+					.body(new ServiceResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR));
+		}
 	}
 
 	/**
@@ -208,7 +218,7 @@ public class ClientController {
 	 * @return the admin page
 	 */
 	@RequestMapping(value = "admin")
-	public String adminPage(HttpServletRequest request, HttpServletResponse response) {
+	public String adminPage() {
 		return "admin";
 	}
 

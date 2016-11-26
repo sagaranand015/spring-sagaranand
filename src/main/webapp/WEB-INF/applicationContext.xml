@@ -13,7 +13,8 @@
 	<mvc:annotation-driven />
 
 	<!-- The .properties file for parameters from outside -->
-	<context:property-placeholder location="WEB-INF/properties/app.properties,WEB-INF/properties/database.properties" />
+	<context:property-placeholder
+		location="WEB-INF/properties/app.properties,WEB-INF/properties/database.properties" />
 	<!-- <context:property-placeholder location="" /> -->
 
 	<bean id="client" class="com.sagaranand.website.client.GenericClient"></bean>
@@ -40,5 +41,7 @@
 	<bean id="sanitizer" class="com.sagaranand.website.validations.SanitizerImpl"></bean>
 
 	<bean id="adminService" class="com.sagaranand.website.services.AdminServiceImpl"></bean>
-	
+
+	<bean id="generalService" class="com.sagaranand.website.services.GeneralServiceImpl"></bean>
+
 </beans>

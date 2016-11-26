@@ -67,12 +67,21 @@
 	</bean>
 
 	<!-- This is dependency injection using setProp() function in the Respective 
-		classes -->
+		classes for AdminDao -->
 	<bean id="dao" class="com.sagaranand.website.dao.AdminDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<bean id="adminService" class="com.sagaranand.website.services.AdminServiceImpl">
 		<property name="dao" ref="dao"></property>
+	</bean>
+
+	<!-- This is dependency injection using setProp() function in the Respective 
+		classes for General Dao -->
+	<bean id="generalDao" class="com.sagaranand.website.dao.GeneralDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="generalService" class="com.sagaranand.website.services.GeneralServiceImpl">
+		<property name="generalDao" ref="generalDao"></property>
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />

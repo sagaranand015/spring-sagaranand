@@ -13,7 +13,7 @@ import com.sagaranand.website.model.Admin;
  *
  */
 public interface AdminDao {
-
+	
 	/**
 	 * @return all the admins in the db
 	 * @throws DalException
