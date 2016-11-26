@@ -14,5 +14,7 @@ public class ErrorCodes {
 	public static final int INTERNAL_SERVER_ERROR = 500;
 
 	public static final int DB_FAILED = 500;
+	
+	public static final int UNAUTHORIZED = 403;
 
 }

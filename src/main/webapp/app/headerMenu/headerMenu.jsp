@@ -19,14 +19,22 @@
 				<nav class="nav-main">
 
 					<ul id="topMain" class="nav nav-pills nav-main">
+						<!-- 1. For the components on the page -->
 						<li ng-repeat="component in headerMenu.components">
 							<a ng-show="{{component.isShow}}" ng-click="scroll(component.name)" >
 								{{component.text}}
 							</a>
 						</li>
+						<!-- 2. For the routes on the page -->
 						<li ng-repeat="route in headerMenu.routes">
 							<a ng-show="{{route.isShow}}" ng-href="{{route.name}}">
 								{{route.text}}
+							</a>
+						</li>
+						<!-- 3. for the logout on the page -->
+						<li>
+							<a ng-show="{{route.isShow}}" ng-href="{{route.name}}" >
+								{{}}
 							</a>
 						</li>
 					</ul>

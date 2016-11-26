@@ -6,22 +6,39 @@ package com.sagaranand.website.providers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.ws.rs.core.Context;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.stereotype.Component;
 
 import com.sagaranand.website.constants.Constants;
+import com.sagaranand.website.model.Admin;
+import com.sagaranand.website.services.AdminService;
 
 /**
  * @author sanand5
  *
  */
+@Component
 public class LoginAuthProvider implements AuthenticationProvider {
+
+	@Autowired
+	private AdminService adminService;
+
+	public void setAdminService(AdminService adminService) {
+		this.adminService = adminService;
+	}
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginAuthProvider.class);
 
@@ -38,11 +55,7 @@ public class LoginAuthProvider implements AuthenticationProvider {
 			if (name.equals("admin") && password.equals("admin")) {
 				List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
 				grantedAuths.add(new SimpleGrantedAuthority(Constants.ADMIN_ACCESS));
-				Authentication auth = new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
-				
-				// @TODO: Authenticate the user data from db and store that too in the session
-				
-				return auth;
+				return new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
 			}
 		} catch (AuthenticationException e) {
 			logger.error(e.getMessage(), e);

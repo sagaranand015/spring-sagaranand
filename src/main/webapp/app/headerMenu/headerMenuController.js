@@ -8,6 +8,12 @@ function headerMenuController($scope, $rootScope, $document, dataFactory, $timeo
 	console.log("Logging headerMenuController");
 	var vm = this;
 
+	$scope.logout = {};
+	
+	$scope.checkForLogin = function checkForLogin() {
+		
+	};
+	
 	$scope.currentSection = "";
 	$scope.scroll = function scroll(section) {
 		if(!$rootScope.headerMenu.logo.isLink) {

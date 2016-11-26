@@ -1,4 +1,5 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
 	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
@@ -8,9 +9,12 @@
  	http://www.springframework.org/schema/context
  	http://www.springframework.org/schema/context/spring-context-4.0.xsd
  	http://www.springframework.org/schema/tx 
- 	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+ 	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+ 	http://www.springframework.org/schema/security 
+ 	http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<context:component-scan base-package="com.sagaranand.website.*" />
+	<context:annotation-config />
 
 	<mvc:annotation-driven />
 
@@ -90,5 +94,49 @@
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
+
+	<security:http pattern="/" security="none" />
+	<security:http pattern="/home" security="none" />
+
+	<security:http auto-config="true">
+		<security:intercept-url pattern="/admin"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:form-login login-page="/login"
+			username-parameter="txt-username" password-parameter="txt-password"
+			authentication-failure-url="/login?valid=false"
+			authentication-success-handler-ref="authSuccessHandler"
+			default-target-url="/admin" />
+		<security:csrf />
+
+		<security:access-denied-handler
+			error-page="/login?access=false" />
+
+		<security:logout invalidate-session="true"
+			delete-cookies="JSESSIONID" logout-url="/logout" logout-success-url="/login?logout=true" />
+
+		<security:session-management
+			invalid-session-url="/login?session=false"
+			session-authentication-error-url="/login?session=false"
+			session-fixation-protection="migrateSession">
+			<security:concurrency-control
+				max-sessions="2" expired-url="/login?session=false" />
+		</security:session-management>
+
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider
+			ref="loginAuthProvider">
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+	<bean id="loginAuthProvider" class="com.sagaranand.website.providers.LoginAuthProvider">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+
+	<bean id="authSuccessHandler" class="com.sagaranand.website.handlers.AuthSuccessHandler">
+		<property name="adminService" ref="adminService"></property>
+	</bean>
+
 
 </beans>

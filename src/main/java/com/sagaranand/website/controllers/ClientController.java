@@ -5,6 +5,7 @@ package com.sagaranand.website.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,8 @@ import com.sagaranand.website.exceptions.DalException;
 import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;
+import com.sagaranand.website.model.SessionResponse;
+import com.sagaranand.website.model.User;
 import com.sagaranand.website.services.AdminService;
 import com.sagaranand.website.services.GeneralService;
 import com.sagaranand.website.utilities.MailUtilities;
@@ -95,7 +98,7 @@ public class ClientController {
 	 * @return Response code for service status
 	 */
 	@RequestMapping(value = ApiEndpoints.STATUSENDPOINT, method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<ServiceResponse> getStatus() throws DalException {
+	public @ResponseBody ResponseEntity<ServiceResponse> getStatus(HttpServletRequest request) throws DalException {
 		try {
 			if (!generalService.checkdbStatus()) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
@@ -220,6 +223,23 @@ public class ClientController {
 	@RequestMapping(value = "admin")
 	public String adminPage() {
 		return "admin";
+	}
+
+	@RequestMapping(value = "/session")
+	public @ResponseBody ResponseEntity<SessionResponse> getSession(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession();
+			if (session != null) {
+				 User loggedInUser = (User) session.getAttribute("user");
+				return ResponseEntity.status(HttpStatus.OK.value())
+						.body(new SessionResponse(ErrorCodes.OK, ErrorMesaages.OK, loggedInUser));
+			}
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value())
+					.body(new SessionResponse(ErrorCodes.UNAUTHORIZED, ErrorMesaages.UNAUTHORIZED, null));
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(
+					new SessionResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR, null));
+		}
 	}
 
 }
