@@ -20,7 +20,7 @@
 
 	<!-- Loading the root applicationContext. The .properties file within applicationContext.xml 
 		file will load all the required external properties -->
-	<import resource="/applicationContext.xml" />
+	<import resource="/applicationContext.xml" /> 
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -88,6 +88,7 @@
 
 	<security:http pattern="/" security="none" />
 	<security:http pattern="/home" security="none" />
+	<security:http pattern="/addAdmin" security="none" />
 
 	<security:http auto-config="true">
 		<security:intercept-url pattern="/admin"

@@ -4,13 +4,22 @@
 package com.sagaranand.website.model;
 
 import java.sql.Timestamp;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.apache.http.annotation.NotThreadSafe;
+import org.hibernate.annotations.GeneratorType;
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 /**
@@ -23,15 +32,13 @@ public class Admin {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Type(type = "int")
-	@Column(name = "adminId", nullable = false, unique = true)
 	private int adminId;
 
 	@Column(name = "adminName")
 	private String adminName;
 
 	@Column(name = "adminUsername", nullable = false, unique = true)
-	private String adminUserName;
+	private String adminUsername;
 
 	@Column(name = "adminEmail", nullable = false, unique = true)
 	private String adminEmail;
@@ -51,13 +58,13 @@ public class Admin {
 	public Admin() {
 		super();
 	}
-	
-	public Admin(int adminId, String adminName, String adminUserName, String adminEmail, String adminContact,
+
+	public Admin(int adminId, String adminName, String adminUsername, String adminEmail, String adminContact,
 			String adminPwd, String salt, Timestamp lastUpdatedOn) {
 		super();
 		this.adminId = adminId;
 		this.adminName = adminName;
-		this.adminUserName = adminUserName;
+		this.adminUsername = adminUsername;
 		this.adminEmail = adminEmail;
 		this.adminContact = adminContact;
 		this.adminPwd = adminPwd;
@@ -81,12 +88,12 @@ public class Admin {
 		this.adminName = adminName;
 	}
 
-	public String getAdminUserName() {
-		return adminUserName;
+	public String getAdminUsername() {
+		return adminUsername;
 	}
 
-	public void setAdminUserName(String adminUserName) {
-		this.adminUserName = adminUserName;
+	public void setAdminUsername(String adminUsername) {
+		this.adminUsername = adminUsername;
 	}
 
 	public String getAdminEmail() {
@@ -132,7 +139,12 @@ public class Admin {
 	@Override
 	public String toString() {
 		return "id:" + this.getAdminId() + ", " + "Name:" + this.getAdminName() + ", " + "Username:"
-				+ this.getAdminUserName() + ", " + "Email:" + this.getAdminEmail();
+				+ this.getAdminUsername() + ", " + "Email:" + this.getAdminEmail();
 	}
+
+	// @PrePersist
+	// public void setUUID() {
+	// this.setAdminId(UUID.randomUUID().toString());
+	// }
 
 }

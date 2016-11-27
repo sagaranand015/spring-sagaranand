@@ -8,6 +8,7 @@ import java.util.List;
 import com.sagaranand.website.exceptions.DalException;
 import com.sagaranand.website.exceptions.ServiceException;
 import com.sagaranand.website.model.Admin;
+import com.sagaranand.website.model.AdminRequest;
 
 /**
  * @author sanand5
@@ -15,6 +16,12 @@ import com.sagaranand.website.model.Admin;
  */
 public interface DaoService {
 
+	/**
+	 * @return the db status as boolean
+	 * @throws DalException
+	 */
+	public boolean checkdbStatus() throws DalException;
+	
 	/**
 	 * @return all the admins in the db
 	 * @throws ServiceException
@@ -31,8 +38,10 @@ public interface DaoService {
 	public Admin getAdminByUsername(String username) throws ServiceException, DalException;
 
 	/**
-	 * @return the db status as boolean
+	 * Register a new admin in the database
+	 * @param admin
 	 * @throws DalException
 	 */
-	public boolean checkdbStatus() throws DalException;
+	public boolean registerAdmin(Admin admin) throws DalException;
+	
 }

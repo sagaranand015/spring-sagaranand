@@ -12,6 +12,10 @@ import org.owasp.html.Sanitizers;
  */
 public class SanitizerImpl {
 
+//	public String sanitizeString(String val) {
+//		PolicyFactory policy = Sanitizers.
+//	}
+	
 	public String sanitizeForBlocksAndFormatting(String val) {
 		PolicyFactory policy = Sanitizers.FORMATTING.and(Sanitizers.BLOCKS);
 		return policy.sanitize(val);

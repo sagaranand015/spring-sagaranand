@@ -27,6 +27,8 @@ import com.sagaranand.website.constants.ErrorCodes;
 import com.sagaranand.website.constants.ErrorMesaages;
 import com.sagaranand.website.core.MailImpl;
 import com.sagaranand.website.exceptions.DalException;
+import com.sagaranand.website.model.Admin;
+import com.sagaranand.website.model.AdminRequest;
 import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;
@@ -63,10 +65,6 @@ public class ClientController {
 
 	@Autowired
 	private DaoService daoService;
-
-	// public void setAdminService(AdminService adminService) {
-	// this.adminService = adminService;
-	// }
 
 	/**
 	 * The / Endpoint
@@ -178,7 +176,6 @@ public class ClientController {
 							new ServiceResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), userResp.getStatus())));
 				}
 			}
-
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
@@ -221,12 +218,17 @@ public class ClientController {
 		return "admin";
 	}
 
+	/**
+	 * 
+	 * @param request
+	 * @return the SessionResponse containing session information
+	 */
 	@RequestMapping(value = "/session")
 	public @ResponseBody ResponseEntity<SessionResponse> getSession(HttpServletRequest request) {
 		try {
 			HttpSession session = request.getSession();
 			if (session != null) {
-				 User loggedInUser = (User) session.getAttribute("user");
+				User loggedInUser = (User) session.getAttribute("user");
 				return ResponseEntity.status(HttpStatus.OK.value())
 						.body(new SessionResponse(ErrorCodes.OK, ErrorMesaages.OK, loggedInUser));
 			}
@@ -235,6 +237,27 @@ public class ClientController {
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(
 					new SessionResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR, null));
+		}
+	}
+
+	/**
+	 * 
+	 * @param admin
+	 * @return the response containing the success/fail response for Admin
+	 *         Record insertion
+	 */
+	@RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
+	public @ResponseBody ResponseEntity<ServiceResponse> registerAdmin(@RequestBody Admin admin) {
+		try {
+			// the input validations here
+//			if(!validator.)
+			this.daoService.registerAdmin(admin);
+			return ResponseEntity.status(HttpStatus.OK.value())
+					.body(new ServiceResponse(ErrorCodes.OK, ErrorMesaages.OK));
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+					.body(new ServiceResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR));
 		}
 	}
 

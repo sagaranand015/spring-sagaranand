@@ -13,6 +13,7 @@ import com.sagaranand.website.dao.Dao;
 import com.sagaranand.website.exceptions.DalException;
 import com.sagaranand.website.exceptions.ServiceException;
 import com.sagaranand.website.model.Admin;
+import com.sagaranand.website.model.AdminRequest;
 
 /**
  * @author sanand5
@@ -73,6 +74,24 @@ public class DaoServiceImpl implements DaoService {
 			logger.error(e.getMessage(), e);
 			throw e;
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.sagaranand.website.services.DaoService#registerAdmin(com.sagaranand.
+	 * website.model.Admin)
+	 */
+	public boolean registerAdmin(Admin admin) throws DalException {
+		try {
+			//System.out.println("The result in service is: " + this.dao.registerAdmin(admin));
+			return this.dao.registerAdmin(admin);
+		} catch (DalException e) {
+			logger.error(e.getMessage(), e);
+			throw e;
+		}
+
 	}
 
 }
