@@ -31,11 +31,13 @@
 								{{route.text}}
 							</a>
 						</li>
-						<!-- 3. for the logout on the page -->
+						<!-- 3. the logout button -->
 						<li>
-							<a ng-show="{{route.isShow}}" ng-href="{{route.name}}" >
-								{{}}
-							</a>
+							<form id="form-logout" action="logout" method="POST">
+								<input type="hidden" name="${_csrf.parameterName}"
+											value="${_csrf.token}" />
+								<input type="submit" value="Logout!"  />
+							</form>
 						</li>
 					</ul>
 				</nav>

@@ -20,7 +20,7 @@
 
 	<!-- Loading the root applicationContext. The .properties file within applicationContext.xml 
 		file will load all the required external properties -->
-	<import resource="/applicationContext.xml" /> 
+	<import resource="/applicationContext.xml" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -103,8 +103,9 @@
 		<security:access-denied-handler
 			error-page="/login?access=false" />
 
-		<security:logout invalidate-session="true"
-			delete-cookies="JSESSIONID" logout-url="/logout" logout-success-url="/login?logout=true" />
+		<security:logout logout-url="/logout"
+			logout-success-url="/login?logout=true" 
+			delete-cookies="JSESSIONID" invalidate-session="false" />
 
 		<security:session-management
 			invalid-session-url="/login?session=false"
