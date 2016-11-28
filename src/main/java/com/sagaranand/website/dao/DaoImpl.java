@@ -9,16 +9,16 @@ import java.util.UUID;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.id.UUIDGenerator;
+import org.hibernate.exception.ConstraintViolationException;
+import org.hibernate.exception.GenericJDBCException;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sagaranand.website.exceptions.DalException;
 import com.sagaranand.website.model.Admin;
-import com.sagaranand.website.model.AdminRequest;
 
 /**
  * @author sanand5
@@ -38,6 +38,30 @@ public class DaoImpl implements Dao {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see com.sagaranand.website.dao.GeneralDao#checkDbStatus()
+	 */
+	@Transactional
+	public boolean checkDbStatus() throws DalException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query query = session.createNativeQuery("show tables");
+			int res = query.getMaxResults();
+			if (res >= 0) {
+				return true;
+			}
+		} catch (HibernateException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		}
+		return false;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.sagaranand.website.dao.Dao#getAllAdmins()
 	 */
 	@Transactional
@@ -46,6 +70,9 @@ public class DaoImpl implements Dao {
 			Session session = this.sessionFactory.getCurrentSession();
 			List<Admin> adminList = session.createQuery("from Admin").getResultList();
 			return adminList;
+		} catch (HibernateException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
@@ -65,31 +92,13 @@ public class DaoImpl implements Dao {
 			Query query = session.createQuery("from Admin where adminUsername=:adminUsername");
 			query.setParameter("adminUsername", username);
 			return (Admin) query.getSingleResult();
+		} catch (HibernateException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.sagaranand.website.dao.GeneralDao#checkDbStatus()
-	 */
-	@Transactional
-	public boolean checkDbStatus() throws DalException {
-		try {
-			Session session = this.sessionFactory.getCurrentSession();
-			Query query = session.createNativeQuery("show tables");
-			int res = query.getMaxResults();
-			if (res >= 0) {
-				return true;
-			}
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
-			throw new DalException(e.getMessage());
-		}
-		return false;
 	}
 
 	/*
@@ -99,17 +108,13 @@ public class DaoImpl implements Dao {
 	 * com.sagaranand.website.dao.Dao#registerAdmin(com.sagaranand.website.model
 	 * .Admin)
 	 */
-	@Transactional(rollbackFor = Exception.class)
+	@Transactional
 	public boolean registerAdmin(Admin admin) throws DalException {
 		try {
-			
-			System.out.println("I'm here in DaoImpl");
-			
 			Session session = this.sessionFactory.getCurrentSession();
-//			admin.setUUID();
-//			session.persist(admin);
-			Query query = session.createNativeQuery("insert into Admin(AdminName, AdminUsername, AdminEmail, AdminContact, AdminPwd, salt) values(:adminName,:adminUsername,:adminEmail,:adminContact,:adminPwd,:salt)");
-//			query.setParameter("adminId", UUID.randomUUID().toString());
+			Query query = session.createNativeQuery(
+					"insert into Admin(adminId, adminName, adminUsername, adminEmail, adminContact, adminPwd, salt) values(:adminId,:adminName,:adminUsername,:adminEmail,:adminContact,:adminPwd,:salt)");
+			query.setParameter("adminId", UUID.randomUUID().toString());
 			query.setParameter("adminName", admin.getAdminName());
 			query.setParameter("adminUsername", admin.getAdminUsername());
 			query.setParameter("adminEmail", admin.getAdminEmail());
@@ -117,15 +122,27 @@ public class DaoImpl implements Dao {
 			query.setParameter("adminPwd", admin.getAdminPwd());
 			query.setParameter("salt", admin.getSalt());
 			int res = query.executeUpdate();
-			if(res > 0) {
+			if (res > 0) {
 				return true;
 			}
 			return false;
-//			return true;
+		} catch (HibernateException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sagaranand.website.dao.Dao#getAdminByEmail(java.lang.String)
+	 */
+	@Transactional
+	public Admin getAdminByEmail(String adminEmail) throws DalException {
+		return null;
 	}
 
 }

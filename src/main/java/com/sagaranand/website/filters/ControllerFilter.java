@@ -61,11 +61,12 @@ public class ControllerFilter implements Filter {
 				res.setHeader("Expires", "0");
 				res.setHeader("X-Frame-Options", "DENY");
 			}
-			chain.doFilter(request, response);
 
 		} catch (Exception e) {
+			System.out.println("I'm here too in FilterController!!");
 			logger.error(e.getMessage(), e);
 		}
+		chain.doFilter(request, response);
 	}
 
 	/*

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,6 @@ import com.sagaranand.website.constants.ErrorMesaages;
 import com.sagaranand.website.core.MailImpl;
 import com.sagaranand.website.exceptions.DalException;
 import com.sagaranand.website.model.Admin;
-import com.sagaranand.website.model.AdminRequest;
 import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;
@@ -92,7 +92,7 @@ public class ClientController {
 	 * @return Response code for service status
 	 */
 	@RequestMapping(value = ApiEndpoints.STATUSENDPOINT, method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<ServiceResponse> getStatus(HttpServletRequest request) throws DalException {
+	public @ResponseBody ResponseEntity<ServiceResponse> getStatus(HttpServletRequest request) {
 		try {
 			if (!daoService.checkdbStatus()) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
@@ -101,6 +101,11 @@ public class ClientController {
 			return ResponseEntity.status(HttpStatus.OK.value())
 					.body(new ServiceResponse(ErrorCodes.OK, ErrorMesaages.OK));
 		} catch (DalException e) {
+			logger.error(e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+					.body(new ServiceResponse(ErrorCodes.DB_OPERATION_FAILED, ErrorMesaages.DB_OPERATION_FAILED));
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
 					.body(new ServiceResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR));
 		}
@@ -235,6 +240,7 @@ public class ClientController {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value())
 					.body(new SessionResponse(ErrorCodes.UNAUTHORIZED, ErrorMesaages.UNAUTHORIZED, null));
 		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(
 					new SessionResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR, null));
 		}
@@ -249,11 +255,32 @@ public class ClientController {
 	@RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ServiceResponse> registerAdmin(@RequestBody Admin admin) {
 		try {
-			// the input validations here
-//			if(!validator.)
-			this.daoService.registerAdmin(admin);
+			if (!validator.validateString(admin.getAdminName()) || !validator.validateString(admin.getAdminContact())
+					|| !validator.validateString(admin.getAdminPwd()) || !validator.validateString(admin.getSalt())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
+			} else if (!validator.validateEmail(admin.getAdminEmail())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
+			} else if (!validator.validateUsername(admin.getAdminUsername())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
+			} else if (!validator.validatePassword(admin.getAdminPwd())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
+			}
+
+			if (!this.daoService.registerAdmin(admin)) {
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(
+						new ServiceResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR));
+			}
+
 			return ResponseEntity.status(HttpStatus.OK.value())
 					.body(new ServiceResponse(ErrorCodes.OK, ErrorMesaages.OK));
+		} catch (DalException e) {
+			logger.error(e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+					.body(new ServiceResponse(ErrorCodes.DB_OPERATION_FAILED, ErrorMesaages.DB_OPERATION_FAILED));
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())

@@ -13,7 +13,6 @@ import com.sagaranand.website.dao.Dao;
 import com.sagaranand.website.exceptions.DalException;
 import com.sagaranand.website.exceptions.ServiceException;
 import com.sagaranand.website.model.Admin;
-import com.sagaranand.website.model.AdminRequest;
 
 /**
  * @author sanand5
@@ -40,7 +39,6 @@ public class DaoServiceImpl implements DaoService {
 		try {
 			return this.dao.getAllAdmins();
 		} catch (DalException e) {
-			logger.error(e.getMessage(), e);
 			throw e;
 		}
 	}
@@ -57,7 +55,6 @@ public class DaoServiceImpl implements DaoService {
 		try {
 			return this.dao.getAdminByUsername(username);
 		} catch (DalException e) {
-			logger.error(e.getMessage(), e);
 			throw e;
 		}
 	}
@@ -71,7 +68,6 @@ public class DaoServiceImpl implements DaoService {
 		try {
 			return this.dao.checkDbStatus();
 		} catch (DalException e) {
-			logger.error(e.getMessage(), e);
 			throw e;
 		}
 	}
@@ -85,10 +81,8 @@ public class DaoServiceImpl implements DaoService {
 	 */
 	public boolean registerAdmin(Admin admin) throws DalException {
 		try {
-			//System.out.println("The result in service is: " + this.dao.registerAdmin(admin));
 			return this.dao.registerAdmin(admin);
 		} catch (DalException e) {
-			logger.error(e.getMessage(), e);
 			throw e;
 		}
 

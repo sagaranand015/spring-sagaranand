@@ -29,7 +29,10 @@ public class ValidatorImpl {
 	 * @return boolean value stating where is string is empty or null
 	 */
 	public boolean validateString(String val) {
-		return (val == "" || val == "") ? false : true;
+		if (val == null || val == "") {
+			return false;
+		}
+		return validator.isValidInput("generalString", val, "SafeString", val.length(), false, true);
 	}
 
 	/**
@@ -63,6 +66,24 @@ public class ValidatorImpl {
 	 */
 	public boolean validateStringContent(String val) {
 		return validator.isValidInput("stringContent", val, "SafeString", val.length(), false, true);
+	}
+
+	/**
+	 * 
+	 * @param val
+	 * @return true if the userName String is valid according to the regex
+	 */
+	public boolean validateUsername(String val) {
+		return validator.isValidInput("username", val, "Username", val.length(), false, true);
+	}
+
+	/**
+	 * 
+	 * @param val
+	 * @return true if the password is valid. Minimum:6, 1 Alphabet, 1 Number
+	 */
+	public boolean validatePassword(String val) {
+		return validator.isValidInput("password", val, "Password", val.length(), false, true);
 	}
 
 }

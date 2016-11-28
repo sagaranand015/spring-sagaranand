@@ -31,8 +31,7 @@ import org.hibernate.annotations.Type;
 public class Admin {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int adminId;
+	private String adminId;
 
 	@Column(name = "adminName")
 	private String adminName;
@@ -59,7 +58,7 @@ public class Admin {
 		super();
 	}
 
-	public Admin(int adminId, String adminName, String adminUsername, String adminEmail, String adminContact,
+	public Admin(String adminId, String adminName, String adminUsername, String adminEmail, String adminContact,
 			String adminPwd, String salt, Timestamp lastUpdatedOn) {
 		super();
 		this.adminId = adminId;
@@ -72,11 +71,11 @@ public class Admin {
 		this.lastUpdatedOn = lastUpdatedOn;
 	}
 
-	public int getAdminId() {
+	public String getAdminId() {
 		return adminId;
 	}
 
-	public void setAdminId(int adminId) {
+	public void setAdminId(String adminId) {
 		this.adminId = adminId;
 	}
 
@@ -142,9 +141,9 @@ public class Admin {
 				+ this.getAdminUsername() + ", " + "Email:" + this.getAdminEmail();
 	}
 
-	// @PrePersist
-	// public void setUUID() {
-	// this.setAdminId(UUID.randomUUID().toString());
-	// }
+	@PrePersist
+	public void setAdminIdAsString() {
+		this.setAdminId(UUID.randomUUID().toString());
+	}
 
 }

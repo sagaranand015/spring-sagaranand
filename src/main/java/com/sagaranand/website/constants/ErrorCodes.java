@@ -15,6 +15,8 @@ public class ErrorCodes {
 
 	public static final int DB_FAILED = 500;
 	
+	public static final int DB_OPERATION_FAILED = 500;
+	
 	public static final int UNAUTHORIZED = 403;
 
 }
