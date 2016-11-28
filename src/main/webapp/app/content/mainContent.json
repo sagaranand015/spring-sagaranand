@@ -65,14 +65,7 @@
 			"isShow": true, 
 			"link": "app/profile/profile.jsp"
 		}],
-		"routes": [
-		{
-			"text": "LOGIN",
-			"name": "login",
-			"isEnabled": true,
-			"isShow": true,
-			"link": "app/layout/loginMain.jsp"
-		}]
+		"routes": []
 	},
 	"header": {
 		"controller": "headerController",

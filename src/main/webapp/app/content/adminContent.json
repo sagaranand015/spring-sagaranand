@@ -36,13 +36,6 @@
 			"isEnabled": true,
 			"isShow": true,
 			"link": "home.jsp"
-		},
-		{
-			"text": "LOGOUT",
-			"name": "logout",
-			"isEnabled": true,
-			"isShow": true,
-			"link": "logout.jsp"
 		}]
 	},
 	"header": {

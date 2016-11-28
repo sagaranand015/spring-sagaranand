@@ -18,6 +18,7 @@ function loginController($scope, dataFactory, ngToast, $rootScope, utilityServic
 		vm.mainContentResp = dataFactory.getPageContents("loginContent").then(function(response) {
 			if(response.status == 200) {
 
+				console.log("in LoginController!");
 				console.log(response.data);
 
 				$rootScope.main = response.data.main;

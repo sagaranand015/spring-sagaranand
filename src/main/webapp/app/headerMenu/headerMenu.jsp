@@ -31,13 +31,19 @@
 								{{route.text}}
 							</a>
 						</li>
-						<!-- 3. the logout button -->
-						<li>
-							<form id="form-logout" action="logout" method="POST">
-								<input type="hidden" name="${_csrf.parameterName}"
-											value="${_csrf.token}" />
-								<input type="submit" value="Logout!"  />
-							</form>
+						<!-- 3. the login and logout button -->
+						<li ng-show="!loggedIn">
+							<a href="login">LOGIN</a>
+						</li>
+						<li ng-show="loggedIn">
+							<a ng-click="doLogout()">
+								<form id="form-logout" name="form-logout" action="logout" method="POST" style="display: none;">
+									<input type="hidden" name="${_csrf.parameterName}"
+												value="${_csrf.token}" />
+									<input type="submit" value="Logout!"  />
+								</form>
+								LOGOUT
+							</a>
 						</li>
 					</ul>
 				</nav>

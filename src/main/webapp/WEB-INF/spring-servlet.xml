@@ -88,7 +88,6 @@
 
 	<security:http pattern="/" security="none" />
 	<security:http pattern="/home" security="none" />
-	<security:http pattern="/addAdmin" security="none" />
 
 	<security:http auto-config="true">
 		<security:intercept-url pattern="/admin"
@@ -103,9 +102,8 @@
 		<security:access-denied-handler
 			error-page="/login?access=false" />
 
-		<security:logout logout-url="/logout"
-			logout-success-url="/login?logout=true" 
-			delete-cookies="JSESSIONID" invalidate-session="false" />
+		<security:logout logout-url="/logout" delete-cookies="JSESSIONID"
+			invalidate-session="false" success-handler-ref="logoutSuccessHandler" />
 
 		<security:session-management
 			invalid-session-url="/login?session=false"
@@ -128,6 +126,10 @@
 	</bean>
 
 	<bean id="authSuccessHandler" class="com.sagaranand.website.handlers.AuthSuccessHandler">
+		<property name="daoService" ref="daoService"></property>
+	</bean>
+
+	<bean id="logoutSuccessHandler" class="com.sagaranand.website.handlers.LogoutSuccessHandler">
 		<property name="daoService" ref="daoService"></property>
 	</bean>
 

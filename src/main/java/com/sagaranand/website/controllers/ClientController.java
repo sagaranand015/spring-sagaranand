@@ -4,6 +4,7 @@
 package com.sagaranand.website.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,7 +70,11 @@ public class ClientController {
 	 * @return home.jsp - the root page
 	 */
 	@RequestMapping(value = ApiEndpoints.ROOT)
-	public String index() {
+	public String index(HttpServletRequest request, HttpServletResponse response) {
+
+		System.out.println(request.getRequestURL().toString());
+		System.out.println(request.getLocalName());
+
 		return ApiEndpoints.ROOTPAGE;
 	}
 
@@ -225,16 +230,18 @@ public class ClientController {
 	 * @param request
 	 * @return the SessionResponse containing session information
 	 */
-	@RequestMapping(value = "/session")
+	@RequestMapping(value = "session", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<SessionResponse> getSession(HttpServletRequest request) {
 		try {
 			HttpSession session = request.getSession();
 			if (session != null) {
 				User loggedInUser = (User) session.getAttribute("user");
-				return ResponseEntity.status(HttpStatus.OK.value())
-						.body(new SessionResponse(ErrorCodes.OK, ErrorMesaages.OK, loggedInUser));
+				if (loggedInUser != null) {
+					return ResponseEntity.status(HttpStatus.OK.value())
+							.body(new SessionResponse(ErrorCodes.OK, ErrorMesaages.OK, loggedInUser));
+				}
 			}
-			return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value())
+			return ResponseEntity.status(HttpStatus.OK.value())
 					.body(new SessionResponse(ErrorCodes.UNAUTHORIZED, ErrorMesaages.UNAUTHORIZED, null));
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
