@@ -4,10 +4,7 @@
 package com.sagaranand.website.controllers;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.hibernate.HibernateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +25,7 @@ import com.sagaranand.website.constants.ErrorCodes;
 import com.sagaranand.website.constants.ErrorMesaages;
 import com.sagaranand.website.core.MailImpl;
 import com.sagaranand.website.exceptions.DalException;
-import com.sagaranand.website.model.Admin;
+import com.sagaranand.website.orm.Admin;
 import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sagaranand.website.model;
+package com.sagaranand.website.orm;
 
 import java.sql.Timestamp;
 import java.util.UUID;

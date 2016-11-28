@@ -6,7 +6,7 @@ package com.sagaranand.website.dao;
 import java.util.List;
 
 import com.sagaranand.website.exceptions.DalException;
-import com.sagaranand.website.model.Admin;
+import com.sagaranand.website.orm.Admin;
 
 /**
  * @author sanand5

@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sagaranand.website.exceptions.DalException;
-import com.sagaranand.website.model.Admin;
+import com.sagaranand.website.orm.Admin;
 
 /**
  * @author sanand5
