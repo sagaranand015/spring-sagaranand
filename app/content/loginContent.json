@@ -1,8 +1,6 @@
 {
 	"login": {
-		"controller": "loginController",
-		"name": "SAGARANAND.COM",
-		"title": "SagarAnand.com | InfoSec Developer"
+		"headline": "Login to SagarAnand.com"
 	},
 	"headerMenu": {
 		"controller": "headerMenuController",
@@ -42,9 +40,6 @@
 			"isShow": true, 
 			"link": "home.jsp"
 		}]
-	},
-	"login": {
-		"headline": "Login to SagarAnand.com"
 	},
 	"footer": {
 		"controller": "footerController",

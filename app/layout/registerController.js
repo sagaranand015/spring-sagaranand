@@ -1,30 +1,30 @@
 angular
 	.module('monitorApp')
-	.controller('loginController', loginController);
+	.controller('registerController', registerController);
 
-loginController.$inject = ['$scope', 'dataFactory', 'ngToast', '$rootScope', 'utilityService'];
+registerController.$inject = ['$scope', 'dataFactory', 'ngToast', '$rootScope', 'utilityService'];
 
-function loginController($scope, dataFactory, ngToast, $rootScope, utilityService) {
-	console.log("Logging loginController");
+function registerController($scope, dataFactory, ngToast, $rootScope, utilityService) {
+	console.log("Logging registerController");
 	var vm = this;
 
 	$rootScope.main = {};
 	$rootScope.headerMenu = {};
 	$rootScope.footer = {};
-	$rootScope.login = {};
+	$rootScope.register = {};
 
 	// initialize the main Site here
 	vm.initLogin = function() {
-		vm.mainContentResp = dataFactory.getPageContents("loginContent").then(function(response) {
+		vm.mainContentResp = dataFactory.getPageContents("registerContent").then(function(response) {
 			if(response.status == 200) {
 
-				console.log("in LoginController!");
+				console.log("In registerController");
 				console.log(response.data);
 
 				$rootScope.main = response.data.main;
 				$rootScope.headerMenu = response.data.headerMenu;
 				$rootScope.footer = response.data.footer;
-				$rootScope.login = response.data.login;
+				$rootScope.register = response.data.register;
 				
 			} else {
 				ngToast.create({
