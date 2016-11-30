@@ -6,6 +6,7 @@ package com.sagaranand.website.providers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -18,6 +19,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -55,8 +57,6 @@ public class LoginAuthProvider implements AuthenticationProvider {
 
 			// now, based on the subdomain, the password will be looked into the
 			// appropriate table
-			
-			
 
 			String name = authentication.getName();
 			String password = authentication.getCredentials().toString();
@@ -70,6 +70,7 @@ public class LoginAuthProvider implements AuthenticationProvider {
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
+		System.out.println("Returning null here!!");
 		return null;
 	}
 

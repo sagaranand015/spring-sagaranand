@@ -34,6 +34,13 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $document) {
 
 	// initialize the main Site here
 	vm.initSite = function() {
+		
+		var csrfParameter = $("meta[name='_csrf_parameter']").attr("content");
+		var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+		var csrfToken = $("meta[name='_csrf']").attr("content");
+		
+		console.log(csrfParameter + " -> " + csrfHeader + " -> " + csrfToken);
+		
 		vm.mainContentResp = dataFactory.getPageContents("mainContent").then(function(response) {
 			if(response.status == 200) {
 				$rootScope.main = response.data.main;
@@ -44,13 +51,6 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $document) {
 				$rootScope.contact = response.data.contact;
 				$rootScope.projects = response.data.projects;
 				$rootScope.profile = response.data.profile;
-
-				vm.siteData = response.data;
-				console.log(vm.siteData);
-
-				// console.log("The link is: ");
-				// console.log($rootScope.headerMenu.mainPageComponents[0].link);
-
 			} else {
 				ngToast.create({
 					className: 'danger',
@@ -77,11 +77,6 @@ function mainController(dataFactory, ngToast, $rootScope, $scope, $document) {
 			$document.scrollToElement(selectedsection, 100, 500);
 		}
 	};
-
-	// this is for returning the requrired class for the footer components.
-	// $rootScope.manageFooterContents = function manageFooterContents() {
-	// 	console.log($rootScope.left.enabled + " -> " + $rootScope.center.enabled + " -> " + $rootScope.right.enabled + " -> ");
-	// }
 
 	// this is required for loading the init function
 	$scope.$on('$viewContentLoaded', function($evt, data) {

@@ -1,8 +1,13 @@
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html ng-app="monitorApp" ng-controller="mainController as mainCtrl">
 	<head>
 		<meta charset="UTF-8">
 		<title>{{main.siteTitle}}</title>
+
+		<sec:csrfMetaTags/>
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -70,7 +75,7 @@
 			<div ng-repeat="component in headerMenu.components">
 				<div id="{{component.name}}" ng-show="{{component.isEnabled}}" ng-include="component.link"></div>
 			</div> 
-
+						
 			<!-- the common component(footer) -->
 			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
 

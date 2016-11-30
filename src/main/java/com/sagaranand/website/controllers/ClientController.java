@@ -117,15 +117,12 @@ public class ClientController {
 	@RequestMapping(value = ApiEndpoints.CONTACTENDPOINT, method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ContactResponse> sendContactMail(@RequestBody ContactRequest contactRequest) {
 		try {
+			if (contactRequest.getPhone() == null) {
+				contactRequest.setPhone("");
+			}
 
-			// validation of the input parameters
-			if (!validator.validateString(contactRequest.getEmail())
-					|| !validator.validateString(contactRequest.getName())
+			if (!validator.validateString(contactRequest.getName())
 					|| !validator.validateString(contactRequest.getMessage())) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ContactResponse(
-						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
-						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase())));
-			} else if (!validator.validateStringIsNull(contactRequest.getPhone())) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ContactResponse(
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase())));
@@ -133,7 +130,7 @@ public class ClientController {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ContactResponse(
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase())));
-			} else if (!validator.validateStringContent(contactRequest.getName())) {
+			} else if (!validator.validateStringContent(contactRequest.getPhone())) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ContactResponse(
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()),
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase())));
@@ -252,7 +249,7 @@ public class ClientController {
 	 * @return the response containing the success/fail response for Admin
 	 *         Record insertion
 	 */
-	@RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
+	@RequestMapping(value = "addAdmin", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ServiceResponse> registerAdmin(@RequestBody Admin admin) {
 		try {
 

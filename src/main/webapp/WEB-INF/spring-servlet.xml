@@ -86,19 +86,35 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<security:http pattern="/" security="none" />
-	<security:http pattern="/home" security="none" />
 	<security:http pattern="/sendContactMail" security="none" />
-	<security:http pattern="/addAdmin" security="none" />
 
 	<security:http auto-config="true">
+
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/home" access="permitAll" />
+
+		<!-- This is required for CSRF protection in the ng-inclue pages and AJAX 
+			Calls -->
+		<security:intercept-url pattern="/contact.jsp"
+			access="permitAll" />
+
+		<!-- <security:intercept-url pattern="/sendContactMail" access="permitAll" 
+			/> -->
+
+		<security:intercept-url pattern="/register"
+			access="permitAll" />
+		<security:intercept-url pattern="/login"
+			access="permitAll" />
+
 		<security:intercept-url pattern="/admin"
 			access="hasRole('ROLE_ADMIN')" />
+
 		<security:form-login login-page="/login"
 			username-parameter="txt-username" password-parameter="txt-password"
 			authentication-failure-url="/login?valid=false"
 			authentication-success-handler-ref="authSuccessHandler"
 			default-target-url="/admin" />
+
 		<security:csrf />
 
 		<security:access-denied-handler

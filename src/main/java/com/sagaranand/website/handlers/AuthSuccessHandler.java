@@ -6,6 +6,7 @@ package com.sagaranand.website.handlers;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -15,6 +16,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 
 import com.sagaranand.website.model.User;
@@ -48,6 +50,18 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
 		try {
+
+			/**
+			 * Keep this piece of code for later use!
+			 */
+//			System.out.println("Saving the X-CSRF-Token here!");
+//			CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
+//			if (csrfToken != null) {
+//				Cookie cookie = new Cookie("XSRF-TOKEN", csrfToken.getToken());
+//				cookie.setPath("/");
+//				response.addCookie(cookie);
+//			}
+
 			HttpSession session = request.getSession();
 			session.setAttribute("user", new User(auth.getName()));
 			redirectStrategy.sendRedirect(request, response, "/admin");
