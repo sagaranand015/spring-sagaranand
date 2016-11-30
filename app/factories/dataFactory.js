@@ -5,6 +5,9 @@ angular.module('monitorApp').factory('dataFactory', [ '$http', '$q', function($h
 
 	// to send the contact mail to the admin and the user
 	dataFactory.sendContactMail = function(contactRequest) {
+		
+		console.log($http.defaults);
+		
 		return $http.post("sendContactMail", contactRequest);
 	}
 	

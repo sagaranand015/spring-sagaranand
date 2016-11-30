@@ -1,7 +1,8 @@
 {
 	"register": {
 		"controller": "registerController",
-		"headline": "Login to SagarAnand.com"
+		"headline": "Register at SagarAnand.com",
+		"siteNameDesc": "Choose your site name here. This can later be changed!"
 	},
 	"headerMenu": {
 		"controller": "headerMenuController",

@@ -45,5 +45,4 @@ function registerController($scope, dataFactory, ngToast, $rootScope, utilitySer
 	});
 
 	vm.initLogin();	
-
 }
