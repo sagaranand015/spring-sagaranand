@@ -295,4 +295,31 @@ public class ClientController {
 		}
 	}
 
+	/**
+	 * @return the register.jsp page
+	 */
+	@RequestMapping(value = "register")
+	public String register() {
+		return "register";
+	}
+
+	/**
+	 * @param email
+	 * @param name
+	 * @param password
+	 * @param confirmPassword
+	 * @param siteName
+	 * @param model
+	 * @return the user page for given siteName on successful registration. Otherwise, error on Registration
+	 */
+	@RequestMapping(value = "register-submit", method = RequestMethod.POST)
+	public String registerSubmit(@RequestParam("txt-email") String email, @RequestParam("txt-name") String name,
+			@RequestParam("txt-password") String password, @RequestParam("txt-confirm-password") String confirmPassword,
+			@RequestParam("txt-site") String siteName, Model model) {
+
+		System.out.println(email + " -> " + name + " -> " + password + " -> " + confirmPassword + " -> " + siteName);
+
+		return "user";
+	}
+
 }

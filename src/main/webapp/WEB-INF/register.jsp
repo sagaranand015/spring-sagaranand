@@ -118,7 +118,7 @@
 								<tr>
 									<td><input type="text" class="form-control"
 										id="txt-name" name="txt-name"
-										placeholder="Enter your Name*" autofocus="autofocus"
+										placeholder="Enter your Name*"
 										required /></td>
 								</tr>
 								<tr>

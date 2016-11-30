@@ -14,7 +14,7 @@ function registerController($scope, dataFactory, ngToast, $rootScope, utilitySer
 	$rootScope.register = {};
 
 	// initialize the main Site here
-	vm.initLogin = function() {
+	vm.initRegister = function() {
 		vm.mainContentResp = dataFactory.getPageContents("registerContent").then(function(response) {
 			if(response.status == 200) {
 
@@ -40,9 +40,23 @@ function registerController($scope, dataFactory, ngToast, $rootScope, utilitySer
 		});
 	};
 
+	// for the register submission
+	$scope.registerSubmit = function registerSubmit() {
+		
+		if(false) {
+			console.log("This is working ok!!");
+			return "";
+		}
+		
+		// return "register-submit";
+		document.getElementById('form-register').submit();
+		
+//		document.getElementById('form-register').submit();
+	};
+	
+	
 	$scope.$on('$viewContentLoaded', function($evt, data) {
-
 	});
 
-	vm.initLogin();	
+	vm.initRegister();	
 }
