@@ -6,7 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>{{main.siteTitle}}</title>
-
+		
 		<sec:csrfMetaTags/>
 		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">

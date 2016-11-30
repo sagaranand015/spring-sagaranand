@@ -11,12 +11,14 @@ import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.SynthesizedAnnotation;
+import org.springframework.security.web.csrf.CsrfToken;
 
 /**
  * @author sanand5
@@ -60,6 +62,17 @@ public class ControllerFilter implements Filter {
 				res.setHeader("Pragma", "no-cache");
 				res.setHeader("Expires", "0");
 				res.setHeader("X-Frame-Options", "DENY");
+				
+//				System.out.println("Saving the X-CSRF-Token here!");
+//				CsrfToken csrfToken = (CsrfToken) req.getAttribute(CsrfToken.class.getName());
+//				if (csrfToken != null) {
+//					Cookie cookie = new Cookie("XSRF-TOKEN", csrfToken.getToken());
+//					cookie.setPath("/");
+//					res.addCookie(cookie);
+//					res.addHeader("X-XSRF-TOKEN", csrfToken.getToken());
+//				}
+				
+				
 			}
 
 		} catch (Exception e) {
