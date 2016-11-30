@@ -4,23 +4,14 @@
 package com.sagaranand.website.orm;
 
 import java.sql.Timestamp;
+
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.apache.http.annotation.NotThreadSafe;
-import org.hibernate.annotations.GeneratorType;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
 
 /**
  * @author sanand5
@@ -48,9 +39,6 @@ public class Admin {
 	@Column(name = "adminPwd")
 	private String adminPwd;
 
-	@Column(name = "salt")
-	private String salt;
-
 	@Column(name = "lastUpdatedOn")
 	private Timestamp lastUpdatedOn;
 
@@ -59,7 +47,7 @@ public class Admin {
 	}
 
 	public Admin(String adminId, String adminName, String adminUsername, String adminEmail, String adminContact,
-			String adminPwd, String salt, Timestamp lastUpdatedOn) {
+			String adminPwd, Timestamp lastUpdatedOn) {
 		super();
 		this.adminId = adminId;
 		this.adminName = adminName;
@@ -67,7 +55,6 @@ public class Admin {
 		this.adminEmail = adminEmail;
 		this.adminContact = adminContact;
 		this.adminPwd = adminPwd;
-		this.salt = salt;
 		this.lastUpdatedOn = lastUpdatedOn;
 	}
 
@@ -117,14 +104,6 @@ public class Admin {
 
 	public void setAdminPwd(String adminPwd) {
 		this.adminPwd = adminPwd;
-	}
-
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 
 	public Timestamp getLastUpdatedOn() {

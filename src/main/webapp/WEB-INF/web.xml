@@ -61,6 +61,11 @@
 	      org.springframework.security.web.session.HttpSessionEventPublisher
 	    </listener-class>
 	</listener>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
 
 	<!-- Hiding the session ID in the URL using the cookie as a tracking mode -->
 	<session-config>

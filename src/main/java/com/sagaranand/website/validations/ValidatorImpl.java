@@ -65,6 +65,8 @@ public class ValidatorImpl {
 	 * @return true if the String passed is safe to be used
 	 */
 	public boolean validateStringContent(String val) {
+		if (val == "")
+			return true;
 		return validator.isValidInput("stringContent", val, "SafeString", val.length(), false, true);
 	}
 

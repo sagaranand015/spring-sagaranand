@@ -71,10 +71,6 @@ public class ClientController {
 	 */
 	@RequestMapping(value = ApiEndpoints.ROOT)
 	public String index(HttpServletRequest request, HttpServletResponse response) {
-
-		System.out.println(request.getRequestURL().toString());
-		System.out.println(request.getLocalName());
-
 		return ApiEndpoints.ROOTPAGE;
 	}
 
@@ -259,17 +255,27 @@ public class ClientController {
 	@RequestMapping(value = "/addAdmin", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ServiceResponse> registerAdmin(@RequestBody Admin admin) {
 		try {
-			if (!validator.validateString(admin.getAdminName()) || !validator.validateString(admin.getAdminContact())
-					|| !validator.validateString(admin.getAdminPwd()) || !validator.validateString(admin.getSalt())) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
-			} else if (!validator.validateEmail(admin.getAdminEmail())) {
+
+			// get all the other parameters of the Admin Request
+			if (!validator.validateStringIsNull(admin.getAdminName())) {
+				admin.setAdminName("");
+			}
+			if (!validator.validateStringIsNull(admin.getAdminContact())) {
+				admin.setAdminContact("");
+			}
+
+			// necessary validations required for Username and Email
+			if (!validator.validateEmail(admin.getAdminEmail())) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
 			} else if (!validator.validateUsername(admin.getAdminUsername())) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
 			} else if (!validator.validatePassword(admin.getAdminPwd())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
+			} else if (!validator.validateStringContent(admin.getAdminName())
+					|| !validator.validateStringContent(admin.getAdminContact())) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
 			}

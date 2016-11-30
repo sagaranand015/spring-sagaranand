@@ -113,14 +113,13 @@ public class DaoImpl implements Dao {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Query query = session.createNativeQuery(
-					"insert into Admin(adminId, adminName, adminUsername, adminEmail, adminContact, adminPwd, salt) values(:adminId,:adminName,:adminUsername,:adminEmail,:adminContact,:adminPwd,:salt)");
+					"insert into Admin(adminId, adminName, adminUsername, adminEmail, adminContact, adminPwd) values(:adminId,:adminName,:adminUsername,:adminEmail,:adminContact,:adminPwd)");
 			query.setParameter("adminId", UUID.randomUUID().toString());
 			query.setParameter("adminName", admin.getAdminName());
 			query.setParameter("adminUsername", admin.getAdminUsername());
 			query.setParameter("adminEmail", admin.getAdminEmail());
 			query.setParameter("adminContact", admin.getAdminContact());
 			query.setParameter("adminPwd", admin.getAdminPwd());
-			query.setParameter("salt", admin.getSalt());
 			int res = query.executeUpdate();
 			if (res > 0) {
 				return true;

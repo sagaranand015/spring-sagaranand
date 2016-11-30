@@ -6,6 +6,9 @@ package com.sagaranand.website.providers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.mindrot.jbcrypt.BCrypt;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.sagaranand.website.constants.Constants;
 import com.sagaranand.website.orm.Admin;
@@ -45,13 +50,14 @@ public class LoginAuthProvider implements AuthenticationProvider {
 	 */
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		try {
+			HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+					.getRequest();
+
+			// now, based on the subdomain, the password will be looked into the
+			// appropriate table
 			
-			System.out.println("In authentication: ");
-			List<Admin> adminList = daoService.getAllAdmins();
-			for(Admin a: adminList) {
-				System.out.println("This is the admin: " + a.getAdminName());
-			}
 			
+
 			String name = authentication.getName();
 			String password = authentication.getCredentials().toString();
 			if (name.equals("admin") && password.equals("admin")) {

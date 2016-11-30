@@ -31,7 +31,7 @@
 								{{route.text}}
 							</a>
 						</li>
-						<!-- 3. the login and logout button -->
+						<!-- 3. the login, logout and Register button -->
 						<li ng-show="!loggedIn">
 							<a href="login">LOGIN</a>
 						</li>
@@ -44,6 +44,9 @@
 								</form>
 								LOGOUT
 							</a>
+						</li>
+						<li ng-show="!loggedIn">
+							<a href="register">REGISTER</a>
 						</li>
 					</ul>
 				</nav>

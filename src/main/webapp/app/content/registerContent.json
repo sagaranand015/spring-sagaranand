@@ -1,5 +1,6 @@
 {
-	"login": {
+	"register": {
+		"controller": "registerController",
 		"headline": "Login to SagarAnand.com"
 	},
 	"headerMenu": {
@@ -31,7 +32,7 @@
 			"name": "login",
 			"isEnabled": true,
 			"isShow": false, 
-			"link": "app/login/loginMain.jsp"
+			"link": "app/register/registerMain.jsp"
 		}],
 		"routes": [{
 			"text": "HOME",
