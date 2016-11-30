@@ -86,7 +86,7 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<security:http pattern="/sendContactMail" security="none" />
+	<!-- <security:http pattern="/sendContactMail" security="none" /> -->
 
 	<security:http auto-config="true">
 
@@ -95,11 +95,11 @@
 
 		<!-- This is required for CSRF protection in the ng-inclue pages and AJAX 
 			Calls -->
-		<security:intercept-url pattern="/contact.jsp"
+		<security:intercept-url pattern="/*.jsp"
 			access="permitAll" />
 
-		<!-- <security:intercept-url pattern="/sendContactMail" access="permitAll" 
-			/> -->
+		<security:intercept-url pattern="/sendContactMail" access="permitAll" 
+			/> 
 
 		<security:intercept-url pattern="/register"
 			access="permitAll" />
@@ -115,7 +115,7 @@
 			authentication-success-handler-ref="authSuccessHandler"
 			default-target-url="/admin" />
 
-		<security:csrf />
+		<security:csrf token-repository-ref="csrfTokenRepository" />
 
 		<security:access-denied-handler
 			error-page="/login?access=false" />
@@ -149,6 +149,10 @@
 
 	<bean id="logoutSuccessHandler" class="com.sagaranand.website.handlers.LogoutSuccessHandler">
 		<property name="daoService" ref="daoService"></property>
+	</bean>
+	
+	<bean id="csrfTokenRepository" class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository">
+    	<property name="headerName" value="X-XSRF-TOKEN" />
 	</bean>
 
 

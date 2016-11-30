@@ -3,7 +3,8 @@ angular.module('monitorApp').controller('contactController', contactController);
 contactController.$inject = [ '$scope', 'dataFactory', 'utilityService',
 		'ngToast', '$rootScope', '$document' ]
 
-function contactController($scope, dataFactory, utilityService, ngToast, $rootScope, $document) {
+function contactController($scope, dataFactory, utilityService, ngToast,
+		$rootScope, $document) {
 	console.log("Logging contactController");
 	var vm = this;
 
@@ -12,6 +13,13 @@ function contactController($scope, dataFactory, utilityService, ngToast, $rootSc
 	}
 
 	$scope.sendContactMail = function sendContactMail() {
+
+		// get the CSRF meta tags here
+		var token = $("meta[name='_csrf']").attr("content");
+		var header = $("meta[name='_csrf_header']").attr("content");
+
+		console.log("CSRF Token: " + token);
+		console.log("CSRF header: " + header);
 
 		if (utilityService.checkNullOrEmpty($scope.txtName)
 				|| utilityService.checkNullOrEmpty($scope.txtEmail)
@@ -22,7 +30,7 @@ function contactController($scope, dataFactory, utilityService, ngToast, $rootSc
 						content : 'The Information Entered seems Incorrect. Please try again'
 					});
 			return;
-		} else if(utilityService.checkNullOrEmpty($scope.txtTel)) {
+		} else if (utilityService.checkNullOrEmpty($scope.txtTel)) {
 			$scope.txtTel = "";
 		}
 
@@ -66,7 +74,7 @@ function contactController($scope, dataFactory, utilityService, ngToast, $rootSc
 										content : 'Oops! Looks like the Mail Server is misbehaving. Please try again or shoot a mail to <code>query@sagaranand.com</code> and I will get back ASAP!',
 										dismissOnTimeout : false,
 										dismissButton : true,
-										dismissOnClick: false
+										dismissOnClick : false
 									});
 						});
 	};

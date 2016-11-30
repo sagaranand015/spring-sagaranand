@@ -1,8 +1,11 @@
 /**
  * Routing for the complete web app
  */
-angular.module('monitorApp').config(['$stateProvider', '$urlRouterProvider', 'cfpLoadingBarProvider', 'ngToastProvider', function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, ngToastProvider) {
-
+angular.module('monitorApp').config(['$stateProvider', '$urlRouterProvider', 'cfpLoadingBarProvider', 'ngToastProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, ngToastProvider, $httpProvider) {
+	
+//	$httpProvider.defaults.xsrfCookieName = 'XSRF-Token';
+//	$httpProvider.defaults.xsrfHeaderName = 'X-XSRF-Token';
+	
 	// for the loading spinner
 	cfpLoadingBarProvider.includeSpinner = true;
 	
@@ -17,15 +20,6 @@ angular.module('monitorApp').config(['$stateProvider', '$urlRouterProvider', 'cf
  		templateUrl: 'app/layout/main.jsp',
  		abstract: true
  	});
-
- 	// .state('home.main', {
- 	// 	url: '/home.main',
- 	// 	parent: 'home',
- 	// 	templateUrl: 'app/layout/main.jsp'
- 	// }).state('login', {
- 	// 	url: '/login',
- 	// 	templateUrl: 'app/layout/loginMain.jsp'
- 	// })
 
  	$urlRouterProvider.otherwise('home');
 
