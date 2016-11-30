@@ -104,35 +104,21 @@
 					class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"
 					id="content-div">
 
-					<form id="form-login" action="login" method="POST">
+					<form id="form-register" action="register-submit" method="POST">
 						<div
 							class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-1 col-xs-10 col-xs-1">
-
-							<c:if test="${valid eq false}">
-								<div class="alert alert-danger">
-									<strong> Invalid User ID or Password </strong>
-								</div>
-							</c:if>
-
-							<c:if test="${logout eq true}">
-								<div class="alert alert-danger">
-									<strong> Logged Out Successfully </strong>
-								</div>
-							</c:if>
-
-							<c:if test="${session eq false}">
-								<div class="alert alert-danger">
-									<strong> Your Session Expired or invalid login
-										attempts were made. Please login again </strong>
-								</div>
-							</c:if>
-
 
 							<table class="table">
 								<tr>
 									<td><input type="text" class="form-control"
-										id="txt-username" name="txt-username"
-										placeholder="Enter your UserName*" autofocus="autofocus"
+										id="txt-email" name="txt-email"
+										placeholder="Enter your Email*" autofocus="autofocus"
+										required /></td>
+								</tr>
+								<tr>
+									<td><input type="text" class="form-control"
+										id="txt-name" name="txt-name"
+										placeholder="Enter your Name*" autofocus="autofocus"
 										required /></td>
 								</tr>
 								<tr>
@@ -141,9 +127,19 @@
 										placeholder="Enter your Password*" required /></td>
 								</tr>
 								<tr>
+									<td><input type="password" class="form-control"
+										id="txt-confirm-password" name="txt-confirm-password"
+										placeholder="Re-Enter your Password*" required /></td>
+								</tr>
+								<tr>
+									<td><input type="text" class="form-control"
+										id="txt-site" name="txt-site"
+										placeholder="Your Site Name*" required /></td>
+								</tr>
+								<tr>
 									<td><input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" /> <input type="submit"
-										class="btn btn-lg btn-primary btn-block" value="Login"
+										class="btn btn-lg btn-primary btn-block" value="Register"
 										id="btn-submit" name="btn-submit" /></td>
 								</tr>
 							</table>

@@ -55,24 +55,11 @@ public class ControllerFilter implements Filter {
 
 			String servletPath = req.getServletPath();
 			if (!startsWithStaticPath(servletPath.trim())) {
-				
 				System.out.println("this is from ControllerFilter: " + servletPath);
-				
 				res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
 				res.setHeader("Pragma", "no-cache");
 				res.setHeader("Expires", "0");
 				res.setHeader("X-Frame-Options", "DENY");
-				
-//				System.out.println("Saving the X-CSRF-Token here!");
-//				CsrfToken csrfToken = (CsrfToken) req.getAttribute(CsrfToken.class.getName());
-//				if (csrfToken != null) {
-//					Cookie cookie = new Cookie("XSRF-TOKEN", csrfToken.getToken());
-//					cookie.setPath("/");
-//					res.addCookie(cookie);
-//					res.addHeader("X-XSRF-TOKEN", csrfToken.getToken());
-//				}
-				
-				
 			}
 
 		} catch (Exception e) {
