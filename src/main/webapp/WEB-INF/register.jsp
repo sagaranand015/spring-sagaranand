@@ -70,7 +70,7 @@
 
 </head>
 
-<body id="{{headerMenu.logo.name}}">
+<body ng-cloak id="{{headerMenu.logo.name}}">
 
 	<toast></toast>
 

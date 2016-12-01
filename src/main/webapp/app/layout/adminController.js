@@ -8,13 +8,23 @@ function adminController($scope, dataFactory, ngToast, $rootScope, utilityServic
 	console.log("Logging adminController");
 	var vm = this;
 
+	$rootScope.showDisabledScreen = false;
+	// On starting of the loading bar during any AJAX request
+	$rootScope.$on('cfpLoadingBar:started', function(event, data) {
+		$rootScope.showDisabledScreen = true;
+	});
+	// on ending of the loading bar during any AJAX request
+	$rootScope.$on('cfpLoadingBar:completed', function(event, data) {
+		$rootScope.showDisabledScreen = false;
+	});
+	
 	$rootScope.main = {};
 	$rootScope.headerMenu = {};
 	$rootScope.footer = {};
 	$rootScope.admin = {};
 
 	// initialize the main Site here
-	vm.initLogin = function() {
+	vm.initAdmin = function() {
 		vm.mainContentResp = dataFactory.getPageContents("adminContent").then(function(response) {
 			if(response.status == 200) {
 
@@ -43,6 +53,12 @@ function adminController($scope, dataFactory, ngToast, $rootScope, utilityServic
 
 	});
 
-	vm.initLogin();	
+	vm.initAdmin();	
 
+	// to fire the callbacks once this particular document is loaded
+	// completely
+	angular.element(document).ready(function() {
+		$rootScope.showDisabledScreen = false;
+	});
+	
 }
