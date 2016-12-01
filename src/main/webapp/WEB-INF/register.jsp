@@ -104,7 +104,7 @@
 					class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"
 					id="content-div">
 
-					<form id="form-register" action="register-submit" method="POST">
+					<form id="form-register" action="register/register-submit" method="POST">
 						<div
 							class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-1 col-xs-10 col-xs-1">
 

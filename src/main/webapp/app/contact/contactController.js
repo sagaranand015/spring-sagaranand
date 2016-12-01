@@ -13,14 +13,7 @@ function contactController($scope, dataFactory, utilityService, ngToast,
 	}
 
 	$scope.sendContactMail = function sendContactMail() {
-
-		// get the CSRF meta tags here
-		var token = $("meta[name='_csrf']").attr("content");
-		var header = $("meta[name='_csrf_header']").attr("content");
-
-		console.log("CSRF Token: " + token);
-		console.log("CSRF header: " + header);
-
+		
 		if (utilityService.checkNullOrEmpty($scope.txtName)
 				|| utilityService.checkNullOrEmpty($scope.txtEmail)
 				|| utilityService.checkNullOrEmpty($scope.txtMessage)) {

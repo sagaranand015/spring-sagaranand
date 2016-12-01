@@ -15,11 +15,16 @@
 	<!-- The .properties file for parameters from outside -->
 	<context:property-placeholder
 		location="WEB-INF/properties/app.properties,WEB-INF/properties/database.properties" />
-	<!-- <context:property-placeholder location="" /> -->
 
 	<bean id="client" class="com.sagaranand.website.client.GenericClient"></bean>
 
 	<bean id="clientController" class="com.sagaranand.website.controllers.ClientController"></bean>
+	
+	<bean id="apiController" class="com.sagaranand.website.controllers.ApiController"></bean>
+	
+	<bean id="adminController" class="com.sagaranand.website.controllers.AdminController"></bean>
+	
+	<bean id="userController" class="com.sagaranand.website.controllers.UserController"></bean>
 
 	<bean id="mail" class="com.sagaranand.website.core.MailImpl">
 		<property name="apiKey" value="${app.mail.apiKey}"></property>
