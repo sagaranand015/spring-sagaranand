@@ -38,7 +38,6 @@ public class CsrfRequestFilter extends OncePerRequestFilter {
 			response.addCookie(cookie);
 		}
 		filterChain.doFilter(request, response);
-
 	}
 
 }

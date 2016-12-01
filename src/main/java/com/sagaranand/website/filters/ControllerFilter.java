@@ -53,17 +53,22 @@ public class ControllerFilter implements Filter {
 			HttpServletRequest req = (HttpServletRequest) request;
 			HttpServletResponse res = (HttpServletResponse) response;
 
-			String servletPath = req.getServletPath();
-			if (!startsWithStaticPath(servletPath.trim())) {
-				System.out.println("this is from ControllerFilter: " + servletPath);
-				res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-				res.setHeader("Pragma", "no-cache");
-				res.setHeader("Expires", "0");
-				res.setHeader("X-Frame-Options", "DENY");
-			}
+			/**
+			 * This is not required, since Spring Security will take care of
+			 * this implicitly.
+			 */
+			// String servletPath = req.getServletPath();
+			// if (!startsWithStaticPath(servletPath.trim())) {
+			// System.out.println("this is from ControllerFilter: " +
+			// servletPath);
+			//// res.setHeader("Cache-Control", "no-cache, no-store,
+			// must-revalidate");
+			//// res.setHeader("Pragma", "no-cache");
+			//// res.setHeader("Expires", "0");
+			//// res.setHeader("X-Frame-Options", "DENY");
+			// }
 
 		} catch (Exception e) {
-			System.out.println("I'm here too in FilterController!!");
 			logger.error(e.getMessage(), e);
 		}
 		chain.doFilter(request, response);

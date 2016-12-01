@@ -49,7 +49,6 @@
 				</div>
 
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<sec:csrfInput />
 					<input type="submit" class="btn btn-lg btn-primary btn-block"
 						value="Submit" id="btn-submit" name="btn-submit" />
 				</div>
