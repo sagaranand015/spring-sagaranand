@@ -70,7 +70,7 @@
 
 </head>
 
-<body id="{{headerMenu.logo.name}}">
+<body ng-cloak id="{{headerMenu.logo.name}}">
 
 	<toast></toast>
 
@@ -79,7 +79,7 @@
 	<div class="wrapper">
 
 		<!-- The common headerMenu -->
-		<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}"
+		<div ng-cloak ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}"
 			ng-include="headerMenu.mainPageComponents[0].link"></div>
 
 		<!-- The components of the login page -->
@@ -94,7 +94,7 @@
 			<!-- Section Header -->
 			<header class="section-header text-center">
 				<div class="heading-title heading-line-double text-center">
-					<h2>{{register.headline}}</h2>
+					<h2 ng-cloak>{{register.headline}}</h2>
 				</div>
 			</header>
 			<!-- /Section Header -->
@@ -104,7 +104,7 @@
 					class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"
 					id="content-div">
 
-					<form id="form-register" action="register-submit" method="POST">
+					<form id="form-register" action="register/register-submit" method="POST">
 						<div
 							class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-1 col-xs-10 col-xs-1">
 
@@ -118,7 +118,7 @@
 								<tr>
 									<td><input type="text" class="form-control"
 										id="txt-name" name="txt-name"
-										placeholder="Enter your Name*" autofocus="autofocus"
+										placeholder="Enter your Name*"
 										required /></td>
 								</tr>
 								<tr>
@@ -154,7 +154,7 @@
 		<!-- </section> -->
 
 		<!-- The common Footer -->
-		<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}"
+		<div ng-cloak ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}"
 			ng-include="headerMenu.mainPageComponents[1].link"></div>
 
 	</div>

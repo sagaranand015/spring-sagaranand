@@ -32,10 +32,10 @@
 							</a>
 						</li>
 						<!-- 3. the login, logout and Register button -->
-						<li ng-show="!loggedIn">
+						<li ng-if="!loggedIn">
 							<a href="login">LOGIN</a>
 						</li>
-						<li ng-show="loggedIn">
+						<li ng-if="loggedIn">
 							<a ng-click="doLogout()">
 								<form id="form-logout" name="form-logout" action="logout" method="POST" style="display: none;">
 									<input type="hidden" name="${_csrf.parameterName}"
@@ -45,7 +45,7 @@
 								LOGOUT
 							</a>
 						</li>
-						<li ng-show="!loggedIn">
+						<li ng-if="!loggedIn">
 							<a href="register">REGISTER</a>
 						</li>
 					</ul>

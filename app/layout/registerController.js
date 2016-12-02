@@ -1,12 +1,23 @@
-angular
-	.module('monitorApp')
-	.controller('registerController', registerController);
+angular.module('monitorApp').controller('registerController',
+		registerController);
 
-registerController.$inject = ['$scope', 'dataFactory', 'ngToast', '$rootScope', 'utilityService'];
+registerController.$inject = [ '$scope', 'dataFactory', 'ngToast',
+		'$rootScope', 'utilityService' ];
 
-function registerController($scope, dataFactory, ngToast, $rootScope, utilityService) {
+function registerController($scope, dataFactory, ngToast, $rootScope,
+		utilityService) {
 	console.log("Logging registerController");
 	var vm = this;
+
+	$rootScope.showDisabledScreen = true;
+	// On starting of the loading bar during any AJAX request
+	$rootScope.$on('cfpLoadingBar:started', function(event, data) {
+		$rootScope.showDisabledScreen = true;
+	});
+	// on ending of the loading bar during any AJAX request
+	$rootScope.$on('cfpLoadingBar:completed', function(event, data) {
+		$rootScope.showDisabledScreen = false;
+	});
 
 	$rootScope.main = {};
 	$rootScope.headerMenu = {};
@@ -14,35 +25,51 @@ function registerController($scope, dataFactory, ngToast, $rootScope, utilitySer
 	$rootScope.register = {};
 
 	// initialize the main Site here
-	vm.initLogin = function() {
-		vm.mainContentResp = dataFactory.getPageContents("registerContent").then(function(response) {
-			if(response.status == 200) {
+	vm.initRegister = function() {
+		vm.mainContentResp = dataFactory
+				.getPageContents("registerContent")
+				.then(
+						function(response) {
+							if (response.status == 200) {
 
-				console.log("In registerController");
-				console.log(response.data);
+								console.log("In registerController");
+								console.log(response.data);
 
-				$rootScope.main = response.data.main;
-				$rootScope.headerMenu = response.data.headerMenu;
-				$rootScope.footer = response.data.footer;
-				$rootScope.register = response.data.register;
-				
-			} else {
-				ngToast.create({
-					className: 'danger',
-					content: 'Could not Load the Page Contents. Please try again.'
-				});
-			}
-		}, function(response) {
-			ngToast.create({
-				className: 'danger',
-				content: 'Could not Load the Page Contents. Please try again.'
-			});
-		});
+								$rootScope.main = response.data.main;
+								$rootScope.headerMenu = response.data.headerMenu;
+								$rootScope.footer = response.data.footer;
+								$rootScope.register = response.data.register;
+
+							} else {
+								ngToast
+										.create({
+											className : 'danger',
+											content : 'Could not Load the Page Contents. Please try again.'
+										});
+							}
+						},
+						function(response) {
+							ngToast
+									.create({
+										className : 'danger',
+										content : 'Could not Load the Page Contents. Please try again.'
+									});
+						});
 	};
 
-	$scope.$on('$viewContentLoaded', function($evt, data) {
+	// for the register submission
+	$scope.registerSubmit = function registerSubmit() {
 
+	};
+
+	// for callbacks when the view in ng-view is loaded
+	$scope.$on('viewContentLoaded', function($evt, data) {
 	});
 
-	vm.initLogin();	
+	vm.initRegister();
+	
+	// to fire the callbacks once this particular document is loaded completely
+	angular.element(document).ready(function() {
+		$rootScope.showDisabledScreen = false;
+	});
 }

@@ -3,9 +3,6 @@
  */
 angular.module('monitorApp').config(['$stateProvider', '$urlRouterProvider', 'cfpLoadingBarProvider', 'ngToastProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, cfpLoadingBarProvider, ngToastProvider, $httpProvider) {
 	
-//	$httpProvider.defaults.xsrfCookieName = 'XSRF-Token';
-//	$httpProvider.defaults.xsrfHeaderName = 'X-XSRF-Token';
-	
 	// for the loading spinner
 	cfpLoadingBarProvider.includeSpinner = true;
 	
