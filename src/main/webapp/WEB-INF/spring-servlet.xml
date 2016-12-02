@@ -84,7 +84,8 @@
 	</bean>
 
 	<!-- This is only for testing -->
-	<security:http pattern="/addAdmin" security="none" />
+	<security:http pattern="/admin/add" security="none" />
+	<security:http pattern="/register/**" security="none" />
 
 	<!-- For the main index page, static resources and /status endpoint that 
 		do not need security configurations -->
@@ -111,8 +112,8 @@
 
 		<!-- For the login endpoints and all its sub endpoints. (Endpoints satrting 
 			with login/*) -->
-		<security:intercept-url pattern="/login/**"
-			access="permitAll" />
+		<!-- <security:intercept-url pattern="/login/**"
+			access="permitAll" /> -->
 
 		<!-- For all the admin endpoints and its sub endpoints. (Endpoints starting with admin/**) -->
 		<security:intercept-url pattern="/admin/**"

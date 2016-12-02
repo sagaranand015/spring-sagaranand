@@ -3,6 +3,10 @@
  */
 package com.sagaranand.website.controllers;
 
+import java.sql.SQLException;
+
+import org.hibernate.HibernateException;
+import org.hibernate.exception.ConstraintViolationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,7 @@ import com.sagaranand.website.constants.ErrorCodes;
 import com.sagaranand.website.constants.ErrorMesaages;
 import com.sagaranand.website.core.MailImpl;
 import com.sagaranand.website.exceptions.DalException;
+import com.sagaranand.website.exceptions.ServiceException;
 import com.sagaranand.website.model.ServiceResponse;
 import com.sagaranand.website.orm.Admin;
 import com.sagaranand.website.services.DaoService;
@@ -71,7 +76,7 @@ public class AdminController {
 	 *         Record insertion
 	 */
 	@RequestMapping(value = ApiEndpoints.ADMIN_ENDPOINT + ApiEndpoints.ROOT
-			+ ApiEndpoints.ADMIN_ADD, method = RequestMethod.POST)
+			+ ApiEndpoints.ADD_ENDPOINT, method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ServiceResponse> registerAdmin(@RequestBody Admin admin) {
 		try {
 
@@ -84,29 +89,22 @@ public class AdminController {
 			}
 
 			// necessary validations required for Username and Email
-			if (!validator.validateEmail(admin.getAdminEmail())) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
-			} else if (!validator.validateUsername(admin.getAdminUsername())) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
-			} else if (!validator.validatePassword(admin.getAdminPwd())) {
-				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
-			} else if (!validator.validateStringContent(admin.getAdminName())
+			if (!validator.validateEmail(admin.getAdminEmail()) || !validator.validateUsername(admin.getAdminUsername())
+					|| !validator.validatePassword(admin.getAdminPwd())
+					|| !validator.validateStringContent(admin.getAdminName())
 					|| !validator.validateStringContent(admin.getAdminContact())) {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
 						new ServiceResponse(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase()));
 			}
 
 			if (!this.daoService.registerAdmin(admin)) {
-				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(
-						new ServiceResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR));
+				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+						.body(new ServiceResponse(ErrorCodes.DB_OPERATION_FAILED, ErrorMesaages.DB_OPERATION_FAILED));
 			}
 
 			return ResponseEntity.status(HttpStatus.OK.value())
 					.body(new ServiceResponse(ErrorCodes.OK, ErrorMesaages.OK));
-		} catch (DalException e) {
+		} catch (ServiceException e) {
 			logger.error(e.getMessage(), e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
 					.body(new ServiceResponse(ErrorCodes.DB_OPERATION_FAILED, ErrorMesaages.DB_OPERATION_FAILED));

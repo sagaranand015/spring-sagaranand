@@ -19,12 +19,16 @@
 	<bean id="client" class="com.sagaranand.website.client.GenericClient"></bean>
 
 	<bean id="clientController" class="com.sagaranand.website.controllers.ClientController"></bean>
-	
+
 	<bean id="apiController" class="com.sagaranand.website.controllers.ApiController"></bean>
-	
+
 	<bean id="adminController" class="com.sagaranand.website.controllers.AdminController"></bean>
-	
-	<bean id="userController" class="com.sagaranand.website.controllers.UserController"></bean>
+
+	<bean id="tenantController" class="com.sagaranand.website.controllers.TenantController"></bean>
+
+	<bean id="loginController" class="com.sagaranand.website.controllers.LoginController"></bean>
+
+	<bean id="registerController" class="com.sagaranand.website.controllers.RegisterController"></bean>
 
 	<bean id="mail" class="com.sagaranand.website.core.MailImpl">
 		<property name="apiKey" value="${app.mail.apiKey}"></property>

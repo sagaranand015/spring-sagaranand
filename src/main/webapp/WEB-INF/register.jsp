@@ -79,7 +79,7 @@
 	<div class="wrapper">
 
 		<!-- The common headerMenu -->
-		<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}"
+		<div ng-cloak ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}"
 			ng-include="headerMenu.mainPageComponents[0].link"></div>
 
 		<!-- The components of the login page -->
@@ -94,7 +94,7 @@
 			<!-- Section Header -->
 			<header class="section-header text-center">
 				<div class="heading-title heading-line-double text-center">
-					<h2>{{register.headline}}</h2>
+					<h2 ng-cloak>{{register.headline}}</h2>
 				</div>
 			</header>
 			<!-- /Section Header -->
@@ -154,7 +154,7 @@
 		<!-- </section> -->
 
 		<!-- The common Footer -->
-		<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}"
+		<div ng-cloak ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}"
 			ng-include="headerMenu.mainPageComponents[1].link"></div>
 
 	</div>

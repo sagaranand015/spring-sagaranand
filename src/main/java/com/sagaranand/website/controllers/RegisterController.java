@@ -3,6 +3,9 @@
  */
 package com.sagaranand.website.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sagaranand.website.client.GenericClient;
 import com.sagaranand.website.constants.ApiEndpoints;
 import com.sagaranand.website.core.MailImpl;
+import com.sagaranand.website.exceptions.ServiceException;
+import com.sagaranand.website.model.RegisterTenantRequest;
+import com.sagaranand.website.model.RegisterTenantResponse;
 import com.sagaranand.website.services.DaoService;
 import com.sagaranand.website.utilities.MailUtilities;
 import com.sagaranand.website.validations.SanitizerImpl;
@@ -68,11 +74,32 @@ public class RegisterController {
 			+ ApiEndpoints.REGISTER_SUBMIT, method = RequestMethod.POST)
 	public String registerSubmit(@RequestParam("txt-email") String email, @RequestParam("txt-name") String name,
 			@RequestParam("txt-password") String password, @RequestParam("txt-confirm-password") String confirmPassword,
-			@RequestParam("txt-site") String siteName, Model model) {
+			@RequestParam("txt-site") String siteName, HttpServletRequest request, HttpServletResponse response,
+			Model model) {
 
-		// TODO: to implement the register User functionality
-		
-		return "user";
+		try {
+			// validation of the request parameters
+			if (!validator.validateEmail(email) || !validator.validatePassword(password)
+					|| !validator.validatePassword(confirmPassword) || !validator.validateUsername(siteName)
+					|| !validator.validateString(name)) {
+				return "redirect:" + ApiEndpoints.ROOT + ApiEndpoints.REGISTER_ENDPOINT + "?valid=false";
+			}
+
+			// call the register functionality in the dal layer
+			RegisterTenantResponse registerResp = this.daoService
+					.registerTenant(new RegisterTenantRequest(email, name, password, siteName));
+			if (!registerResp.isTenantResp() && !registerResp.isSiteResp()) {
+				return "redirect:" + ApiEndpoints.ROOT + ApiEndpoints.REGISTER_ENDPOINT + "?valid=false";
+			}
+
+			return "redirect:http://" + siteName + ".sagaranand.com/";
+		} catch (ServiceException e) {
+			logger.error(e.getMessage(), e);
+			return "redirect:" + ApiEndpoints.ROOT + ApiEndpoints.REGISTER_ENDPOINT + "?valid=false";
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return "redirect:" + ApiEndpoints.ROOT + ApiEndpoints.REGISTER_ENDPOINT + "?valid=false";
+		}
 	}
 
 }

@@ -25,9 +25,6 @@ public class Tenant {
 	@Column(name = "tenantName")
 	private String tenantName;
 
-	@Column(name = "tenantUsername", nullable = false, unique = true)
-	private String tenantUsername;
-
 	@Column(name = "tenantEmail")
 	private String tenantEmail;
 
@@ -36,9 +33,6 @@ public class Tenant {
 
 	@Column(name = "tenantPwd")
 	private String tenantPwd;
-
-	@Column(name = "salt")
-	private String salt;
 
 	@Column(name = "tenantType")
 	private int tenantType;
@@ -50,16 +44,14 @@ public class Tenant {
 		super();
 	}
 
-	public Tenant(String tenantId, String tenantName, String tenantUsername, String tenantEmail, String tenantContact,
-			String tenantPwd, String salt, int tenantType, Timestamp lastUpdatedOn) {
+	public Tenant(String tenantId, String tenantName, String tenantEmail, String tenantContact, String tenantPwd,
+			int tenantType, Timestamp lastUpdatedOn) {
 		super();
 		this.tenantId = tenantId;
 		this.tenantName = tenantName;
-		this.tenantUsername = tenantUsername;
 		this.tenantEmail = tenantEmail;
 		this.tenantContact = tenantContact;
 		this.tenantPwd = tenantPwd;
-		this.salt = salt;
 		this.tenantType = tenantType;
 		this.lastUpdatedOn = lastUpdatedOn;
 	}
@@ -78,14 +70,6 @@ public class Tenant {
 
 	public void setTenantName(String tenantName) {
 		this.tenantName = tenantName;
-	}
-
-	public String getTenantUsername() {
-		return tenantUsername;
-	}
-
-	public void setTenantUsername(String tenantUsername) {
-		this.tenantUsername = tenantUsername;
 	}
 
 	public String getTenantEmail() {
@@ -110,14 +94,6 @@ public class Tenant {
 
 	public void setTenantPwd(String tenantPwd) {
 		this.tenantPwd = tenantPwd;
-	}
-
-	public String getSalt() {
-		return salt;
-	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
 	}
 
 	public int getTenantType() {

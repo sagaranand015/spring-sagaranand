@@ -6,6 +6,8 @@ package com.sagaranand.website.dao;
 import java.util.List;
 
 import com.sagaranand.website.exceptions.DalException;
+import com.sagaranand.website.model.RegisterTenantRequest;
+import com.sagaranand.website.model.RegisterTenantResponse;
 import com.sagaranand.website.orm.Admin;
 
 /**
@@ -45,7 +47,7 @@ public interface Dao {
 	 * to register a new admin into the db
 	 * 
 	 * @param admin
-	 * @return the boolean value stating if the user has been added or not
+	 * @return the boolean value stating if the Admin has been added or not
 	 * @throws DalException
 	 */
 	public boolean registerAdmin(Admin admin) throws DalException;
@@ -59,5 +61,15 @@ public interface Dao {
 	 * @throws DalException
 	 */
 	public Admin getAdminByEmail(String adminEmail) throws DalException;
+
+	/**
+	 * 
+	 * register a new tenant and a new site for the passed tenant
+	 * 
+	 * @param tenant
+	 * @return the boolean response addTenant and addSite operations
+	 * @throws DalException
+	 */
+	public RegisterTenantResponse registerTenant(RegisterTenantRequest tenant) throws DalException;
 
 }

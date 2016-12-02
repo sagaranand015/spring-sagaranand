@@ -69,15 +69,15 @@
 		<div class="wrapper">
 
 			<!-- the common component(headerMenu) -->
-			<div ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
+			<div ng-cloak ng-show="{{headerMenu.mainPageComponents[0].isEnabled}}" ng-include="headerMenu.mainPageComponents[0].link"></div>
 
 			<!-- for the components on the home page -->
-			<div ng-repeat="component in headerMenu.components">
+			<div ng-cloak ng-repeat="component in headerMenu.components">
 				<div id="{{component.name}}" ng-show="{{component.isEnabled}}" ng-include="component.link"></div>
 			</div> 
 						
 			<!-- the common component(footer) -->
-			<div ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
+			<div ng-cloak ng-show="{{headerMenu.mainPageComponents[1].isEnabled}}" ng-include="headerMenu.mainPageComponents[1].link"></div>
 
 		</div>
 

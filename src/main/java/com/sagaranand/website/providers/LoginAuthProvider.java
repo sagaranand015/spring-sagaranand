@@ -54,6 +54,10 @@ public class LoginAuthProvider implements AuthenticationProvider {
 		try {
 			HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
 					.getRequest();
+			
+			// validate the request paramters here and the complete HTTP Request here
+			
+			
 
 			// now, based on the subdomain, the password will be looked into the
 			// appropriate table
@@ -70,7 +74,6 @@ public class LoginAuthProvider implements AuthenticationProvider {
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
-		System.out.println("Returning null here!!");
 		return null;
 	}
 

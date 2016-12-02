@@ -26,6 +26,7 @@ import com.sagaranand.website.constants.ErrorCodes;
 import com.sagaranand.website.constants.ErrorMesaages;
 import com.sagaranand.website.core.MailImpl;
 import com.sagaranand.website.exceptions.DalException;
+import com.sagaranand.website.exceptions.ServiceException;
 import com.sagaranand.website.orm.Admin;
 import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
@@ -98,7 +99,7 @@ public class ClientController {
 			}
 			return ResponseEntity.status(HttpStatus.OK.value())
 					.body(new ServiceResponse(ErrorCodes.OK, ErrorMesaages.OK));
-		} catch (DalException e) {
+		} catch (ServiceException e) {
 			logger.error(e.getMessage(), e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
 					.body(new ServiceResponse(ErrorCodes.DB_OPERATION_FAILED, ErrorMesaages.DB_OPERATION_FAILED));
@@ -107,6 +108,6 @@ public class ClientController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
 					.body(new ServiceResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR));
 		}
-	}
-
+	} 
+	
 }

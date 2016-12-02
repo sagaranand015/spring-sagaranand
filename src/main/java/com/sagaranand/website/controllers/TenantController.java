@@ -19,9 +19,9 @@ import com.sagaranand.website.validations.ValidatorImpl;
  *
  */
 @Controller
-public class UserController {
+public class TenantController {
 
-	private static final Logger logger = Logger.getLogger(UserController.class);
+	private static final Logger logger = Logger.getLogger(TenantController.class);
 	
 	@Autowired
 	private GenericClient client;
@@ -40,5 +40,7 @@ public class UserController {
 
 	@Autowired
 	private DaoService daoService;
+	
+	
 
 }

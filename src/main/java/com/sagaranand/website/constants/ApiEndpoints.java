@@ -27,6 +27,6 @@ public class ApiEndpoints {
 	
 	public static final String ADMIN_ENDPOINT = "admin";
 	
-	public static final String ADMIN_ADD = "add";
+	public static final String ADD_ENDPOINT = "add";
 	
 }
