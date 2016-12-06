@@ -24,6 +24,9 @@ function registerController($scope, dataFactory, ngToast, $rootScope,
 	$rootScope.footer = {};
 	$rootScope.register = {};
 
+	$scope.registerForm = {};
+	$scope.isFormValid = false;	
+
 	// initialize the main Site here
 	vm.initRegister = function() {
 		vm.mainContentResp = dataFactory
@@ -31,15 +34,10 @@ function registerController($scope, dataFactory, ngToast, $rootScope,
 				.then(
 						function(response) {
 							if (response.status == 200) {
-
-								console.log("In registerController");
-								console.log(response.data);
-
 								$rootScope.main = response.data.main;
 								$rootScope.headerMenu = response.data.headerMenu;
 								$rootScope.footer = response.data.footer;
 								$rootScope.register = response.data.register;
-
 							} else {
 								ngToast
 										.create({
@@ -59,6 +57,10 @@ function registerController($scope, dataFactory, ngToast, $rootScope,
 
 	// for the register submission
 	$scope.registerSubmit = function registerSubmit() {
+		console.log("I'm in registerSubmit form --- submission!");
+
+		// check if the email and sitename are already existent in the database
+		
 
 	};
 
