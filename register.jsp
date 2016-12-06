@@ -197,8 +197,6 @@
 <script src="libraries/angular-ui/ui-bootstrap-2.1.3.min.js"></script>
 <script src="libraries/angular-ui/ui-bootstrap-tpls-2.1.3.min.js"></script>
 <script src="libraries/angular-scroll/angular-scroll.min.js"></script>
-<script
-	src="libraries/ng-remote-validate/release/ngRemoteValidate.0.6.1.min.js"></script>
 
 <!-- custom angular modules -->
 <script src="app/appModule.js"></script>
@@ -208,6 +206,7 @@
 <!-- for all the angular controllers -->
 <script src="app/layout/mainController.js"></script>
 <script src="app/services/utilityService.js"></script>
+<script src="app/services/validationService.js"></script>
 
 <!-- For the custom controllers -->
 <script src="app/headerMenu/headerMenuController.js"></script>

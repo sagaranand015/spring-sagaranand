@@ -30,10 +30,6 @@ function loginController($scope, dataFactory, ngToast, $rootScope,
 				.then(
 						function(response) {
 							if (response.status == 200) {
-
-								console.log("in LoginController!");
-								console.log(response.data);
-
 								$rootScope.main = response.data.main;
 								$rootScope.headerMenu = response.data.headerMenu;
 								$rootScope.footer = response.data.footer;

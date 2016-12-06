@@ -199,6 +199,7 @@
 <!-- for all the angular controllers -->
 <script src="app/layout/mainController.js"></script>
 <script src="app/services/utilityService.js"></script>
+<script src="app/services/validationService.js"></script>
 
 <!-- For the custom controllers -->
 <script src="app/headerMenu/headerMenuController.js"></script>
