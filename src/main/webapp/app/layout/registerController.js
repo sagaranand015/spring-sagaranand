@@ -2,10 +2,10 @@ angular.module('monitorApp').controller('registerController',
 		registerController);
 
 registerController.$inject = [ '$scope', 'dataFactory', 'ngToast',
-		'$rootScope', 'utilityService' ];
+		'$rootScope', 'utilityService', 'validationService' ];
 
 function registerController($scope, dataFactory, ngToast, $rootScope,
-		utilityService) {
+		utilityService, validationService) {
 	console.log("Logging registerController");
 	var vm = this;
 
@@ -25,7 +25,6 @@ function registerController($scope, dataFactory, ngToast, $rootScope,
 	$rootScope.register = {};
 
 	$scope.registerForm = {};
-	$scope.isFormValid = false;
 
 	// initialize the main Site here
 	vm.initRegister = function() {
@@ -57,7 +56,43 @@ function registerController($scope, dataFactory, ngToast, $rootScope,
 
 	// for the register submission
 	$scope.registerSubmit = function registerSubmit() {
-		console.log("I'm in registerSubmit form submission!");
+
+		// validation to be done here
+		if(!validationService.validateEmail($scope.registerForm.email)) {
+			ngToast.create({
+				className : 'danger',
+				content : 'The Email Address is not valid. Please try again.'
+			});			
+			return;
+		} else if(!validationService.validateString($scope.registerForm.name)) {
+			ngToast.create({
+				className : 'danger',
+				content : 'The Name Entered is not valid. Please try again.'
+			});		
+			return;	
+		} else if(!validationService.validatePassword($scope.registerForm.password) || !validationService.validatePassword($scope.registerForm.confirmPassword)) {
+			ngToast.create({
+				className : 'danger',
+				content : 'The Password(s) Entered are not valid. Please try again.'
+			});		
+			return;	
+		} else if(!validationService.validateUsername($scope.registerForm.site)) {
+			ngToast.create({
+				className : 'danger',
+				content : 'The Site Name Entered is not valid. Please try again.'
+			});		
+			return;	
+		}
+
+		// check if the password match
+		if(!validationService.matchPassword($scope.registerForm.password, $scope.registerForm.confirmPassword)) {
+			ngToast.create({
+				className : 'danger',
+				content : 'The passwords entered do not match. Please try again.'
+			});		
+			return;		
+		}
+
 
 		vm.checkEmailSiteRequest = {
 			"email" : $scope.registerForm.email,
