@@ -25,7 +25,7 @@ function registerController($scope, dataFactory, ngToast, $rootScope,
 	$rootScope.register = {};
 
 	$scope.registerForm = {};
-	$scope.isFormValid = false;	
+	$scope.isFormValid = false;
 
 	// initialize the main Site here
 	vm.initRegister = function() {
@@ -59,8 +59,50 @@ function registerController($scope, dataFactory, ngToast, $rootScope,
 	$scope.registerSubmit = function registerSubmit() {
 		console.log("I'm in registerSubmit form submission!");
 
-		// check if the email and sitename are already existent in the database
-		
+		vm.checkEmailSiteRequest = {
+			"email" : $scope.registerForm.email,
+			"siteName" : $scope.registerForm.site
+		};
+
+		vm.EmailSiteCheck = dataFactory
+				.checkEmailSiteExistence(vm.checkEmailSiteRequest)
+				.then(
+						function(response) { // success case
+							if (response.status == 200) {
+								if (!response.data.emailExists
+										&& !response.data.siteExists) {
+									document.getElementById('form-register')
+											.submit();
+								} else if (response.data.emailExists
+										&& !response.data.siteExists) {
+									ngToast
+											.create({
+												className : 'danger',
+												content : 'The Email Address already exists. Please use another one'
+											});
+								} else if (!response.data.emailExists
+										&& response.data.siteExists) {
+									ngToast
+											.create({
+												className : 'danger',
+												content : 'The Site Name already exists. Please use another one'
+											});
+								} else {
+									ngToast
+											.create({
+												className : 'danger',
+												content : 'Both Email Address and Site Name already exists. Please use another one'
+											});
+								}
+							}
+						},
+						function(response) { // fail case
+							ngToast
+									.create({
+										className : 'danger',
+										content : 'The Email Address/Site Name is already registered. Please choose another one.'
+									});
+						});
 
 	};
 
@@ -69,7 +111,7 @@ function registerController($scope, dataFactory, ngToast, $rootScope,
 	});
 
 	vm.initRegister();
-	
+
 	// to fire the callbacks once this particular document is loaded completely
 	angular.element(document).ready(function() {
 		$rootScope.showDisabledScreen = false;

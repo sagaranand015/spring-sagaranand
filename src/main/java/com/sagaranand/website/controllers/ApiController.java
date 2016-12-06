@@ -142,7 +142,7 @@ public class ApiController {
 								HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())));
 	}
 
-	@RequestMapping(value = "api/emailSiteExists")
+	@RequestMapping(value = "api/emailSiteExists", method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<EmailSiteExistsResponse> isEmailSiteExists(
 			@RequestBody EmailSiteExsistsRequest emailSiteExsistsRequest) {
 		try {

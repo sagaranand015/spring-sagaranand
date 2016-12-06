@@ -111,29 +111,29 @@
 							<table class="table">
 								<tr>
 									<td><input type="text" class="form-control"
-										id="txt-email" name="email" ng-model="registerForm.email"
+										id="txt-email" name="txt-email" ng-model="registerForm.email"
 										placeholder="Enter your Email*" autofocus="autofocus"
 										required /></td>
 								</tr>
 								<tr>
 									<td><input type="text" class="form-control"
-										id="txt-name" name="name" ng-model="registerForm.name"
+										id="txt-name" name="txt-name" ng-model="registerForm.name"
 										placeholder="Enter your Name*"
 										required /></td>
 								</tr>
 								<tr>
 									<td><input type="password" class="form-control"
-										id="txt-password" name="password" ng-model="registerForm.password"
+										id="txt-password" name="txt-password" ng-model="registerForm.password"
 										placeholder="Enter your Password*" required /></td>
 								</tr>
 								<tr>
 									<td><input type="password" class="form-control"
-										id="txt-confirm-password" name="confirmPassword" ng-model="registerForm.confirmPassword"
+										id="txt-confirm-password" name="txt-confirm-password" ng-model="registerForm.confirmPassword"
 										placeholder="Re-Enter your Password*" required /></td>
 								</tr>
 								<tr>
 									<td><input type="text" class="form-control"
-										id="txt-site" name="site" ng-model="registerForm.site"
+										id="txt-site" name="txt-site" ng-model="registerForm.site"
 										placeholder="Your Site Name*" required /></td>
 								</tr>
 								<tr>
