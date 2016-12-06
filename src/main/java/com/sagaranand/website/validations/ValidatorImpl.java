@@ -88,4 +88,13 @@ public class ValidatorImpl {
 		return validator.isValidInput("password", val, "Password", val.length(), false, true);
 	}
 
+	/**
+	 * @param pwd
+	 * @param confirmPwd
+	 * @return true if the 2 passwords match exactly. False otherwise
+	 */
+	public boolean checkPasswordMatch(String pwd, String confirmPwd) {
+		return pwd.equals(confirmPwd);
+	}
+
 }

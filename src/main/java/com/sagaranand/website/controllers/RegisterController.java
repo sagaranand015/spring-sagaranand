@@ -56,7 +56,10 @@ public class RegisterController {
 	 * @return the register.jsp page
 	 */
 	@RequestMapping(value = ApiEndpoints.REGISTER_ENDPOINT)
-	public String register() {
+	public String register(@RequestParam(value = "valid", required = false) String valid, Model model) {
+		if (valid != null && valid.equals("false")) {
+			model.addAttribute("valid", false);
+		}
 		return ApiEndpoints.REGISTER_ENDPOINT;
 	}
 
@@ -82,6 +85,11 @@ public class RegisterController {
 			if (!validator.validateEmail(email) || !validator.validatePassword(password)
 					|| !validator.validatePassword(confirmPassword) || !validator.validateUsername(siteName)
 					|| !validator.validateString(name)) {
+				return "redirect:" + ApiEndpoints.ROOT + ApiEndpoints.REGISTER_ENDPOINT + "?valid=false";
+			}
+
+			// check if the password and confirm Password match here
+			if (!validator.checkPasswordMatch(password, confirmPassword)) {
 				return "redirect:" + ApiEndpoints.ROOT + ApiEndpoints.REGISTER_ENDPOINT + "?valid=false";
 			}
 

@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html ng-app="monitorApp" ng-controller="registerController as registerCtrl">
+<html ng-app="monitorApp"
+	ng-controller="registerController as registerCtrl">
 <head>
 <meta charset="UTF-8">
 <title>{{main.siteTitle}}</title>
@@ -104,48 +105,53 @@
 					class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1"
 					id="content-div">
 
-					<form id="form-register" role="form" action="register/register-submit" method="POST">
+					<form id="form-register" role="form"
+						action="register/register-submit" method="POST">
 						<div
 							class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-10 col-sm-1 col-xs-10 col-xs-1">
 
+							<c:if test="${valid eq false}">
+								<div class="alert alert-danger">
+									<strong> The Input Given was incorrect. Please try again </strong>
+								</div>
+							</c:if>
+
 							<table class="table">
 								<tr>
-									<td><input type="text" class="form-control"
-										id="txt-email" name="txt-email" ng-model="registerForm.email"
-										placeholder="Enter your Email*" autofocus="autofocus"
-										required /></td>
+									<td><input type="text" class="form-control" id="txt-email"
+										name="txt-email" ng-model="registerForm.email"
+										placeholder="Enter your Email*" autofocus="autofocus" required /></td>
 								</tr>
 								<tr>
-									<td><input type="text" class="form-control"
-										id="txt-name" name="txt-name" ng-model="registerForm.name"
-										placeholder="Enter your Name*"
-										required /></td>
+									<td><input type="text" class="form-control" id="txt-name"
+										name="txt-name" ng-model="registerForm.name"
+										placeholder="Enter your Name*" required /></td>
 								</tr>
 								<tr>
 									<td><input type="password" class="form-control"
-										id="txt-password" name="txt-password" ng-model="registerForm.password"
+										id="txt-password" name="txt-password"
+										ng-model="registerForm.password"
 										placeholder="Enter your Password*" required /></td>
 								</tr>
 								<tr>
 									<td><input type="password" class="form-control"
-										id="txt-confirm-password" name="txt-confirm-password" ng-model="registerForm.confirmPassword"
+										id="txt-confirm-password" name="txt-confirm-password"
+										ng-model="registerForm.confirmPassword"
 										placeholder="Re-Enter your Password*" required /></td>
 								</tr>
 								<tr>
-									<td><input type="text" class="form-control"
-										id="txt-site" name="txt-site" ng-model="registerForm.site"
+									<td><input type="text" class="form-control" id="txt-site"
+										name="txt-site" ng-model="registerForm.site"
 										placeholder="Your Site Name*" required /></td>
 								</tr>
 								<tr>
 									<td><input type="hidden" name="${_csrf.parameterName}"
 										value="${_csrf.token}" /> <input type="submit"
-										class="btn btn-lg btn-primary btn-block" style="display: none;" value="Register"
-										id="btn-submit" name="btn-submit" />
-
-										<input type="button"
-										class="btn btn-lg btn-primary btn-block" value="Register" ng-click="registerSubmit()" />
-
-									</td>
+										class="btn btn-lg btn-primary btn-block"
+										style="display: none;" value="Register" id="btn-submit"
+										name="btn-submit" /> <input type="button"
+										class="btn btn-lg btn-primary btn-block" value="Register"
+										ng-click="registerSubmit()" /></td>
 								</tr>
 							</table>
 						</div>
@@ -191,7 +197,8 @@
 <script src="libraries/angular-ui/ui-bootstrap-2.1.3.min.js"></script>
 <script src="libraries/angular-ui/ui-bootstrap-tpls-2.1.3.min.js"></script>
 <script src="libraries/angular-scroll/angular-scroll.min.js"></script>
-<script src="libraries/ng-remote-validate/release/ngRemoteValidate.0.6.1.min.js"></script>
+<script
+	src="libraries/ng-remote-validate/release/ngRemoteValidate.0.6.1.min.js"></script>
 
 <!-- custom angular modules -->
 <script src="app/appModule.js"></script>
