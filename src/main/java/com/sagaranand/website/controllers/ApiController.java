@@ -23,8 +23,11 @@ import com.sagaranand.website.constants.ApiEndpoints;
 import com.sagaranand.website.constants.ErrorCodes;
 import com.sagaranand.website.constants.ErrorMesaages;
 import com.sagaranand.website.core.MailImpl;
+import com.sagaranand.website.exceptions.ServiceException;
 import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
+import com.sagaranand.website.model.EmailSiteExistsResponse;
+import com.sagaranand.website.model.EmailSiteExsistsRequest;
 import com.sagaranand.website.model.ServiceResponse;
 import com.sagaranand.website.model.SessionResponse;
 import com.sagaranand.website.model.User;
@@ -65,7 +68,8 @@ public class ApiController {
 	 * 
 	 * @return Response containing the send status for admin and user mails
 	 */
-	@RequestMapping(value = ApiEndpoints.API_GATEWAY + ApiEndpoints.ROOT + ApiEndpoints.CONTACT_ENDPOINT, method = RequestMethod.POST)
+	@RequestMapping(value = ApiEndpoints.API_GATEWAY + ApiEndpoints.ROOT
+			+ ApiEndpoints.CONTACT_ENDPOINT, method = RequestMethod.POST)
 	public @ResponseBody ResponseEntity<ContactResponse> sendContactMail(@RequestBody ContactRequest contactRequest) {
 		try {
 			if (contactRequest.getPhone() == null) {
@@ -138,28 +142,32 @@ public class ApiController {
 								HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())));
 	}
 
-	/**
-	 * 
-	 * @param request
-	 * @return the SessionResponse containing session information
-	 */
-	@RequestMapping(value = "session", method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<SessionResponse> getSession(HttpServletRequest request) {
+	@RequestMapping(value = "api/emailSiteExists")
+	public @ResponseBody ResponseEntity<EmailSiteExistsResponse> isEmailSiteExists(
+			@RequestBody EmailSiteExsistsRequest emailSiteExsistsRequest) {
 		try {
-			HttpSession session = request.getSession();
-			if (session != null) {
-				User loggedInUser = (User) session.getAttribute("user");
-				if (loggedInUser != null) {
-					return ResponseEntity.status(HttpStatus.OK.value())
-							.body(new SessionResponse(ErrorCodes.OK, ErrorMesaages.OK, loggedInUser));
-				}
+
+			// validate the input of TenantEmail and SiteName here
+			if (!validator.validateEmail(emailSiteExsistsRequest.getEmail())
+					|| !validator.validateUsername(emailSiteExsistsRequest.getSiteName())) {
+				return ResponseEntity.status(HttpStatus.BAD_REQUEST.value())
+						.body(new EmailSiteExistsResponse(true, true));
 			}
+
+			// now, call the Dal-layer functions
 			return ResponseEntity.status(HttpStatus.OK.value())
-					.body(new SessionResponse(ErrorCodes.UNAUTHORIZED, ErrorMesaages.UNAUTHORIZED, null));
+					.body(new EmailSiteExistsResponse(
+							this.daoService.isTenantExists(emailSiteExsistsRequest.getEmail()),
+							this.daoService.isSiteExists(emailSiteExsistsRequest.getSiteName())));
+
+		} catch (ServiceException e) {
+			logger.error(e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+					.body(new EmailSiteExistsResponse(true, true));
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
-			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(
-					new SessionResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR, null));
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+					.body(new EmailSiteExistsResponse(true, true));
 		}
 	}
 

@@ -210,4 +210,46 @@ public class DaoImpl implements Dao {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sagaranand.website.dao.Dao#isTenantExists(java.lang.String)
+	 */
+	@Transactional
+	public boolean isTenantExists(String email) throws DalException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query query = session.createQuery("from Tenant where tenantEmail=:tenantEmail");
+			query.setParameter("tenantEmail", email);
+			return !query.getResultList().isEmpty();
+		} catch (HibernateException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sagaranand.website.dao.Dao#isSiteExists(java.lang.String)
+	 */
+	@Transactional
+	public boolean isSiteExists(String siteName) throws DalException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query query = session.createQuery("from Site where siteName=:siteName");
+			query.setParameter("siteName", siteName);
+			return !query.getResultList().isEmpty();
+		} catch (HibernateException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		}
+	}
+
 }

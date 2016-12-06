@@ -58,6 +58,9 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.sagaranand.website.orm.Admin</value>
+				<value>com.sagaranand.website.orm.Tenant</value>
+				<value>com.sagaranand.website.orm.Site</value>
+				<value>com.sagaranand.website.orm.TenantType</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -85,7 +88,7 @@
 
 	<!-- This is only for testing -->
 	<security:http pattern="/admin/add" security="none" />
-	<security:http pattern="/register/**" security="none" />
+	<security:http pattern="/api/**" security="none" />
 
 	<!-- For the main index page, static resources and /status endpoint that 
 		do not need security configurations -->
@@ -102,8 +105,8 @@
 			access="permitAll" />
 
 		<!-- For the API Gateway endpoints. (Endpoints starting with api/*) -->
-		<security:intercept-url pattern="/api/**"
-			access="permitAll" />
+		<!-- <security:intercept-url pattern="/api/**"
+			access="permitAll" /> -->
 
 		<!-- For the Register endpoint and all the sub register links. (Endpoints 
 			starting with register/*) -->
@@ -112,8 +115,8 @@
 
 		<!-- For the login endpoints and all its sub endpoints. (Endpoints satrting 
 			with login/*) -->
-		<!-- <security:intercept-url pattern="/login/**"
-			access="permitAll" /> -->
+		<security:intercept-url pattern="/login/**"
+			access="permitAll" /> 
 
 		<!-- For all the admin endpoints and its sub endpoints. (Endpoints starting with admin/**) -->
 		<security:intercept-url pattern="/admin/**"

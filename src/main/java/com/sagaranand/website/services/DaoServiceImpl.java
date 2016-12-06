@@ -141,4 +141,40 @@ public class DaoServiceImpl implements DaoService {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sagaranand.website.services.DaoService#isTenantExists(java.lang.
+	 * String)
+	 */
+	public boolean isTenantExists(String email) throws ServiceException {
+		try {
+			return this.dao.isTenantExists(email);
+		} catch (DalException e) {
+			logger.error(e.getMessage());
+			throw new ServiceException(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * com.sagaranand.website.services.DaoService#isSiteExists(java.lang.String)
+	 */
+	public boolean isSiteExists(String siteName) throws ServiceException {
+		try {
+			return this.dao.isSiteExists(siteName);
+		} catch (DalException e) {
+			logger.error(e.getMessage());
+			throw new ServiceException(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			throw new ServiceException(e.getMessage());
+		}
+	}
+
 }

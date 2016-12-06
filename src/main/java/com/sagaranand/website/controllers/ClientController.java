@@ -108,6 +108,31 @@ public class ClientController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
 					.body(new ServiceResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR));
 		}
-	} 
-	
+	}
+
+	/**
+	 * 
+	 * @param request
+	 * @return the SessionResponse containing session information
+	 */
+	@RequestMapping(value = "session", method = RequestMethod.GET)
+	public @ResponseBody ResponseEntity<SessionResponse> getSession(HttpServletRequest request) {
+		try {
+			HttpSession session = request.getSession();
+			if (session != null) {
+				User loggedInUser = (User) session.getAttribute("user");
+				if (loggedInUser != null) {
+					return ResponseEntity.status(HttpStatus.OK.value())
+							.body(new SessionResponse(ErrorCodes.OK, ErrorMesaages.OK, loggedInUser));
+				}
+			}
+			return ResponseEntity.status(HttpStatus.OK.value())
+					.body(new SessionResponse(ErrorCodes.UNAUTHORIZED, ErrorMesaages.UNAUTHORIZED, null));
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value()).body(
+					new SessionResponse(ErrorCodes.INTERNAL_SERVER_ERROR, ErrorMesaages.INTERNAL_SERVER_ERROR, null));
+		}
+	}
+
 }

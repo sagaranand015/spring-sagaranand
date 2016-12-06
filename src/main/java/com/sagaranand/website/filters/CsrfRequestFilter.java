@@ -31,6 +31,9 @@ public class CsrfRequestFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
+		
+		// TODO: Add Exception handling here and redirect to the Error Page
+		
 		CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
 		if (csrf != null) {
 			Cookie cookie = new Cookie("XSRF-TOKEN", csrf.getToken());

@@ -72,4 +72,24 @@ public interface Dao {
 	 */
 	public RegisterTenantResponse registerTenant(RegisterTenantRequest tenant) throws DalException;
 
+	/**
+	 * 
+	 * Checks if the tenantEmail exists in the database or not
+	 * 
+	 * @param email
+	 * @return the boolean value stating if the Tenant email exists or not
+	 * @throws DalException
+	 */
+	public boolean isTenantExists(String email) throws DalException;
+
+	/**
+	 * 
+	 * Checks if the siteName already exists in the database
+	 * 
+	 * @param siteName
+	 * @return the boolean value stating if the siteName already exists or not
+	 * @throws DalException
+	 */
+	public boolean isSiteExists(String siteName) throws DalException;
+
 }
