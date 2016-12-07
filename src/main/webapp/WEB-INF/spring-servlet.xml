@@ -125,8 +125,7 @@
 		<security:form-login login-page="/login"
 			username-parameter="txt-username" password-parameter="txt-password"
 			authentication-failure-url="/login?valid=false"
-			authentication-success-handler-ref="authSuccessHandler"
-			default-target-url="/admin" />
+			authentication-success-handler-ref="authSuccessHandler" />
 
 		<security:csrf token-repository-ref="csrfTokenRepository" />
 
@@ -154,6 +153,7 @@
 
 	<bean id="loginAuthProvider" class="com.sagaranand.website.providers.LoginAuthProvider">
 		<property name="daoService" ref="daoService"></property>
+		<property name="validator" ref="validator"></property>
 	</bean>
 
 	<bean id="authSuccessHandler" class="com.sagaranand.website.handlers.AuthSuccessHandler">

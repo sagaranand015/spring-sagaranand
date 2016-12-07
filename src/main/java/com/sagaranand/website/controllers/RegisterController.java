@@ -79,8 +79,14 @@ public class RegisterController {
 			@RequestParam("txt-password") String password, @RequestParam("txt-confirm-password") String confirmPassword,
 			@RequestParam("txt-site") String siteName, HttpServletRequest request, HttpServletResponse response,
 			Model model) {
-
 		try {
+
+			email = email.trim();
+			name = name.trim();
+			password = password.trim();
+			confirmPassword = confirmPassword.trim();
+			siteName = siteName.trim();
+
 			// validation of the request parameters
 			if (!validator.validateEmail(email) || !validator.validatePassword(password)
 					|| !validator.validatePassword(confirmPassword) || !validator.validateUsername(siteName)

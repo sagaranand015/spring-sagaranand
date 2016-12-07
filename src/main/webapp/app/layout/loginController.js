@@ -34,7 +34,6 @@ function loginController($scope, dataFactory, ngToast, $rootScope,
 								$rootScope.headerMenu = response.data.headerMenu;
 								$rootScope.footer = response.data.footer;
 								$rootScope.login = response.data.login;
-
 							} else {
 								ngToast
 										.create({
@@ -51,7 +50,7 @@ function loginController($scope, dataFactory, ngToast, $rootScope,
 									});
 						});
 	};
-
+	
 	$scope.$on('$viewContentLoaded', function($evt, data) {
 
 	});

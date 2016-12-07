@@ -10,6 +10,7 @@ import com.sagaranand.website.exceptions.ServiceException;
 import com.sagaranand.website.model.RegisterTenantRequest;
 import com.sagaranand.website.model.RegisterTenantResponse;
 import com.sagaranand.website.orm.Admin;
+import com.sagaranand.website.orm.Tenant;
 
 /**
  * @author sanand5
@@ -85,5 +86,45 @@ public interface DaoService {
 	 * @throws DalException
 	 */
 	public boolean isSiteExists(String siteName) throws ServiceException;
+
+	/**
+	 * 
+	 * To get the TenantDetails from the database based on the the ID passed
+	 * 
+	 * @param email
+	 * @return the user credentials based on the ID passed
+	 * @throws DalException
+	 */
+	public Tenant getTenant(String tenantId) throws ServiceException;
+
+	/**
+	 * 
+	 * To get the TenantDetails from the database based on the Email passed
+	 * 
+	 * @param email
+	 * @return the user credentials based on the email passed
+	 * @throws DalException
+	 */
+	public Tenant getTenantByEmail(String email) throws ServiceException;
+
+	/**
+	 * 
+	 * To get the TenantDetails from the database based on the SiteName passed
+	 * 
+	 * @param email
+	 * @return the user credentials based on the SiteName passed
+	 * @throws DalException
+	 */
+	public Tenant getTenantBySite(String site) throws ServiceException;
+
+	/**
+	 * 
+	 * Returns the tenantID from the db based on the site passed
+	 * 
+	 * @param site
+	 * @return the tenantId associated with the given site
+	 * @throws DalException
+	 */
+	public String getTenantIdBySite(String site) throws ServiceException;
 
 }

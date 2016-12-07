@@ -13,12 +13,14 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 
+import com.sagaranand.website.model.TenantInfo;
 import com.sagaranand.website.model.User;
 import com.sagaranand.website.services.DaoService;
 
@@ -51,19 +53,11 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 			throws IOException, ServletException {
 		try {
 
-			/**
-			 * Keep this piece of code for later use!
-			 */
-//			System.out.println("Saving the X-CSRF-Token here!");
-//			CsrfToken csrfToken = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
-//			if (csrfToken != null) {
-//				Cookie cookie = new Cookie("XSRF-TOKEN", csrfToken.getToken());
-//				cookie.setPath("/");
-//				response.addCookie(cookie);
-//			}
+			TenantInfo tenantInfo = (TenantInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-			HttpSession session = request.getSession();
-			session.setAttribute("user", new User(auth.getName()));
+			// HttpSession session = request.getSession();
+			// session.setAttribute("user", new User(auth.getName()));
+			
 			redirectStrategy.sendRedirect(request, response, "/admin");
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);

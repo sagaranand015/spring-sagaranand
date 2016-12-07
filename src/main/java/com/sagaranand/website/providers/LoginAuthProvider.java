@@ -4,9 +4,8 @@
 package com.sagaranand.website.providers;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.servlet.http.Cookie;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -19,14 +18,16 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.sagaranand.website.constants.Constants;
-import com.sagaranand.website.orm.Admin;
+import com.sagaranand.website.exceptions.ServiceException;
+import com.sagaranand.website.model.TenantInfo;
+import com.sagaranand.website.orm.Tenant;
 import com.sagaranand.website.services.DaoService;
+import com.sagaranand.website.validations.ValidatorImpl;
 
 /**
  * @author sanand5
@@ -38,8 +39,15 @@ public class LoginAuthProvider implements AuthenticationProvider {
 	@Autowired
 	private DaoService daoService;
 
+	@Autowired
+	private ValidatorImpl validator;
+
 	public void setDaoService(DaoService daoService) {
 		this.daoService = daoService;
+	}
+
+	public void setValidator(ValidatorImpl validator) {
+		this.validator = validator;
 	}
 
 	private static final Logger logger = LoggerFactory.getLogger(LoginAuthProvider.class);
@@ -54,24 +62,25 @@ public class LoginAuthProvider implements AuthenticationProvider {
 		try {
 			HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
 					.getRequest();
-			
-			// validate the request paramters here and the complete HTTP Request here
-			
-			
 
-			// now, based on the subdomain, the password will be looked into the
-			// appropriate table
-
-			String name = authentication.getName();
-			String password = authentication.getCredentials().toString();
-			if (name.equals("admin") && password.equals("admin")) {
+			String email = authentication.getName().trim();
+			final String password = authentication.getCredentials().toString().trim();
+			if (!validator.validateEmail(email) || !validator.validatePassword(password)) {
+				return null;
+			}
+			Tenant tenant = daoService.getTenantByEmail(email);
+			if (tenant.getTenantEmail().equals(email) && BCrypt.checkpw(password, tenant.getTenantPwd())) {
 				List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
-				grantedAuths.add(new SimpleGrantedAuthority(Constants.ADMIN_ACCESS));
-				return new UsernamePasswordAuthenticationToken(name, password, grantedAuths);
+				grantedAuths.add(new SimpleGrantedAuthority(Constants.USER_ACCESS));
+				return new UsernamePasswordAuthenticationToken(
+						new TenantInfo(tenant.getTenantId(), tenant.getTenantName(), tenant.getTenantEmail(),
+								tenant.getTenantContact(), tenant.getTenantType()),
+						password, grantedAuths);
 			}
 		} catch (AuthenticationException e) {
 			logger.error(e.getMessage(), e);
-		} catch (Exception e) {
+			throw e;
+		} catch (ServiceException e) {
 			logger.error(e.getMessage(), e);
 		}
 		return null;

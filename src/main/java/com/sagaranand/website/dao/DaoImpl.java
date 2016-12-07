@@ -5,12 +5,13 @@ package com.sagaranand.website.dao;
 
 import java.util.List;
 
+
 import java.util.UUID;
 
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 import org.apache.log4j.Logger;
-import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.mindrot.jbcrypt.BCrypt;
@@ -21,6 +22,7 @@ import com.sagaranand.website.exceptions.DalException;
 import com.sagaranand.website.model.RegisterTenantRequest;
 import com.sagaranand.website.model.RegisterTenantResponse;
 import com.sagaranand.website.orm.Admin;
+import com.sagaranand.website.orm.Tenant;
 
 /**
  * @author sanand5
@@ -47,11 +49,10 @@ public class DaoImpl implements Dao {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
 			Query query = session.createNativeQuery("show tables");
-			int res = query.getMaxResults();
-			if (res >= 0) {
+			if (!query.getResultList().isEmpty()) {
 				return true;
 			}
-		} catch (HibernateException e) {
+		} catch (PersistenceException e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		} catch (Exception e) {
@@ -70,9 +71,9 @@ public class DaoImpl implements Dao {
 	public List<Admin> getAllAdmins() throws DalException {
 		try {
 			Session session = this.sessionFactory.getCurrentSession();
-			List<Admin> adminList = session.createQuery("from Admin").getResultList();
-			return adminList;
-		} catch (HibernateException e) {
+			Query query = session.createQuery("from Admin");
+			return (List<Admin>) query.getResultList();
+		} catch (PersistenceException e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		} catch (Exception e) {
@@ -93,14 +94,18 @@ public class DaoImpl implements Dao {
 			Session session = this.sessionFactory.getCurrentSession();
 			Query query = session.createQuery("from Admin where adminUsername=:adminUsername");
 			query.setParameter("adminUsername", username);
-			return (Admin) query.getSingleResult();
-		} catch (HibernateException e) {
+			List<Admin> adminList = (List<Admin>) query.getResultList();
+			if (!adminList.isEmpty()) {
+				return adminList.get(0);
+			}
+		} catch (PersistenceException e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		}
+		return null;
 	}
 
 	/*
@@ -127,7 +132,7 @@ public class DaoImpl implements Dao {
 				return true;
 			}
 			return false;
-		} catch (HibernateException e) {
+		} catch (PersistenceException e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		} catch (Exception e) {
@@ -147,14 +152,18 @@ public class DaoImpl implements Dao {
 			Session session = this.sessionFactory.getCurrentSession();
 			Query query = session.createQuery("from Admin where adminEmail=:adminEmail");
 			query.setParameter("adminEmail", adminEmail);
-			return (Admin) query.getSingleResult();
-		} catch (HibernateException e) {
+			List<Admin> adminList = query.getResultList();
+			if (!adminList.isEmpty()) {
+				return adminList.get(0);
+			}
+		} catch (PersistenceException e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		}
+		return null;
 	}
 
 	/*
@@ -201,7 +210,7 @@ public class DaoImpl implements Dao {
 			}
 
 			return registerResp;
-		} catch (HibernateException e) {
+		} catch (PersistenceException e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		} catch (Exception e) {
@@ -221,8 +230,9 @@ public class DaoImpl implements Dao {
 			Session session = this.sessionFactory.getCurrentSession();
 			Query query = session.createQuery("from Tenant where tenantEmail=:tenantEmail");
 			query.setParameter("tenantEmail", email);
+			List<Tenant> tenantList = (List<Tenant>) query.getResultList();
 			return !query.getResultList().isEmpty();
-		} catch (HibernateException e) {
+		} catch (PersistenceException e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		} catch (Exception e) {
@@ -243,13 +253,108 @@ public class DaoImpl implements Dao {
 			Query query = session.createQuery("from Site where siteName=:siteName");
 			query.setParameter("siteName", siteName);
 			return !query.getResultList().isEmpty();
-		} catch (HibernateException e) {
+		} catch (PersistenceException e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 			throw new DalException(e.getMessage());
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sagaranand.website.dao.Dao#getTenant(java.lang.String)
+	 */
+	@Transactional
+	public Tenant getTenant(String tenantId) throws DalException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query query = session.createQuery("from Tenant where tenantId=:tenantId");
+			query.setParameter("tenantId", tenantId);
+			List<Tenant> tenantList = (List<Tenant>) query.getResultList();
+			if (!tenantList.isEmpty()) {
+				return tenantList.get(0);
+			}
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		}
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sagaranand.website.dao.Dao#getTenantByEmail(java.lang.String)
+	 */
+	@Transactional
+	public Tenant getTenantByEmail(String email) throws DalException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query query = session.createQuery("from Tenant where tenantEmail=:tenantEmail");
+			query.setParameter("tenantEmail", email);
+			List<Tenant> tenantList = (List<Tenant>) query.getResultList();
+			if (!tenantList.isEmpty()) {
+				return tenantList.get(0);
+			}
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		}
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sagaranand.website.dao.Dao#getTenantBySite(java.lang.String)
+	 */
+	@Transactional
+	public Tenant getTenantBySite(String site) throws DalException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			String tenantId = getTenantIdBySite(site);
+			return getTenant(tenantId);
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.sagaranand.website.dao.Dao#getTenantIdBySite(java.lang.String)
+	 */
+	@Transactional
+	public String getTenantIdBySite(String site) throws DalException {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Query query = session.createQuery("from Site where siteName=:siteName");
+			query.setParameter("siteName", site);
+			List<Tenant> tenantList = (List<Tenant>) query.getResultList();
+			if (!tenantList.isEmpty()) {
+				return tenantList.get(0).getTenantId();
+			}
+		} catch (PersistenceException e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e);
+			throw new DalException(e.getMessage());
+		}
+		return "";
 	}
 
 }
