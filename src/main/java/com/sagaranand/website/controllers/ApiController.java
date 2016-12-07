@@ -30,7 +30,7 @@ import com.sagaranand.website.model.EmailSiteExistsResponse;
 import com.sagaranand.website.model.EmailSiteExsistsRequest;
 import com.sagaranand.website.model.ServiceResponse;
 import com.sagaranand.website.model.SessionResponse;
-import com.sagaranand.website.model.User;
+import com.sagaranand.website.model.UserInfo;
 import com.sagaranand.website.services.DaoService;
 import com.sagaranand.website.utilities.MailUtilities;
 import com.sagaranand.website.validations.SanitizerImpl;

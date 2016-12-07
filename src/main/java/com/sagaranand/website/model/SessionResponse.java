@@ -9,9 +9,9 @@ package com.sagaranand.website.model;
  */
 public class SessionResponse extends ServiceResponse {
 
-	private User userDetails;
+	private UserInfo userDetails;
 
-	public SessionResponse(int status, String message, User userDetails) {
+	public SessionResponse(int status, String message, UserInfo userDetails) {
 		super(status, message);
 		this.userDetails = userDetails;
 	}
@@ -20,11 +20,11 @@ public class SessionResponse extends ServiceResponse {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User getUserDetails() {
+	public UserInfo getUserDetails() {
 		return userDetails;
 	}
 
-	public void setUserDetails(User userDetails) {
+	public void setUserDetails(UserInfo userDetails) {
 		this.userDetails = userDetails;
 	}
 

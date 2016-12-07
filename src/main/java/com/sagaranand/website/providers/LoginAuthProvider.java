@@ -5,6 +5,7 @@ package com.sagaranand.website.providers;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
@@ -24,7 +25,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.sagaranand.website.constants.Constants;
 import com.sagaranand.website.exceptions.ServiceException;
-import com.sagaranand.website.model.TenantInfo;
+import com.sagaranand.website.model.UserInfo;
 import com.sagaranand.website.orm.Tenant;
 import com.sagaranand.website.services.DaoService;
 import com.sagaranand.website.validations.ValidatorImpl;
@@ -73,7 +74,7 @@ public class LoginAuthProvider implements AuthenticationProvider {
 				List<GrantedAuthority> grantedAuths = new ArrayList<GrantedAuthority>();
 				grantedAuths.add(new SimpleGrantedAuthority(Constants.USER_ACCESS));
 				return new UsernamePasswordAuthenticationToken(
-						new TenantInfo(tenant.getTenantId(), tenant.getTenantName(), tenant.getTenantEmail(),
+						new UserInfo(tenant.getTenantId(), tenant.getTenantName(), tenant.getTenantEmail(),
 								tenant.getTenantContact(), tenant.getTenantType()),
 						password, grantedAuths);
 			}

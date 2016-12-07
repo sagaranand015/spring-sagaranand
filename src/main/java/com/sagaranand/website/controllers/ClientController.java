@@ -4,6 +4,7 @@
 package com.sagaranand.website.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
@@ -11,6 +12,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +36,7 @@ import com.sagaranand.website.model.ContactRequest;
 import com.sagaranand.website.model.ContactResponse;
 import com.sagaranand.website.model.ServiceResponse;
 import com.sagaranand.website.model.SessionResponse;
-import com.sagaranand.website.model.User;
+import com.sagaranand.website.model.UserInfo;
 import com.sagaranand.website.services.DaoService;
 import com.sagaranand.website.utilities.MailUtilities;
 import com.sagaranand.website.validations.SanitizerImpl;
@@ -118,12 +122,13 @@ public class ClientController {
 	@RequestMapping(value = "session", method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<SessionResponse> getSession(HttpServletRequest request) {
 		try {
-			HttpSession session = request.getSession();
-			if (session != null) {
-				User loggedInUser = (User) session.getAttribute("user");
-				if (loggedInUser != null) {
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			if (!(auth instanceof AnonymousAuthenticationToken)) {
+				UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+				if (userInfo != null) {
+					System.out.println(userInfo.getName());
 					return ResponseEntity.status(HttpStatus.OK.value())
-							.body(new SessionResponse(ErrorCodes.OK, ErrorMesaages.OK, loggedInUser));
+							.body(new SessionResponse(ErrorCodes.OK, ErrorMesaages.OK, userInfo));
 				}
 			}
 			return ResponseEntity.status(HttpStatus.OK.value())
