@@ -29,4 +29,7 @@ public class ApiEndpoints {
 	
 	public static final String ADD_ENDPOINT = "add";
 	
+	public static final String SESSION_ENDPOINT = "session";
+	
+	public static final String EMAIL_SITE_EXISTS = "emailSiteExists";
 }

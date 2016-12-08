@@ -74,18 +74,11 @@ public class ClientController {
 	 * 
 	 * @return home.jsp - the root page
 	 */
-	@RequestMapping(value = ApiEndpoints.ROOT)
+	@RequestMapping(value = { ApiEndpoints.ROOT, " * ", ApiEndpoints.ROOTPAGE }, method = RequestMethod.GET)
 	public String index(HttpServletRequest request, HttpServletResponse response) {
-		return ApiEndpoints.ROOTPAGE;
-	}
 
-	/**
-	 * The /home Endpoint
-	 * 
-	 * @return home.jsp - the root page
-	 */
-	@RequestMapping(value = ApiEndpoints.ROOTPAGE)
-	public String home() {
+		// TODO: Get the page of the tenant
+
 		return ApiEndpoints.ROOTPAGE;
 	}
 
@@ -94,7 +87,7 @@ public class ClientController {
 	 * 
 	 * @return Response code for service status
 	 */
-	@RequestMapping(value = ApiEndpoints.STATUS_ENDPOINT, method = RequestMethod.GET)
+	@RequestMapping(value = { ApiEndpoints.STATUS_ENDPOINT }, method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<ServiceResponse> getStatus(HttpServletRequest request) {
 		try {
 			if (!daoService.checkdbStatus()) {
@@ -119,7 +112,7 @@ public class ClientController {
 	 * @param request
 	 * @return the SessionResponse containing session information
 	 */
-	@RequestMapping(value = "session", method = RequestMethod.GET)
+	@RequestMapping(value = { ApiEndpoints.SESSION_ENDPOINT }, method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<SessionResponse> getSession(HttpServletRequest request) {
 		try {
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();

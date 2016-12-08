@@ -44,8 +44,6 @@ public class LogoutSuccessHandler
 	 */
 	public void onLogoutSuccess(HttpServletRequest request, HttpServletResponse response, Authentication auth)
 			throws IOException, ServletException {
-		HttpSession session = request.getSession();
-		session.setAttribute("user", null);
 		redirectStrategy.sendRedirect(request, response, "/login?logout=true");
 	}
 

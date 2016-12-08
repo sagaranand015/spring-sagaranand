@@ -5,7 +5,6 @@ package com.sagaranand.website.providers;
 
 import java.util.ArrayList;
 
-
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
@@ -61,8 +60,10 @@ public class LoginAuthProvider implements AuthenticationProvider {
 	 */
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 		try {
-			HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
-					.getRequest();
+			// to get the request here using the RequestContextHolder
+			// HttpServletRequest request = ((ServletRequestAttributes)
+			// RequestContextHolder.currentRequestAttributes())
+			// .getRequest();
 
 			String email = authentication.getName().trim();
 			final String password = authentication.getCredentials().toString().trim();
@@ -82,6 +83,8 @@ public class LoginAuthProvider implements AuthenticationProvider {
 			logger.error(e.getMessage(), e);
 			throw e;
 		} catch (ServiceException e) {
+			logger.error(e.getMessage(), e);
+		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
 		}
 		return null;
