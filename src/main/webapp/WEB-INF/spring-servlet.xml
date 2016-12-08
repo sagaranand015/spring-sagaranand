@@ -121,6 +121,9 @@
 		<!-- For all the admin endpoints and its sub endpoints. (Endpoints starting with admin/**) -->
 		<security:intercept-url pattern="/admin/**"
 			access="hasRole('ROLE_ADMIN')" />
+			
+			<security:intercept-url pattern="/tenant/**"
+			access="hasRole('ROLE_USER')" />
 
 		<security:form-login login-page="/login"
 			username-parameter="txt-username" password-parameter="txt-password"

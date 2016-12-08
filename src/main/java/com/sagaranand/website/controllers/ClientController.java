@@ -119,7 +119,6 @@ public class ClientController {
 			if (!(auth instanceof AnonymousAuthenticationToken)) {
 				UserInfo userInfo = (UserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 				if (userInfo != null) {
-					System.out.println(userInfo.getName());
 					return ResponseEntity.status(HttpStatus.OK.value())
 							.body(new SessionResponse(ErrorCodes.OK, ErrorMesaages.OK, userInfo));
 				}
