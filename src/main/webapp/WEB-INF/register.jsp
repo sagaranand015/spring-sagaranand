@@ -125,7 +125,7 @@
 								<tr>
 									<td><input type="text" class="form-control" id="txt-name"
 										name="txt-name" ng-model="registerForm.name"
-										placeholder="Enter your Name*" required /></td>
+										placeholder="Enter your Name" /></td>
 								</tr>
 								<tr>
 									<td><input type="password" class="form-control"
